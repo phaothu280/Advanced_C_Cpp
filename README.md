@@ -80,9 +80,26 @@ int main(int argc, char const *argv[]){
 }
 ```
 ### 3.Con trỏ hằng
+Con trỏ hằng là một cách định nghĩa một con trỏ chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only) nhưng không thể thay đổi được giá trị đó.
 
+Cú pháp: 
+```cpp
+int const *ptr_const;
+const int *ptr_const;
+```
 ### 4.Hằng con trỏ
+Hằng con trỏ là một con trỏ mà địa chỉ nó trỏ đến không thể thay đổi, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
 
+Cú pháp:
+```cpp
+int *const const_ptr = &value;
+```
 ### 5.Con trỏ NULL
-
+Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.
+```cpp
+int *ptr_null = NULL;
+//  ptr_null = 0x00
+// *ptr_null = 0
+```
 ### 6.Pointer to pointer
+Con trỏ đến con trỏ (Pointer to Pointer) là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ. Con trỏ đến con trỏ cung cấp một cấp bậc trỏ mới, cho phép bạn thay đổi giá trị của con trỏ gốc. Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt là khi bạn làm việc với các hàm cần thay đổi giá trị của con trỏ.

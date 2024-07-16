@@ -58,6 +58,12 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 ```
+```cpp
+9 + 3 = 12
+Dia chi: 00000000005FFE94, int: 10
+Dia chi: 00000000005FFE88, double: 3.140
+Dia chi: 00000000005FFE87, char: B
+```
 ### 2.Con trỏ hàm
 Con trỏ hàm là một biến mà giữ địa chỉ của hàm.
 
@@ -101,6 +107,12 @@ int main(int argc, char const *argv[]){
     pheptoan[3](6,5);
     return 0;
 }
+```
+```cpp
+7 + 10 = 17
+7 - 10 = -3
+7 x 7 = 49
+6 / 5 = 1.200
 ```
 ### 3.Con trỏ hằng
 Con trỏ hằng là một cách định nghĩa một con trỏ chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only) nhưng không thể thay đổi được giá trị đó.
@@ -239,4 +251,17 @@ int main(int argc, char const *argv[]){
 
     return 0;
 }
+```
+```cpp
+ID: 100,  Ten: Hoang,   Diem tb: 7.50
+ID: 101,  Ten: Tuan,   Diem tb: 6.50
+ID: 102,  Ten: Vy,   Diem tb: 5.50
+
+ID: 102,  Ten: Vy,   Diem tb: 5.50
+ID: 101,  Ten: Tuan,   Diem tb: 6.50
+ID: 100,  Ten: Hoang,   Diem tb: 7.50
+
+ID: 100,  Ten: Hoang,   Diem tb: 7.50
+ID: 101,  Ten: Tuan,   Diem tb: 6.50
+ID: 102,  Ten: Vy,   Diem tb: 5.50
 ```

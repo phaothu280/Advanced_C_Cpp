@@ -12,4 +12,4 @@ Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và tr
 ### a.Void Pointer
 Thường dùng để trỏ tới bất kỳ địa chỉ nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
 
-Cú pháp: ```cpp void *ptr_void; ```
+Cú pháp: ``` void *ptr_void; ```

@@ -17,7 +17,7 @@ Muốn in ra giá trị thì phải sử dụng ép kiểu để đưa con trỏ
 Cú pháp: ``` void *ptr_void; ```
 
 Ví dụ:
-```
+```cpp
 #include <stdio.h>
 
 void sum(int a, int b){

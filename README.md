@@ -8,3 +8,8 @@ Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và tr
     •Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
   
     •Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
+## 3.Các kiểu con trỏ
+### a.Void Pointer
+Thường dùng để trỏ tới bất kỳ địa chỉ nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
+
+Cú pháp:  void *ptr_void;

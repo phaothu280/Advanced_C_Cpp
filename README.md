@@ -157,11 +157,11 @@ typedef struct{
 }SinhVien_t;
 
 int stringCompare(const char *str1,const char *str2){
-    while (*str1 && (*str1 == *str2)){
-        str1++;
+    while (*str1 && (*str1 == *str2)){    // so sánh từng ký tự của mỗi chuỗi
+        str1++;                           // tăng địa chỉ để truy cập vào ký tự tiếp theo khi 2 ký tự giống nhau
         str2++;
     }
-    return *(const unsigned char*)str1 - *(const unsigned char*)str2;
+    return *(const unsigned char*)str1 - *(const unsigned char*)str2; // lấy mã Ascii để so sánh
 }
 
 // Hàm so sánh theo tên
@@ -198,7 +198,7 @@ void swapSV(SinhVien_t *a, SinhVien_t *b){
     *b = temp;
 }
 
-// Hàm sắp xếp chung
+// Hàm sắp xếp sinh viên dựa theo tiêu chí (tên hoặc điểm hoặc ID)
 void sort(SinhVien_t array[], size_t size, int (*compareFunc)(const void *, const void *)){
     int i,j;
     for (i=0; i<size-1; i++){

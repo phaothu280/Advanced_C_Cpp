@@ -1,2 +1,3 @@
-# LESSON 3: POINTER
+# POINTER
 
+## Định nghĩa

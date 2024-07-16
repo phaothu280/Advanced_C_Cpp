@@ -3,7 +3,7 @@
 ## Định nghĩa
 Trong C, con trỏ (pointer) là một biến chứa địa chỉ bộ nhớ của một biến khác. Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
 ## Kích thước con trỏ
-Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và trình biên dịch.
+**Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và trình biên dịch.**
 
 Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
 
@@ -24,7 +24,7 @@ Size of pointer a is 4 bytes and b is 4 bytes
 ```
 ## Các kiểu con trỏ
 ### 1.Con trỏ Void
-Thường dùng để trỏ tới bất kỳ địa chỉ nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
+Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với **bất kỳ kiểu dữ liệu** của giá trị tại địa chỉ đó.
 
 Muốn in ra giá trị thì phải sử dụng ép kiểu để đưa con trỏ void về đến kiểu dữ liệu của giá trị đó.
 
@@ -115,7 +115,7 @@ int main(int argc, char const *argv[]){
 6 / 5 = 1.200
 ```
 ### 3.Con trỏ hằng
-Con trỏ hằng là một cách định nghĩa một con trỏ chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only) nhưng không thể thay đổi được giá trị đó.
+Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only)** nhưng không thể thay đổi được giá trị đó.
 
 Đối với biến là hằng số thì phải luôn dùng con trỏ hằng khi trỏ đến.
 
@@ -125,7 +125,7 @@ Cú pháp:
 const <kiểu_dữ_liệu> *ptr_const;
 ```
 ### 4.Hằng con trỏ
-Hằng con trỏ là một con trỏ mà trỏ đến 1 địa chỉ cố định, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
+Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
 
 Cú pháp:
 ```cpp

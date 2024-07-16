@@ -19,6 +19,9 @@ int main() {
     return 0;
 }
 ```
+```cpp
+Size of pointer a is 4 bytes and b is 4 bytes
+```
 ## Các kiểu con trỏ
 ### 1.Con trỏ Void
 Thường dùng để trỏ tới bất kỳ địa chỉ nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.

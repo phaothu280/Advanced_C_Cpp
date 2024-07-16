@@ -8,6 +8,17 @@ Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và tr
 Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
 
 Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
+
+```cpp
+#include <stdio.h>
+
+int main() {
+    int *a;
+    char *b;
+    printf("Size of pointer a is %d bytes and b is %d bytes\n", sizeof(a), sizeof(b));
+    return 0;
+}
+```
 ## Các kiểu con trỏ
 ### 1.Con trỏ Void
 Thường dùng để trỏ tới bất kỳ địa chỉ nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.

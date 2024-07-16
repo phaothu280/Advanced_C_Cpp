@@ -121,8 +121,8 @@ Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có th�
 
 Cú pháp: 
 ```cpp
-<kiểu_dữ_liệu> const *ptr_const;
-const <kiểu_dữ_liệu> *ptr_const;
+<data_type> const *ptr_const;
+const <data_type> *ptr_const;
 ```
 ### 4.Hằng con trỏ
 Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.

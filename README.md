@@ -158,7 +158,7 @@ typedef struct{
 
 int stringCompare(const char *str1,const char *str2){
     while (*str1 && (*str1 == *str2)){    // so sánh từng ký tự của mỗi chuỗi
-        str1++;                           // tăng địa chỉ để truy cập vào ký tự tiếp theo khi 2 ký tự giống nhau
+        str1++;  // tăng địa chỉ để truy cập vào ký tự tiếp theo khi 2 ký tự giống nhau
         str2++;
     }
     return *(const unsigned char*)str1 - *(const unsigned char*)str2; // lấy mã Ascii để so sánh

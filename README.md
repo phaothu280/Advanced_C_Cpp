@@ -5,9 +5,9 @@ Trong C, con trỏ (pointer) là một biến chứa địa chỉ bộ nhớ c�
 ## Kích thước con trỏ
 Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và trình biên dịch.
 
-•Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
+Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
 
-•Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
+Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
 ## Các kiểu con trỏ
 ### 1.Con trỏ Void
 Thường dùng để trỏ tới bất kỳ địa chỉ nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
@@ -45,7 +45,40 @@ int main(int argc, char const *argv[]){
 }
 ```
 ### 2.Con trỏ hàm
+Con trỏ hàm là một biến mà giữ địa chỉ của hàm.
 
+Con trỏ hàm cho phép bạn truyền một hàm như là một đối số cho một hàm khác.
+
+```cpp
+#include <stdio.h>
+
+void tong(int a, int b){
+    printf("%d + %d = %d\n", a, b, a+b);
+}
+
+void hieu(int a, int b){
+    printf("%d - %d = %d\n", a, b, a-b);
+}
+
+void tich(int a, int b){
+    printf("%d x %d = %d\n", a, b, a*b);
+}
+
+void thuong(int a, int b){
+    printf("%d/%d = %0.3f\n", a, b, a/(double)b);
+}
+
+int main(int argc, char const *argv[]){
+    // khai báo con trỏ ptr có kiểu trả về là void
+    // tham số truyền vào là 2 tham số kiểu integer
+    void (*pheptoan[])(int,int) = {&tong, &hieu, &tich, &thuong};
+    pheptoan[0](7,10);
+    pheptoan[1](7,10);
+    pheptoan[2](7,7);
+    pheptoan[3](6,5);
+    return 0;
+}
+```
 ### 3.Con trỏ hằng
 
 ### 4.Hằng con trỏ

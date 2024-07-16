@@ -120,8 +120,8 @@ int *const const_ptr = &value;
 Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.
 ```cpp
 int *ptr_null = NULL;
-//  ptr_null = 0x00
-// *ptr_null = 0
+//  ptr_null = 0x00: địa chỉ khởi tạo
+// *ptr_null = 0   : giá trị tại địa chỉ khởi tạo
 ```
 ### 6.Pointer to pointer
 Là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ. 

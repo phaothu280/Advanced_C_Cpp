@@ -58,8 +58,17 @@ int main(int argc, char const *argv[]){
 ### 2.Con trỏ hàm
 Con trỏ hàm là một biến mà giữ địa chỉ của hàm.
 
-Con trỏ hàm cho phép bạn truyền một hàm như là một đối số cho một hàm khác.
+Khi khai báo một con trỏ hàm, ta sẽ cần chỉ định kiểu dữ liệu của hàm mà con trỏ đó sẽ tham chiếu đến, bao gồm kiểu trả về và các tham số của hàm. Sau đó, ta có thể gán con trỏ hàm này cho một hàm cụ thể. Khi gọi con trỏ hàm, chương trình sẽ thực thi hàm mà con trỏ đang tham chiếu đến.
 
+Cú pháp:
+```cpp
+<return_type> (* func_pointer)(input_1_data type, input_2_data type,....);
+
+int (*ptr)(int,double);
+void (*array[])(int,int);
+```
+
+Ví dụ:
 ```cpp
 #include <stdio.h>
 
@@ -93,13 +102,15 @@ int main(int argc, char const *argv[]){
 ### 3.Con trỏ hằng
 Con trỏ hằng là một cách định nghĩa một con trỏ chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only) nhưng không thể thay đổi được giá trị đó.
 
+Đối với biến là hằng số thì phải luôn dùng con trỏ hằng khi trỏ đến.
+
 Cú pháp: 
 ```cpp
-int const *ptr_const;
-const int *ptr_const;
+<kiểu_dữ_liệu> const *ptr_const;
+const <kiểu_dữ_liệu> *ptr_const;
 ```
 ### 4.Hằng con trỏ
-Hằng con trỏ là một con trỏ mà địa chỉ nó trỏ đến không thể thay đổi, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
+Hằng con trỏ là một con trỏ mà trỏ đến 1 địa chỉ cố định, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
 
 Cú pháp:
 ```cpp
@@ -113,7 +124,11 @@ int *ptr_null = NULL;
 // *ptr_null = 0
 ```
 ### 6.Pointer to pointer
-Con trỏ đến con trỏ (Pointer to Pointer) là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ. Con trỏ đến con trỏ cung cấp một cấp bậc trỏ mới, cho phép bạn thay đổi giá trị của con trỏ gốc. Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt là khi bạn làm việc với các hàm cần thay đổi giá trị của con trỏ.
+Là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ. 
+
+Con trỏ đến con trỏ cung cấp một cấp bậc trỏ mới, cho phép bạn thay đổi giá trị của con trỏ gốc. 
+
+Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt là khi bạn làm việc với các hàm cần thay đổi giá trị của con trỏ.
 
 ## Ví dụ về con trỏ
 ```cpp

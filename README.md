@@ -13,7 +13,7 @@ Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
 #include <stdio.h>
 
 int main() {
-    int *a;
+    int  *a;
     char *b;
     printf("Size of pointer a is %d bytes and b is %d bytes\n", sizeof(a), sizeof(b));
     return 0;

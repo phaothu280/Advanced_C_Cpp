@@ -11,16 +11,29 @@ Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
 
 ```cpp
 #include <stdio.h>
+#include <stdbool.h>
 
-int main() {
-    int  *a;
-    char *b;
-    printf("Size of pointer a is %d bytes and b is %d bytes\n", sizeof(a), sizeof(b));
+int main(int argc, char const *argv[]){
+    printf("%d bytes\n", sizeof(int *));
+    printf("%d bytes\n", sizeof(char *));
+    printf("%d bytes\n", sizeof(float *));
+    printf("%d bytes\n", sizeof(double *));
+    printf("%d bytes\n", sizeof(long *));
+    printf("%d bytes\n", sizeof(short *));
+    printf("%d bytes\n", sizeof(long long *));
+    printf("%d bytes\n", sizeof(bool *));
     return 0;
 }
 ```
 ```cpp
-Size of pointer a is 4 bytes and b is 4 bytes
+4 bytes
+4 bytes
+4 bytes
+4 bytes
+4 bytes
+4 bytes
+4 bytes
+4 bytes
 ```
 ## Các kiểu con trỏ
 ### 1.Con trỏ Void

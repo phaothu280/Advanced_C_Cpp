@@ -1,4 +1,6 @@
 # POINTER
+<details><summary>Chi tiết</summary>
+<p>
 
 ## Định nghĩa
 Trong C, con trỏ (pointer) là một biến chứa địa chỉ bộ nhớ của một biến khác. Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
@@ -278,3 +280,15 @@ ID: 100,  Ten: Hoang,   Diem tb: 7.50
 ID: 101,  Ten: Tuan,   Diem tb: 6.50
 ID: 102,  Ten: Vy,   Diem tb: 5.50
 ```
+
+</p>
+</details>
+
+# Goto - setjmp
+<details><summary>Chi tiết</summary>
+<p>
+
+</p>
+</details>
+
+

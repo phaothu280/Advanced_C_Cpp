@@ -288,6 +288,34 @@ ID: 102,  Ten: Vy,   Diem tb: 5.50
 <details><summary>Chi tiết</summary>
 <p>
 
+## Goto trong C
+### Định nghĩa
+
+Từ khóa **"goto"** cho phép chương trình nhảy đến một label đã được đặt trước đó cùng một hàm. 
+
+"goto" cung cấp khả năng kiểm soát luồng hoạt động của mã nguồn, nhưng việc sử dụng goto thường được xem là không tốt vì nó có thể làm cho mã nguồn trở nên khó đọc và khó bảo trì. 
+
+Ví dụ:
+```cpp
+    int i=0;
+    
+    // đặt label start
+    start:
+        if (i >= 5){
+            goto end;       // chuyển control đến lable "end"
+        }
+        printf("%d\n",i);
+        i++;
+        goto start;
+
+    // đặt label end
+    end:
+        printf("The end\n");// chuyển control đến label "start"
+    return 0;
+}
+```
+Trong ví dụ này, goto được sử dụng để tạo một vòng lặp đơn giản. Khi i đạt đến giá trị 5, control sẽ chuyển đến nhãn "end" và kết thúc chương trình.
+
 </p>
 </details>
 

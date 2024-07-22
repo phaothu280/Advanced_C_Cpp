@@ -524,6 +524,7 @@ int main(){
 ```
 
 ## Thư viện setjmp
+### Định nghĩa
 setjmp.h là một thư viện trong ngôn ngữ lập trình C, cung cấp hai hàm chính là **setjmp** và **longjmp**.
 
 ```cpp
@@ -533,9 +534,49 @@ setjmp(jmp_buf buf);
 void longjmp(SETJMP_FLOAT128 *_Buf, int _Value);
 ```
 
-Cả hai hàm này thường được sử dụng để thực hiện xử lý ngoại lệ trong C thông qua 3 keywords chính là: **try**, **catch**, **throw**.
+**Ví dụ:**
+```cpp
+#include <stdio.h>
+#include <setjmp.h>
 
-Ví dụ:
+jmp_buf buf;
+int exception_code;
+
+double thuong(int a, int b){
+	if (!b){
+		longjmp(buf,1);
+	}
+	return a/(double)b;
+}
+
+int checkArray(int *arr, int size){
+    	if (size <= 0){
+        	longjmp(buf,2);
+	}
+    	return 1;
+}
+
+int main(int argc, char const *argv[]){
+	// khi bắt đầu thì setjmp(buf) luôn bằng 0
+
+	if ((exception_code = setjmp(buf)) == 0){
+		int array[0];
+		double ketqua = thuong(8,0);
+		printf("Ket qua: %0.3f\n", ketqua);
+		checkArray(array,0);
+	}
+	else if (exception_code == 1){
+		printf("ERROR! Mau bang 0\n");
+	}
+	else if (exception_code == 2){
+		printf("ERROR! Array bang 0\n");
+	}
+	return 0;
+}
+```
+
+### Xử lý ngoại lệ
+Cả hai hàm **setjmp** và **longjmp** thường được sử dụng để thực hiện xử lý ngoại lệ trong C thông qua 3 keywords chính là: **try**, **catch**, **throw**.
 ```cpp
 #include <stdio.h>
 #include <setjmp.h>

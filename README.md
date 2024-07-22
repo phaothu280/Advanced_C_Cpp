@@ -485,4 +485,10 @@ int main(int argc, char const *argv[])
 </p>
 </details>
 
+# Static - Extern - Register - Volatile
+<details><summary></summary>
+<p>
 
+
+</p>
+</details>

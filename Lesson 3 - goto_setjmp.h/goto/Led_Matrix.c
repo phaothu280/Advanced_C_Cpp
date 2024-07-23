@@ -10,7 +10,7 @@ char second_sentence[] = "FASHION";
 char third_sentence[]  = "SUITABLE";
 
 int letter_H[8][8] = {  
-	{1,0,0,0,1,0,0,0},
+    {1,0,0,0,1,0,0,0},
     {1,0,0,0,1,0,0,0},
     {1,0,0,0,1,0,0,0},
     {1,1,1,1,1,0,0,0},
@@ -21,7 +21,7 @@ int letter_H[8][8] = {
 };
 
 int letter_F[8][8] = {  
-	{1,1,1,1,1,0,0,0},
+    {1,1,1,1,1,0,0,0},
     {1,0,0,0,0,0,0,0},
     {1,0,0,0,0,0,0,0},
     {1,1,1,1,1,0,0,0},
@@ -32,14 +32,14 @@ int letter_F[8][8] = {
 };
 
 int letter_S[8][8] = {  
-	{0,1,1,1,1,0,0,0},
+    {0,1,1,1,1,0,0,0},
     {1,0,0,0,0,0,0,0},
     {1,0,0,0,0,0,0,0},
     {0,1,1,1,0,0,0,0},
     {0,0,0,0,1,0,0,0},
     {0,0,0,0,1,0,0,0},
     {0,0,0,0,1,0,0,0},
-	{1,1,1,1,0,0,0,0},  
+    {1,1,1,1,0,0,0,0},  
 };
 
 int button = 0;
@@ -60,14 +60,14 @@ int main(){
             	for (int index=0; index<sizeof(first_sentence); index++){
                 	if (first_sentence[index] == 'H'){
                 		for (int i=0; i<8; i++){    
-                        	for (int j=0; j<8; j++){
-                            	if (letter_H[i][j] == 1){
-                                	printf("Turn on led at [%d][%d]\n", i,j);
-                                	if (button == 1) goto exit_loops;
-                            	}
-                        	}
-                        	// tat den
-                    	}
+                        		for (int j=0; j<8; j++){
+                            			if (letter_H[i][j] == 1){
+                                			printf("Turn on led at [%d][%d]\n", i,j);
+                                			if (button == 1) goto exit_loops;
+                            			}
+                        		}
+                        		// tat den
+                    		}
                 	}
                 	if (first_sentence[index] == 'E'){
                     	// in ra chu e

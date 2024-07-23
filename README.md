@@ -523,7 +523,7 @@ int main(){
 ```
 
 ### static global variables
-Khi **'static'** được sử dụng với các biến toàn cục, nó sẽ hạn chế phạm vi của biến chỉ có thể gọi trong file nguồn hiện tại.
+Khi **'static'** được sử dụng với các biến toàn cục, nó sẽ hạn chế phạm vi của biến và chỉ có thể gọi trong file nguồn hiện tại.
 
 **Ví dụ:**
 
@@ -542,7 +542,7 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 ```
-
+File Ex2.c
 ```cpp
 #include <stdio.h>
 

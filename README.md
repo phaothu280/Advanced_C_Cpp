@@ -559,9 +559,6 @@ undefined reference to `value1'
 ```
 Dễ thấy file Ex1.c khi chạy sẽ gặp lỗi do cố gắng sử dụng extern để gọi 1 biến toàn cục đã được khai báo với static trong 1 file nguồn khác.
 
-### static functions
-Khi được sử dụng với các hàm, **'static'** làm cho hàm chỉ có thể được gọi từ trong file đó.
-
 ## Extern
 ### Định nghĩa
 Từ khóa **'extern'** được sử dụng cho 1 biến hoặc hàm với mục đích là thông báo rằng biến hoặc hàm này đã được định nghĩa ở một nơi khác trong chương trình hoặc trong 1 file nguồn khác. 

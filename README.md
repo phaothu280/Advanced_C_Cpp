@@ -508,17 +508,21 @@ Biến cục bộ static chỉ có thể được gọi trong nội bộ hàm kh
 ```cpp
 #include <stdio.h>
 
+int *ptr = NULL;
+
 void Func(){
-	static int count=0; // static giữ giá trị biến qua các lần gọi hàm
-	count++;
-	printf("Count=%d\n", count);
+    static int a=0;
+    ptr = &a;
+    a++;
+    printf("a = %d\n",a);
 }
 
-int main(){
-	Func(); // In ra "Count=1"
-	Func(); // In ra "Count=2"
-	Func(); // In ra "Count=3"
-	return 0;
+int main(int argc, char const *argv[]){
+    Func();     // in ra "a = 1"
+    Func();     // in ra "a = 2"
+    *ptr = 20;  // a = 20
+    Func();     // in ra "a = 21"
+    return 0;
 }
 ```
 

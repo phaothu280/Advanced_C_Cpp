@@ -579,7 +579,6 @@ extern <data_type> <name_variable>;
 File main.c
 ```cpp
 #include <stdio.h>
-#include "File1.c"
 
 extern int var_global;
 extern void Func();

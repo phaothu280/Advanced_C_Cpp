@@ -692,7 +692,7 @@ Khi có register ```Thoi gian chay cua chuong trinh: 0.001 giay```
 </details>
 
 # Bitmask
-<details><summary></summary>
+<details><summary>Chi tiết</summary>
 <p>
 
 ## Định nghĩa

@@ -7,9 +7,6 @@ typedef union{     //  Scope
     uint16_t var3; //  0 - 65535
 } frame;
 
-// kích thước của union chính là kích thước của member lớn nhất.
-// các member dùng chung vùng nhớ
-
 int main(int argc, char const *argv[])
 {
     frame data;

@@ -31,7 +31,6 @@ typedef struct{             typedef struct{         student_t sv1;
 ## Kích thước Struct
 Kích thước Struct bằng tổng các kích thước của các member và padding (nếu có).
 
-## Ví dụ
 **Ví dụ 1**
 
 <details><summary></summary>
@@ -174,6 +173,165 @@ Các phần tử trong mảng **var1** đều có kiểu dữ liệu **uint16_t*
 </details>
 
 # Union
+<details><summary>Chi tiết</summary>
+<p>
+
+## Định nghĩa
+
+Union là một cấu trúc dữ liệu giúp kết hợp nhiều kiểu dữ liệu khác nhau vào một cùng một vùng nhớ. 
+
+Mục đích chính của union là tiết kiệm bộ nhớ bằng cách chia sẻ cùng một vùng nhớ cho các thành viên của nó. Điều này có nghĩa là, trong một thời điểm, chỉ một thành viên của union có thể được sử dụng.
+
+## Cú pháp
+
+**Cách 1**
+```cpp
+union unionName{       	    union student_t{       union student_t sv1;
+    dataType1 member1;          char ten[30];       union student_t sv2;
+    dataType2 member2;          int tuoi;           ...
+    ...                         int MSSV;           hoặc
+};                           };                     union student_t sv[50];
+```
+
+**Cách 2**
+```cpp
+typedef union{             typedef union{           student_t sv1;
+    dataType1 member1;          char ten[30];       student_t sv2;
+    dataType2 member2;          int tuoi;           ...
+    ...                         int MSSV;           student_t sv[20];
+}unionName;                }student_t;
+```
+
+## Kích thước Union
+Kích thước của Union chính là kích thước của member có kích thước lớn nhất.
+
+**Ví dụ 1**
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+
+typedef union{     //  Scope
+    uint8_t  var1; //  0 - 255
+    uint32_t var2; //  0 - 4294967295
+    uint16_t var3; //  0 - 65535
+} frame;
+
+int main(int argc, char const *argv[]){
+    frame data;
+    printf("Size = %lu\n",sizeof(frame));
+    return 0;
+}
+```
+Kết quả: ```4 byte```
+
+**Ví dụ 2**
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+
+typedef union{        
+    uint8_t  var1[3]; //  3 byte + 1 padding
+    uint32_t var2[6]; //  4 byte * 6
+    uint16_t var3[9]; //  4 byte (01) + 4 byte (23) + 4 byte (45) + 4 byte (67) + 2 byte (8) + 2 padding
+} frame;
+
+int main(int argc, char const *argv[]){
+    frame data;
+    printf("Size = %lu\n",sizeof(frame));
+    return 0;
+}
+```
+Kết quả: ```24 byte```
+
+## Sử dụng vùng nhớ trong Union
+
+**Ví dụ 1**
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+
+typedef union{     //  Scope
+    uint8_t  var1; //  0 - 255
+    uint32_t var2; //  0 - 4294967295
+    uint16_t var3; //  0 - 65535
+} frame;
+
+int main(int argc, char const *argv[]){
+    frame data;
+    data.var1 = 5;
+    data.var2 = 6;
+    data.var3 = 7;
+
+// 0x005FFE9C  0x005FFE9D  0x005FFE9E  0x005FFE9F
+//      5
+//      6
+//      7
+
+    printf("Data.var1 = %d\n", data.var1);
+    printf("Data.var2 = %u\n", data.var2);
+    printf("Data.var3 = %d\n", data.var3);
+    return 0;
+}
+```
+**Kết quả in ra:**
+```cpp
+Data.var1 = 7
+Data.var2 = 7
+Data.var3 = 7
+```
+
+**Giải thích**
+```cpp
+Khi gán 5 cho member var1 thì tại địa chỉ 0x5FFE9C sẽ có giá trị 5.
+Khi gán 6 cho member var2, do các member sử dụng chung vùng nhớ nên tại địa chỉ 0x5FFE9C thì giá trị 6 sẽ ghi đè lên 5.
+Tương tự với member var3, giá trị cuối cùng tại địa chỉ 0x5FFE9C là 7 nên giá trị của các member đều sẽ là 7.
+```
+
+**Ví dụ 2**
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+
+typedef union{     //  Scope
+    uint8_t  var1; //  0 - 255
+    uint32_t var2; //  0 - 4294967295
+    uint16_t var3; //  0 - 65535
+} frame;
+
+int main(int argc, char const *argv[])
+{
+    frame data;
+    data.var2 = 4294967290;
+
+    printf("Data.var1 = %d\n", data.var1);
+    printf("Data.var2 = %u\n", data.var2);
+    printf("Data.var3 = %d\n", data.var3);
+    return 0;
+}
+```
+**Kết quả in ra:**
+```cpp
+Data.var1 = 250
+Data.var2 = 4294967290
+Data.var3 = 65530
+```
+
+**Giải thích**
+```cpp
+4294967290 = 0b11111111 111111111 11111111 1111010
+Do các member dùng chung vùng nhớ nên giá trị các member bằng nhau và kích thước của union frame là 4 byte nên dữ liệu sẽ được như sau:
+// 0x005FFE9C  0x005FFE9D  0x005FFE9E  0x005FFE9F
+//  11111010    11111111    11111111    11111111
+member var1 có kiểu dữ liệu là uint8_t nên chỉ lấy 8 bit ở địa chỉ 0x005FFE9C -> var1 = 0b11111010 = 250
+member var2 có kiểu dữ liệu là uint32_t nên giữ nguyên giá trị
+member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở địa chỉ 0x005FFE9C và 0x005FFE9D -> var3 = 0b11111111 11111010 = 65530
+```
+
+
+</p>
+</details>
+
+# Sự khác nhau giữa Struct và Union
 <details><summary>Chi tiết</summary>
 <p>
 

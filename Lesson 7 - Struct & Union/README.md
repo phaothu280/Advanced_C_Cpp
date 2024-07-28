@@ -135,7 +135,7 @@ Giải thích:
 </details>
 
 ## Địa chỉ của Struct
-Địa chỉ của struct chính địa chỉ của member đầu tiên
+Địa chỉ của struct chính là địa chỉ của member đầu tiên
 
 ```cpp
 #include <stdio.h>

@@ -5,6 +5,9 @@ Kích thước Struct bằng tổng các kích thước của các member và pa
 ## Ví dụ
 **Ví dụ 1**
 
+<details><summary></summary>
+<p>
+    
 ```cpp
 typedef struct{
     uint32_t var1;  // 4 byte
@@ -27,7 +30,13 @@ var3 sử dụng 2 bytes trong 3 bytes trên và còn thừa 1 byte bộ nhớ �
 
 Tổng kích thước struct frame trên là 8 bytes nhưng thực tế chỉ sử dụng 7 bytes.
 
+</p>
+</details>
+
 **Ví dụ 2**
+
+<details><summary></summary>
+<p>
 
 ```cpp
 typedef struct{
@@ -51,7 +60,13 @@ Lần 3 quét 4 bytes, var1 sử dụng 1 trong 4 bytes và thừa 3 byte.
 
 Tổng kích thước struct frame trên là 12 bytes nhưng thực tế chỉ sử dụng 7 bytes.
 
+</p>
+</details>
+
 **Ví dụ 3**
+
+<details><summary></summary>
+<p>
 
 ```cpp
 typedef struct{
@@ -67,7 +82,12 @@ Giải thích:
 
 ![image](https://github.com/user-attachments/assets/7c9ecf6b-479a-4d1c-8064-367934d35d4e)
 
+</p>
+</details>
+
 **Ví dụ 4**
+<details><summary></summary>
+<p>
 
 ```cpp
 typedef struct{
@@ -84,5 +104,6 @@ Giải thích:
 
 ![image](https://github.com/user-attachments/assets/0723e3e4-bb78-4de7-9737-fcf15e96158e)
 
-
+</p>
+</details>
 

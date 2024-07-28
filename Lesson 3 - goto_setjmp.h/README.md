@@ -87,7 +87,7 @@ switch (current_state) {
 ### Định nghĩa
 setjmp.h là một thư viện trong ngôn ngữ lập trình C, cung cấp hai hàm chính là **setjmp** và **longjmp**.
 
-setjmp lưu trạng thái hiện tại của môi trường thực thi vào một biến kiểu jmp_buf.Nó thường được sử dụng để thiết lập một điểm quay lại (checkpoint) trong chương trình.
+setjmp lưu trạng thái hiện tại của môi trường thực thi vào một biến kiểu jmp_buf. Nó thường được sử dụng để thiết lập một điểm quay lại (checkpoint) trong chương trình.
 
 setjmp trả về giá trị 0 khi được gọi lần đầu tiên và giá trị khác 0 khi quay lại từ longjmp.
 

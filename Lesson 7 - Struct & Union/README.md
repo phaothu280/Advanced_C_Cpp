@@ -324,7 +324,6 @@ Data.var3 = 65530
 Do các member dùng chung vùng nhớ nên giá trị các member bằng nhau và kích thước của union frame là 4 byte nên dữ liệu sẽ được như sau:
 
 // 0x005FFE9C  0x005FFE9D  0x005FFE9E  0x005FFE9F
-
 //  11111010    11111111    11111111    11111111
 
 member var1 có kiểu dữ liệu là uint8_t nên chỉ lấy 8 bit ở địa chỉ 0x005FFE9C -> var1 = 0b11111010 = 250

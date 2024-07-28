@@ -30,7 +30,6 @@ int main(int argc, char const *argv[]){
     int a,b;
     while (1){
         input(&a,&b);
-        // b = (int8_t)b;
         TRY{
             if (a==0 && b==0) goto exit_loop;
             double result = divide(a,b);

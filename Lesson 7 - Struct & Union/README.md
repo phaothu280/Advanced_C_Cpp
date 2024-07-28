@@ -337,7 +337,7 @@ member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở đ�
 </p>
 </details>
 
-# Sự khác nhau giữa Struct và Union
+# So sánh Struct và Union
 <details><summary>Chi tiết</summary>
 <p>
 

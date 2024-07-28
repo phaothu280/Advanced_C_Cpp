@@ -295,7 +295,7 @@ ID: 102,  Ten: Vy,   Diem tb: 5.50
 </p>
 </details>
 
-# Static - Extern - Register - Volatile
+# Lesson 4 - Static & Extern & Register & Volatile
 <details><summary>Chi tiết</summary>
 <p>
 

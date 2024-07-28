@@ -295,7 +295,7 @@ ID: 102,  Ten: Vy,   Diem tb: 5.50
 </p>
 </details>
 
-# Lesson 4 - Static & Extern & Register & Volatile
+# Lesson 4 - Static_Extern_Register_Volatile
 <details><summary>Chi tiết</summary>
 <p>
 
@@ -501,7 +501,7 @@ Khi có register ```Thoi gian chay cua chuong trinh: 0.001 giay```
 </p>
 </details>
 
-# Bitmask
+# Lesson 6 - Bitmask
 <details><summary>Chi tiết</summary>
 <p>
 

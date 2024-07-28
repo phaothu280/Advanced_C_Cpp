@@ -341,5 +341,15 @@ member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở đ�
 <details><summary>Chi tiết</summary>
 <p>
 
+## Giống
+
+Đều do lập trình viên tự định nghĩa (user defined type).
+
+Đều sử dụng dấu “.” hoặc “ ” để truy cập các phần tử (hoặc có thể gọi là thuộc tính).
+
+## Khác
+![image](https://github.com/user-attachments/assets/10994e8c-37ff-4a6b-b947-3d2fa16eee65)
+
+
 </p>
 </details>

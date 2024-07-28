@@ -1,4 +1,31 @@
 # Struct
+
+## Định nghĩa
+
+struct là một cấu trúc dữ liệu cho phép tự định nghĩa một kiểu dữ liệu mới bằng cách nhóm các biến có các kiểu dữ liệu khác nhau lại với nhau.
+
+struct cho phép tạo ra một thực thể dữ liệu lớn hơn và có tổ chức hơn từ các thành viên (members) của nó.
+
+## Cú pháp
+
+**Cách 1**
+```cpp
+struct structureName{       struct student_t{       struct student_t sv1;
+    dataType1 member1;          char ten[30];       struct student_t sv2;
+    dataType2 member2;          int tuoi;           ...
+    ...                         int MSSV;           hoặc
+};                          };                     struct student_t sv[50];
+```
+
+**Cách 2**
+```cpp
+typedef struct{             typedef struct{         student_t sv1;
+    dataType1 member1;          char ten[30];       student_t sv2;
+    dataType2 member2;          int tuoi;           ...
+    ...                         int MSSV;           student_t sv[20];
+}structureName;             }student_t;
+```
+
 ## Kích thước Struct
 Kích thước Struct bằng tổng các kích thước của các member và padding (nếu có).
 

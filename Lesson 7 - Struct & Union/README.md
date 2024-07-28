@@ -1,5 +1,5 @@
 # Struct
-<details><summary></summary>
+<details><summary>Chi tiết</summary>
 <p>
     
 ## Định nghĩa
@@ -174,7 +174,7 @@ Các phần tử trong mảng **var1** đều có kiểu dữ liệu **uint16_t*
 </details>
 
 # Union
-<details><summary></summary>
+<details><summary>Chi tiết</summary>
 <p>
 
 </p>

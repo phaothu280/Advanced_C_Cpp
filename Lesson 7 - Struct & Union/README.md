@@ -134,3 +134,36 @@ Giải thích:
 </p>
 </details>
 
+## Địa chỉ của Struct
+Địa chỉ của struct chính địa chỉ của member đầu tiên
+
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+
+typedef struct{
+    uint8_t  var2[9];   // 1 byte
+    uint16_t var1[10];  // 2 byte
+    uint32_t var3[2];   // 4 byte
+} frame;
+
+int main(int argc, char const *argv[]){
+    frame data;
+    printf("Dia chi struct  : %p\n", &data);
+    printf("Dia chi member 1: %p\n", &(data.var2));
+    return 0;
+}
+```
+**Kết quả in ra**
+```cpp
+Dia chi struct  : 00000000005FFE70
+Dia chi member 1: 00000000005FFE70
+```
+
+Các phần tử trong mảng **var2** đều có kiểu dữ liệu **uint8_t** nên sẽ chiếm 1 byte ô nhớ.
+
+![image](https://github.com/user-attachments/assets/56e7cf17-c6e2-4354-9950-a23d817bc965)
+
+Các phần tử trong mảng **var1** đều có kiểu dữ liệu **uint16_t** nên sẽ chiếm 2 byte ô nhớ.
+
+![image](https://github.com/user-attachments/assets/c7a36f7f-7068-4ff6-967c-4e636162b557)

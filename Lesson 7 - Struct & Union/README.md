@@ -1,5 +1,7 @@
 # Struct
-
+<details><summary></summary>
+<p>
+    
 ## Định nghĩa
 
 struct là một cấu trúc dữ liệu cho phép tự định nghĩa một kiểu dữ liệu mới bằng cách nhóm các biến có các kiểu dữ liệu khác nhau lại với nhau.
@@ -167,3 +169,13 @@ Các phần tử trong mảng **var2** đều có kiểu dữ liệu **uint8_t**
 Các phần tử trong mảng **var1** đều có kiểu dữ liệu **uint16_t** nên sẽ chiếm 2 byte ô nhớ.
 
 ![image](https://github.com/user-attachments/assets/c7a36f7f-7068-4ff6-967c-4e636162b557)
+
+</p>
+</details>
+
+# Union
+<details><summary></summary>
+<p>
+
+</p>
+</details>

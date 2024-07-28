@@ -6,10 +6,7 @@ int exception_code;
 const char *error_code;
 
 #define TRY if ((exception_code = setjmp(buf)) == 0)
-#define CATCH(x) else if (exception_code == x) {    \
-    printf("%s\n",error_code);                      \
-    printf("\n");                                   \
-}
+#define CATCH(x) else if (exception_code == x)
 #define THROW(x,ERROR) {    \
     error_code = #ERROR;    \
     longjmp(buf,x);         \
@@ -40,7 +37,12 @@ int main(int argc, char const *argv[]){
             printf("Result = %0.3f\n",result);
             printf("\n");
         }
-        CATCH(exception_code);
+        CATCH(1){
+            printf("%s\n", error_code);
+        }
+        CATCH(2){
+            printf("%s\n", error_code);
+        }
     }
 
     exit_loop:

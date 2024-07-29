@@ -28,8 +28,6 @@ int main(int argc, char const *argv[]){
 }
 ```
 
-**Quay video**
-
 ## Các kiểu con trỏ
 ### 1.Con trỏ Void
 Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
@@ -72,6 +70,7 @@ Dia chi: 00000000005FFE94, int: 10
 Dia chi: 00000000005FFE88, double: 3.140
 Dia chi: 00000000005FFE87, char: B
 ```
+
 ### 2.Con trỏ hàm
 Con trỏ hàm là một biến mà giữ địa chỉ của hàm.
 
@@ -122,6 +121,7 @@ int main(int argc, char const *argv[]){
 7 x 7 = 49
 6 / 5 = 1.200
 ```
+
 ### 3.Con trỏ hằng
 Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only)** nhưng không thể thay đổi được giá trị đó.
 
@@ -133,7 +133,25 @@ Cú pháp:
 const <data_type> *ptr_const;
 ```
 
-**Thêm ví dụ**
+**Ví dụ**
+```cpp
+#include <stdio.h>
+
+int value = 10;
+const int *ptr_const = &value;
+
+int main(int argc, char const *argv[])
+{
+    printf("%p\n", ptr_const);
+    printf("%d\n", *ptr_const);
+
+    *ptr_const = 20;
+    printf("%d\n", *ptr_const);
+    return 0;
+}
+```
+Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only location '*ptr_const'```
+
 
 ### 4.Hằng con trỏ
 Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
@@ -143,7 +161,25 @@ Cú pháp:
 int *const const_ptr = &value;
 ```
 
-**Thêm ví dụ**
+**Ví dụ**
+```cpp
+#include <stdio.h>
+
+int value1 = 10;
+int value2 = 20;
+int *const const_ptr = &value1;
+
+int main(int argc, char const *argv[])
+{
+    printf("%p\n", const_ptr);
+    printf("%d\n", *const_ptr);
+
+    const_ptr = &value2;
+    printf("%p\n", const_ptr);
+    return 0;
+}
+```
+Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only variable 'const_ptr'```
 
 ### 5.Con trỏ NULL
 Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.

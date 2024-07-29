@@ -27,16 +27,6 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 ```
-```cpp
-4 bytes
-4 bytes
-4 bytes
-4 bytes
-4 bytes
-4 bytes
-4 bytes
-4 bytes
-```
 
 **Quay video**
 

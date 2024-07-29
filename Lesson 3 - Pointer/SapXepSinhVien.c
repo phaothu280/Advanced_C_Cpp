@@ -26,11 +26,7 @@ int compareByName(const void *a,const void *b){
 int compareByDiemTrungBinh(const void *a, const void *b) {
    SinhVien_t *sv1 = (SinhVien_t *)a;
    SinhVien_t *sv2 = (SinhVien_t *)b;
-   if (sv1->diemTrungBinh > sv2->diemTrungBinh)
-   {
-       return 1;
-   }
-  
+   if (sv1->diemTrungBinh > sv2->diemTrungBinh) return 1;
    return 0;
 }
 

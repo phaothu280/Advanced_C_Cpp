@@ -1,4 +1,4 @@
-# Stack - Queue
+# Stack
 <details><summary>Chi tiết</summary>
 <p>
 
@@ -85,6 +85,13 @@ int top(Stack stack){
     }
 }
 ```
+
+</p>
+</details>
+
+# Queue
+<details><summary>Chi tiết</summary>
+<p>
 
 ## Định nghĩa Queue (Hàng đợi)
 
@@ -183,5 +190,5 @@ int front(Queue queue){
 }
 ```
 
->
+</p>
 </details>

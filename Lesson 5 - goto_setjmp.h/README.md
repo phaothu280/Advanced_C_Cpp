@@ -1,6 +1,4 @@
 # Goto - setjmp.h
-<details><summary>Chi tiết</summary>
-<p>
 
 ## Goto trong C
 ### Định nghĩa
@@ -202,6 +200,3 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
-
-</p>
-</details>

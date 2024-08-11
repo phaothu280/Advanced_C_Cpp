@@ -1,4 +1,4 @@
-# Lesson 4 - Static_Extern_Register_Volatile
+# Static_Extern_Register_Volatile
 <details><summary>Chi tiết</summary>
 <p>
 

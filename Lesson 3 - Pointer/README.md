@@ -1,6 +1,4 @@
 # POINTER
-<details><summary>Chi tiết</summary>
-<p>
 
 ## Định nghĩa
 Trong C, con trỏ (pointer) là một biến chứa địa chỉ bộ nhớ của một biến khác. Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
@@ -194,6 +192,3 @@ Là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu
 Con trỏ đến con trỏ cung cấp một cấp bậc trỏ mới, cho phép bạn thay đổi giá trị của con trỏ gốc. 
 
 Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt là khi bạn làm việc với các hàm cần thay đổi giá trị của con trỏ.
-
-</p>
-</details>

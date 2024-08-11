@@ -103,8 +103,6 @@ Các thao tác cơ bản trên hàng đợi bao gồm:
 - "dequeue": lấy phần tử từ đầu hàng đợi.
 - "front": lấy giá trị của phần tử đứng đầu hàng đợi.
 
-![image](https://github.com/user-attachments/assets/d37a83a8-107e-44bc-9ebb-07f6e229e20d)
-
 ## Các hàm sử dụng trong Queue
 
 ### Định nghĩa 1 hàng đợi

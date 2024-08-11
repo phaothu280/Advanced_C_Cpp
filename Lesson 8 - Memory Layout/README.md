@@ -1,3 +1,19 @@
+# malloc - calloc - realloc
+<details><summary>Chi tiết</summary>
+<p>
+
+## So sánh malloc() và calloc()
+
+![image](https://github.com/user-attachments/assets/e70c92fb-05f9-4b03-a582-0ab79df1221d)
+
+**Khi nào sử dụng malloc? Khi nào sử dụng calloc?**
+
+- Dùng malloc khi bạn cần hiệu suất cao hơn và có thể tự khởi tạo dữ liệu theo cách riêng.
+- Dùng calloc khi bạn cần khởi tạo bộ nhớ với giá trị mặc định là 0 để tránh các lỗi liên quan đến giá trị rác.
+
+</p>
+</details>
+
 # Memory Layout (Phân vùng nhớ)
 <details><summary>Chi tiết</summary>
 <p>
@@ -193,18 +209,13 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 ```
+</p>
+</details>
 
-## So sánh malloc() và calloc()
-
-![image](https://github.com/user-attachments/assets/e70c92fb-05f9-4b03-a582-0ab79df1221d)
-
-**Khi nào sử dụng malloc? Khi nào sử dụng calloc?**
-
-- Dùng malloc khi bạn cần hiệu suất cao hơn và có thể tự khởi tạo dữ liệu theo cách riêng.
-- Dùng calloc khi bạn cần khởi tạo bộ nhớ với giá trị mặc định là 0 để tránh các lỗi liên quan đến giá trị rác.
-
-## So sánh vùng nhớ Stack và Heap
-
+# So sánh vùng nhớ Stack và Heap
+<details><summary>Chi tiết</summary>
+<p>
+    
 ![image](https://github.com/user-attachments/assets/e847c837-f67b-45f6-81c0-aad150fe10e8)
 
 **Khi nào sử dụng Heap? Khi nào sử dụng Stack?**

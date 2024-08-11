@@ -108,27 +108,28 @@ Các thao tác cơ bản trên hàng đợi bao gồm:
 ### Định nghĩa 1 hàng đợi
 ```cpp
 typedef struct{
-    int *item;
-    int size;
-    int front;
-    int rear;
+    int *item;    // mảng tượng trưng chứa các giá trị của phần tử trong queue
+    int size;     // kích thước của queue
+    int front;    // phần tử đầu queue
+    int rear;     // phần tử cuối queue
 } Queue;
 ```
 
 ### Khởi tạo 1 hàng đợi mới
 ```cpp
-void initialize(Queue *queue, int size){
-    queue->item  = (int*)malloc(sizeof(int)*size);
+Queue *initialize(int size){
+    Queue *queue = (Queue*)malloc(sizeof(Queue));
+    queue->item  = (int*)malloc(size * sizeof(int));
     queue->size  = size;
-    queue->front = -1;
-    queue->rear  = -1;
+    queue->front = queue->rear = -1;
+    return queue;
 }
 ```
 
 ### Kiểm tra hàng đợi rỗng
 ```cpp
 int isEmpty(Queue queue){
-    return (queue.front == -1) ? 1 : 0;
+    return (queue.front == -1);
 }
 ```
 
@@ -142,7 +143,10 @@ int isFull(Queue queue){
 ### Thêm phần tử vào cuối hàng đợi
 ```cpp
 void enqueue(Queue *queue, int data){
-    if (isFull(*queue)) printf("Queue overflow\n");
+    if (isFull(*queue)){
+        // nếu queue đầy thì không cho thêm phần tử vào
+        printf("Queue overflow\n");
+    } 
     else{
         if (isEmpty(*queue)){
             queue->front = queue->rear = 0;
@@ -159,6 +163,7 @@ void enqueue(Queue *queue, int data){
 ```cpp
 int dequeue(Queue *queue){
     if (isEmpty(*queue)){
+        // nếu queue rỗng thì không cho xóa
         printf("Queue underflow\n");
         return -1;
     }

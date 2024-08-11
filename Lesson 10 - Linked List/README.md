@@ -1,6 +1,4 @@
 # Linked List
-<details><summary>Chi tiết</summary>
-<p>
 
 ## Định nghĩa
 
@@ -152,6 +150,3 @@ int size(Node_t *head){
 }
 
 ```
-
-</p>
-</details>

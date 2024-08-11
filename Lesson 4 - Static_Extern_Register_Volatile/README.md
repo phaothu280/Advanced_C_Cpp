@@ -1,6 +1,4 @@
 # Static_Extern_Register_Volatile
-<details><summary>Chi tiết</summary>
-<p>
 
 ## Static
 ### Cú pháp
@@ -200,6 +198,3 @@ int main() {
 Khi chưa register ```Thoi gian chay cua chuong trinh: 0.005 giay```
 
 Khi có register ```Thoi gian chay cua chuong trinh: 0.001 giay```
-
-</p>
-</details>

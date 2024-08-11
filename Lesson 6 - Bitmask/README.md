@@ -1,6 +1,4 @@
 # Lesson 6 - Bitmask
-<details><summary>Chi tiết</summary>
-<p>
 
 ## Định nghĩa
 
@@ -15,6 +13,3 @@ Bitmask thường được sử dụng để tối ưu hóa bộ nhớ, thực h
 ![image](https://github.com/user-attachments/assets/cc137df5-e1b1-40ce-b574-cb6f09a14fbb)
 
 ![image](https://github.com/user-attachments/assets/5fc6fd06-dc3b-4877-8010-945edfc8b58f)
-
-</p>
-</details>

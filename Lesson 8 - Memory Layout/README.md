@@ -2,14 +2,51 @@
 <details><summary>Chi tiết</summary>
 <p>
 
-## So sánh malloc() và calloc()
+![image](https://github.com/user-attachments/assets/0460e857-350f-43a8-bf01-bfd62868e673)
 
-![image](https://github.com/user-attachments/assets/e70c92fb-05f9-4b03-a582-0ab79df1221d)
+**Ví dụ 1**
+```cpp
+#include <stdlib.h>
 
-**Khi nào sử dụng malloc? Khi nào sử dụng calloc?**
+int main(int argc, char const *argv[]){
+    int *arr_malloc, *arr_calloc;
+    size_t size = 5;
 
-- Dùng malloc khi bạn cần hiệu suất cao hơn và có thể tự khởi tạo dữ liệu theo cách riêng.
-- Dùng calloc khi bạn cần khởi tạo bộ nhớ với giá trị mặc định là 0 để tránh các lỗi liên quan đến giá trị rác.
+    // Sử dụng malloc
+    arr_malloc = (int*)malloc(size * sizeof(int));
+
+    // Sử dụng calloc
+    arr_calloc = (int*)calloc(size, sizeof(int));
+
+    // Giải phóng bộ nhớ
+    free(arr_malloc);
+    free(arr_calloc);
+    return 0;
+}
+```
+
+**Ví dụ 2**
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char const *argv[]){  
+
+    int soluongkytu = 0;
+
+    char* ten = (char*) malloc(sizeof(char) * soluongkytu);
+
+    for (int i = 0; i < 3; i++){
+        printf("Nhap so luong ky tu trong ten: \n");
+        scanf("%d", &soluongkytu);
+        ten = realloc(ten, sizeof(char) * soluongkytu);
+        printf("Nhap ten cua ban: \n");
+        scanf("%s", ten);
+        printf("Hello %s\n", ten);
+    }
+    return 0;
+}
+```
 
 </p>
 </details>
@@ -142,7 +179,7 @@ Khi chạy lệnh printf() thứ hai, a=9 và tiếp tục được cấp phát 
 ## Heap
 ![image](https://github.com/user-attachments/assets/a0d41628-b991-414a-a497-1c89b557a2f2)
 
-**Ví dụ 1**
+**Ví dụ**
 
 ![image](https://github.com/user-attachments/assets/cf8e4413-8dfc-4b0a-bfeb-3aa719f4538c)
 
@@ -164,51 +201,6 @@ Trong đoạn mã nguồn bên trái, sử dụng malloc() để cấp phát đ�
 
 Ở mã nguồn bên phải, địa chỉ của các phần tử sau khi thực thi là giống nhau. Nguyên nhân là do người dùng đã giải phóng bộ nhớ (hàm free()) nên sau lần chạy hàm generate_array() đầu tiên, hệ thống đã thu hồi địa chỉ và các địa chỉ đó sẽ trống và được cấp phát cho lần thực thi tiếp theo.
 
-**Ví dụ 2**
-
-```cpp
-#include <stdlib.h>
-
-int main(int argc, char const *argv[]){
-    int *arr_malloc, *arr_calloc;
-    size_t size = 5;
-
-    // Sử dụng malloc
-    arr_malloc = (int*)malloc(size * sizeof(int));
-
-    // Sử dụng calloc
-    arr_calloc = (int*)calloc(size, sizeof(int));
-
-    // Giải phóng bộ nhớ
-    free(arr_malloc);
-    free(arr_calloc);
-    return 0;
-}
-```
-
-**Ví dụ 3**
-
-```cpp
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char const *argv[]){  
-
-    int soluongkytu = 0;
-
-    char* ten = (char*) malloc(sizeof(char) * soluongkytu);
-
-    for (int i = 0; i < 3; i++){
-        printf("Nhap so luong ky tu trong ten: \n");
-        scanf("%d", &soluongkytu);
-        ten = realloc(ten, sizeof(char) * soluongkytu);
-        printf("Nhap ten cua ban: \n");
-        scanf("%s", ten);
-        printf("Hello %s\n", ten);
-    }
-    return 0;
-}
-```
 </p>
 </details>
 

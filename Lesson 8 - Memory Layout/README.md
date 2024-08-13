@@ -6,6 +6,8 @@
 
 **Ví dụ 1**
 ```cpp
+
+#include <stdio.h>
 #include <stdlib.h>
 
 int main(int argc, char const *argv[]){
@@ -15,8 +17,16 @@ int main(int argc, char const *argv[]){
     // Sử dụng malloc
     arr_malloc = (int*)malloc(size * sizeof(int));
 
+    for (int i=0; i<size; i++){
+        printf("%d\n", *(arr_malloc+i));
+    }
+
     // Sử dụng calloc
     arr_calloc = (int*)calloc(size, sizeof(int));
+
+    for (int i=0; i<size; i++){
+        printf("%d\n", *(arr_calloc+i));
+    }
 
     // Giải phóng bộ nhớ
     free(arr_malloc);

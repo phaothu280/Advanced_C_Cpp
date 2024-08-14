@@ -227,128 +227,6 @@ Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt
 </p>
 </details>
 
-
-## Ví dụ về con trỏ
-```cpp
-#include <stdio.h>
-#include <string.h>
-
-typedef struct{
-    char  ten[50];
-    float diemTrungBinh;
-    int   id;
-}SinhVien_t;
-
-int stringCompare(const char *str1,const char *str2){
-    while (*str1 && (*str1 == *str2)){    // so sánh từng ký tự của mỗi chuỗi
-        str1++;  // tăng địa chỉ để truy cập vào ký tự tiếp theo khi 2 ký tự giống nhau
-        str2++;
-    }
-    return *(const unsigned char*)str1 - *(const unsigned char*)str2; // lấy mã Ascii để so sánh
-}
-
-// Hàm so sánh theo tên
-int compareByName(const void *a,const void *b){
-    SinhVien_t *sv1 = (SinhVien_t *)a;
-    SinhVien_t *sv2 = (SinhVien_t *)b;
-    return stringCompare(sv1->ten, sv2->ten);
-}
-
-// Hàm so sánh theo điểm trung bình
-int compareByDiemTrungBinh(const void *a, const void *b) {
-   SinhVien_t *sv1 = (SinhVien_t *)a;
-   SinhVien_t *sv2 = (SinhVien_t *)b;
-   if (sv1->diemTrungBinh > sv2->diemTrungBinh)
-   {
-       return 1;
-   }
-  
-   return 0;
-}
-
-// Hàm so sánh theo ID
-int compareByID(const void *a, const void *b) {
-   SinhVien_t *sv1 = (SinhVien_t *)a;
-   SinhVien_t *sv2 = (SinhVien_t *)b;
-   return sv1->id - sv2->id;
-}
-
-// Hàm hoán vị
-void swapSV(SinhVien_t *a, SinhVien_t *b){
-    SinhVien_t temp;
-    temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-// Hàm sắp xếp sinh viên dựa theo tiêu chí (tên hoặc điểm hoặc ID)
-void sort(SinhVien_t array[], size_t size, int (*compareFunc)(const void *, const void *)){
-    int i,j;
-    for (i=0; i<size-1; i++){
-        for (j=i+1; j<size; j++){
-            if (compareFunc(array+i,array+j) > 0){
-                swapSV(array+i,array+j);
-            }
-        }
-    }
-}
-
-void display(SinhVien_t *array, size_t size){
-    for (size_t i = 0; i < size; i++){
-        printf("ID: %d,  Ten: %s,   Diem tb: %.2f\n", array[i].id, array[i].ten, array[i].diemTrungBinh);
-    }
-    printf("\n");
-}
-
-int main(int argc, char const *argv[]){
-    SinhVien_t danhsanhSV[] = {
-        {
-            .ten = "Hoang",
-            .diemTrungBinh = 7.5,
-            .id = 100
-        },
-        {
-            .ten = "Tuan",
-            .diemTrungBinh = 6.5,
-            .id = 101
-        },
-        {
-            .ten = "Vy",
-            .diemTrungBinh = 5.5,
-            .id = 102
-        }
-    };
-    size_t size = sizeof(danhsanhSV) / sizeof(danhsanhSV[0]);
-    
-    // Sắp xếp theo tên
-    sort(danhsanhSV, size, compareByName);
-    display(danhsanhSV, size);
-
-    // Sắp xếp theo điểm trung bình
-    sort(danhsanhSV, size, compareByDiemTrungBinh);
-    display(danhsanhSV, size);
-
-    // Sắp xếp theo ID
-    sort(danhsanhSV, size, compareByID);
-    display(danhsanhSV, size);
-
-    return 0;
-}
-```
-```cpp
-ID: 100,  Ten: Hoang,   Diem tb: 7.50
-ID: 101,  Ten: Tuan,   Diem tb: 6.50
-ID: 102,  Ten: Vy,   Diem tb: 5.50
-
-ID: 102,  Ten: Vy,   Diem tb: 5.50
-ID: 101,  Ten: Tuan,   Diem tb: 6.50
-ID: 100,  Ten: Hoang,   Diem tb: 7.50
-
-ID: 100,  Ten: Hoang,   Diem tb: 7.50
-ID: 101,  Ten: Tuan,   Diem tb: 6.50
-ID: 102,  Ten: Vy,   Diem tb: 5.50
-```
-
 </p>
 </details>
 
@@ -492,7 +370,6 @@ Thực hiện **make file**: ```gcc main.c File1.c -o main```
 
 - Nếu bạn có một hằng số được sử dụng ở nhiều nơi, bạn có thể sử dụng extern để chia sẻ giá trị của hằng số đó giữa các file nguồn.
 
-
 ## Volatile
 ### Định nghĩa
 Volatile có nghĩa là không dự đoán được. Một biến sử dụng với volatile có nghĩa là nói với compiler là biến này **có thể sẽ được thay đổi ở bởi yếu tố bên ngoài chương trình** như hardward (ngắt, nhấn button,…) hoặc một luồng khác. Việc này ngăn chặn trình biên dịch tối ưu hóa hoặc xóa bỏ các thao tác trên biến đó, giữ cho các thao tác trên biến được thực hiện như đã được định nghĩa.
@@ -520,20 +397,9 @@ void interrupt_handler(){
 
 ![image](https://github.com/user-attachments/assets/5325937f-1104-4845-9bda-7f1e7c1589b9)
 
-Register trong C/C++ được sử dụng để **định nghĩa các biến cục bộ mà nên được lưu giữ trong một thanh ghi** thay vì RAM. Nghĩa là, biến có kích cỡ tối đa bằng với kích cỡ thanh ghi (thường là 1word) và không thể có toán tử một ngôi '&' được áp dụng tới nó (vì không có địa chỉ bộ nhớ).
+Register trong C/C++ được sử dụng để định nghĩa các biến cục bộ mà nên được lưu giữ trong một thanh ghi thay vì RAM.
 
 Từ khóa “register” làm tăng hiệu năng (performance) của chương trình.
-
-Trong kiến trúc của vi xử lý thì ALU (Arithmetic Logic Unit) đóng vai trò xử lý các tính toán số học. Dữ liệu đưa vào làm việc với ALU phải chứa trong một vùng đặc biệt, gọi là các thanh ghi (register), và ALU chỉ làm việc với các thanh ghi đó.
-
-Trong khi đó, các biến khai báo trong chương trình thì đặt ở bộ nhớ ngoài (ví dụ RAM,…). Do đó, với khai báo biến thông thường, để thực hiện một phép tính thì cần có 3 bước sau:
-
-1. Nạp giá trị từ vùng nhớ chứa biến vào register.
-2. Yêu cầu ALU xử lý register vừa được nạp giá trị.
-3. Đưa kết quả vừa xử lý của ALU ra ngoài vùng nhớ chứa biến.
-
-
-Khi thêm từ khóa “register” để khai báo biến, thì tức là đã yêu cầu trình biên dịch ưu tiên đặc biệt dành luôn vùng register để chứa biến đó. Và hiển nhiên khi thực hiện tính toán trên biến đó thì giảm được bước 1 và 3, giảm bớt thủ tục vậy nên hiệu năng tăng lên.
 
 ### Cú pháp
 ```cpp
@@ -605,7 +471,6 @@ int main(){
 }
 ```
 Trong ví dụ này, goto được sử dụng để tạo một vòng lặp đơn giản. Khi i đạt đến giá trị 5, control sẽ chuyển đến nhãn "end" và kết thúc chương trình.
-
 
 ### Các ứng dụng của goto
 #### Thoát khỏi vòng lặp nhiều cấp độ
@@ -803,516 +668,24 @@ Bitmask thường được sử dụng để tối ưu hóa bộ nhớ, thực h
 
 ![image](https://github.com/user-attachments/assets/c8549e26-9a0b-4835-a886-d11a6bed9fb1)
 
-**Ví dụ 1:**
-```cpp
-#include <stdio.h>
-#include <stdint.h>
-                                          //    0    1
-#define GENDER    1 << 0  // bit 0: giới tính  nữ   nam     0b00000001
-#define SHIRT     1 << 1  // bit 1: áo thun   không  có     0b00000010
-#define HAT       1 << 2  // bit 2: nón       không  có     0b00000100
-#define SHOES     1 << 3  // bit 3: giày      không  có     0b00001000
-#define FEATURE1  1 << 4  // bit 4: tính năng 1             0b00010000
-#define FEATURE2  1 << 5  // bit 5: tính năng 2             0b00100000
-#define FEATURE3  1 << 6  // bit 6: tính năng 3             0b01000000
-#define FEATURE4  1 << 7  // bit 7: tính năng 4             0b10000000
-
-// enable bit
-void enableFeature(uint8_t *options, uint8_t feature){
-    *options |= feature;
-}
-
-// disable bit
-void disableFeature(uint8_t *options, uint8_t feature){
-    *options &= ~feature;
-}
-
-// check bit
-int8_t isFeatureEnabled(uint8_t options, uint8_t feature){
-    return ((options & feature) != 0) ? 1 : 0;
-}
-
-// liệt kê các tính năng đa bật
-void listSelectedFeatures(uint8_t options){
-    printf("Selected Features: \n");
-
-    const char* featureName[] = {
-        "Gender",
-        "Shirt",
-        "Hat",
-        "Shoes",
-        "Feature 1",
-        "Feature 2",
-        "Feature 3",
-        "Feature 4"
-    };
-
-    for (int i=0; i<8; i++){
-        if ((options >> i) & 1){
-            printf("%s\n", featureName[i]);
-        }
-    }
-}
-
-int main(int argc, char const *argv[])
-{
-    uint8_t options = 0; // 0b00000000
-
-    // Thêm tính năng
-    enableFeature(&options, GENDER | HAT | FEATURE1);
-
-    // Loại bỏ tính năng
-    disableFeature(&options, HAT);
-
-    // Liệt kệ các tính năng đã chọn
-    listSelectedFeatures(options);
-    return 0;
-}
-```
-
-**Ví dụ 2:**
-```cpp
-#include <stdio.h>
-#include <stdint.h>
-
-#define COLOR_RED     0
-#define COLOR_BLUE    1
-#define COLOR_BLACK   2
-#define COLOR_WHITE   3
-
-#define POWER_100HP   0
-#define POWER_150HP   1
-#define POWER_50HP    2
-
-#define ENGINE_1_5L   0
-#define ENGINE_2_0L   1
-
-typedef uint8_t CarColor;
-typedef uint8_t CarPower;
-typedef uint8_t CarEngine;
-
-#define SUNROOF_MASK         1 << 0
-#define PREMIUM_AUDIO_MASK   1 << 1
-#define SPORTS_PACKAGE_MASK  1 << 2
-// Thêm các bit masks khác tùy thuộc vào tùy chọn
-
-typedef struct{
-    uint8_t additionalOptions : 3; // 3-bit cho tùy chọn bổ sung
-    CarColor  color  : 2; // 2-bit cho màu sắc
-    CarPower  power  : 2; // 2-bit cho năng lượng
-    CarEngine engine : 1; // 1-bit cho động cơ
-} CarOptions;
-
-void configureCar(CarOptions *car, CarColor color, CarPower power, CarEngine engine, uint8_t options) {
-    car->color = color;
-    car->power = power;
-    car->engine = engine;
-    car->additionalOptions = options;
-}
-
-void setOption(CarOptions *car, uint8_t optionMask) {
-    car->additionalOptions |= optionMask;
-}
-
-void resetOption(CarOptions *car, uint8_t optionMask) {
-    car->additionalOptions &= ~optionMask;
-}
-
-void displayCarOptions(const CarOptions car) {
-    const char *colors[] = {"Red", "Blue", "Black", "White"};
-    const char *powers[] = {"100HP", "150HP", "200HP"};
-    const char *engines[] = {"1.5L", "2.0L"};
-
-    printf("Car Configuration: \n");
-    printf("Color: %s\n", colors[car.color]);
-    printf("Power: %s\n", powers[car.power]);
-    printf("Engine: %s\n", engines[car.engine]);
-    printf("Sunroof: %s\n", (car.additionalOptions & SUNROOF_MASK) ? "Yes" : "No");
-    printf("Premium Audio: %s\n", (car.additionalOptions & PREMIUM_AUDIO_MASK) ? "Yes" : "No");
-    printf("Sports Package: %s\n", (car.additionalOptions & SPORTS_PACKAGE_MASK) ? "Yes" : "No");
-}
-
-int main() {
-    CarOptions myCar;
-
-    configureCar(&myCar, COLOR_BLACK, POWER_150HP, ENGINE_2_0L, 0); 
-    setOption(&myCar, SUNROOF_MASK);
-    setOption(&myCar, PREMIUM_AUDIO_MASK);
-    displayCarOptions(myCar);
-
-    resetOption(&myCar, PREMIUM_AUDIO_MASK); 
-    displayCarOptions(myCar);
-
-    printf("size of my car: %d\n", sizeof(CarOptions));
-    return 0;
-}
-```
-
-**Ví dụ 3: Blink Led**
-```cpp
-Assuming that 1 is turn on, 0 is turn off
-if PORTA = 0b00000000, want to turn on any Led  -> PORTA |= (1<<(PIN-1))
-if PORTA = 0b11111111, want to turn off any Led -> PORTA ^= (1<<(PIN-1))
-```
-```cpp
-#include <stdio.h>
-#include <stdint.h>
-#include <time.h>
-
-typedef enum{
-	Led0,
-	Led1,
-	Led2,
-	Led3,
-	Led4,
-	Led5,
-	Led6,
-	Led7
-}LedPin_t;
-
-typedef enum{
-	LOW,
-	HIGH
-}status_t;
-
-uint8_t PORTx = 0b00000000; //76543210
-
-void blinkLed(LedPin_t ledPin, status_t status){
-	if (status == LOW){
-		PORTx &= ~(1<<ledPin);
-	}
-	else{
-		PORTx |= (1<<ledPin);
-	}
-}
-
-void delay(unsigned int milliseconds) {
-    unsigned int start = clock();
-    while (clock() - start < milliseconds);
-}
-
-int main(int argc, char const *argv[]){
-    Status_t status;
-    printf("Start blink leds\n");
-    blinkLed(Pin1, HIGH);
-    printf("Led %d is on\n",Pin1);
-    delay(3000);
-    blinkLed(Pin1, LOW);
-    printf("Led %d is off\n",Pin1);
-    delay(3000);
-    blinkLed(Pin2, HIGH);
-    printf("Led %d is on\n",Pin2);
-    delay(3000);
-    blinkLed(Pin2, LOW);
-    printf("Led %d is off\n",Pin2);
-    printf("The End\n");
-    return 0;
-}
-```
-
-**Ví dụ 4: Viết hàm _Set_ và _Reset_ cho biến 32-bit**
-```cpp
-void SetBit(uint32_t *data, uint32_t bit){
-    *data |= 1<<bit;
-}
-
-void ResetBit(uint32_t *data, uint32_t bit){
-    *data &= ~(1<<bit);
-}
-
-void printBinary(uint32_t *num) {
-    for (int i=7; i>=0; i--){
-        if (*num & (1<<i)) printf("1");
-        else printf("0");
-    }
-    printf("\n");
-}
-
-int main(int argc, char const *argv[]){
-    uint32_t PORTx = 0b10111000; // 7654321 0
-    SetBit(&PORTx,1);
-    ResetBit(&PORTx,7);
-    printBinary(&PORTx);
-    return 0;
-}
-```
-Ta có thể gộp 2 hàm trên bằng cách sử dụng thêm 1 biến status để quy định xem là set bit hay reset bit như ví dụ 1.
-```cpp
-#define HIGH 1
-#define LOW  0
-
-void ModifyBit(uint32_t *data, uint32_t bit, int status){
-    if (!status){
-        *data &= ~(1<<bit);
-    }
-    else{
-        *data |= 1<<bit;
-    }
-}
-
-void printBinary(uint32_t *num) {
-    for (int i=7; i>=0; i--){
-        if (*num & (1<<i)) printf("1");
-        else printf("0");
-    }
-    printf("\n");
-}
-
-int main(int argc, char const *argv[]){
-    uint32_t PORTx = 0b10111000; // bit 7 6 5 4 3 2 1 0
-    ModifyBit(&PORTx, 1, HIGH);
-    ModifyBit(&PORTx, 5, LOW);
-    printBinary(&PORTx);
-    return 0;
-}
-```
-
-**Ví dụ 5: swap byte**
-```cpp
-0xCC8700FC --> 0xFC0087CC     
-0xAB8700FC --> 0xCF0078BA
-```
-```cpp
-#include <stdio.h>
-#include <stdint.h>
-
-uint32_t swap1byte(uint32_t *data){
-    uint32_t output = 0x0;
-    /*Cách 1
-    output |= (*data & 0x000000FF) << 24;
-    output |= (*data & 0x0000FF00) << 8;
-    output |= (*data & 0x00FF0000) >> 8;
-    output |= (*data & 0xFF000000) >> 24;
-    */
-
-   // Cách 2
-    uint32_t hex = *data;
-    for (int i=0; i<4; i++){
-        output <<= 8;
-        output |= (hex & 0xFF);
-        hex >>= 8;
-    }
-    return output;
-}
-
-uint32_t swap4bit(uint32_t *data){
-    uint32_t output = 0x0;
-    uint32_t hex = *data;
-    for (int i=0; i<8; i++){
-        output <<= 4;
-        output |= (hex & 0xF);
-        hex >>= 4;
-    }
-    return output;
-}
-
-int main(int argc, char const *argv[]){
-    uint32_t data;
-    uint32_t result1, result2;
-    printf("Input hex number: ");
-    scanf("%x", &data);
-    result1 = swap1byte(&data);
-    printf("0x%x\n", result1);
-    result2 = swap4bit(&data);
-    printf("0x%x\n", result2);
-    return 0;
-}
-```
 </p>
 </details>
 
-# Bit Field
-<details><summary>Chi tiết</summary>
-<p>
-
-## Định nghĩa
-Bit Fields là một ky thuật nhằm tối ưu hóa bộ nhớ trong struct, trong một số trường hợp khi khai báo ta sử dụng kiểu dữ liệu có phạm vi giá trị lớn, trong khi giá trị thực tế nhỏ hơn và không bao giờ đạt đến những giá trị lớn đó. 
-
-Bit field thường chỉ được sử dụng với các kiểu số nguyên (unsigned int, signed int, int).
-
-Bit field được định nghĩa trong một cấu trúc bằng cách chỉ định số lượng bit mà một trường cụ thể sẽ chiếm.
-
-**Ví dụ**: khi khai báo biến bool (chỉ có 2 giá trị true hoặc false), tuy nhiên lại sử dụng mất 1 byte (8 bits) cho kiểu dữ liệu bool, trong khi ta chỉ cần sử dụng 1 bit trong 8 bit đó (giá trị 0 hoặc 1) là đủ để thể hiện giá trị true hoặc false. Vô hình chung ta đã lãng phí mất 7 bit.
-
-**Ví dụ**: khi khai báo 1 biến int age (mất 4 bytes) để chỉ thị số tuổi của một ai đó, nhưng thực tế chúng ta biết rằng nó không bao giờ sử dụng hết giá trị của cả 4 bytes để biểu thị điều đó.
-
---> Bit Field sẽ được sử dụng trong những trường hợp này.
-
-## Cú pháp
-
-```cpp
-typedef struct{
-	<data_type> field1: number_of_bits;
-	<data_type> field2: number_of_bits;
-	...
-}struct_name;
-```
-
-Giá trị tối đa của các biến trong struct sẽ phụ thuộc vào số bit đã khai báo, đó là: ![image](https://github.com/user-attachments/assets/6978d2ed-6971-4e8d-a95a-51a32149f54a)
-
-**Ví dụ 1:**
-```cpp
-#include <stdio.h>
-typedef struct {
-    unsigned int a : 3; // a sẽ chiếm 3 bit
-    unsigned int b : 5; // b sẽ chiếm 5 bit
-    unsigned int c : 6; // c sẽ chiếm 6 bit
-}BitField;
-
-int main() {
-    BitField BF;
-    BF.a =  6; // Giá trị tối đa của a là 7  (2^3 - 1)
-    BF.b = 18; // Giá trị tối đa của b là 31 (2^5 - 1)
-    BF.c = 40; // Giá trị tối đa của c là 63 (2^6 - 1)
-    printf("a=%u b=%u c=%u\n", BF.a, BF.b, BF.c);
-    return 0;
-}
-```
-
-**Ví dụ 2:**
-```cpp
-#include <stdio.h>
-#include <stdint.h>
-
-typedef enum{
-    LOW,
-    HIGH
-} Status;
-
-typedef struct {
-    uint8_t LED1 : 1;   
-    uint8_t LED2 : 1;
-    uint8_t LED3 : 1;
-    uint8_t LED4 : 1;
-    uint8_t LED5 : 1;
-    uint8_t LED6 : 1;
-    uint8_t LED7 : 1;
-    uint8_t LED8 : 1;
-} LEDStatus;
-
-void displayAllStatusLed(LEDStatus led){
-    uint8_t *ledPtr = (uint8_t *)&led;
-
-    for (int i=0; i<8; i++){
-        printf("LED%d: %d\n", i+1, (*ledPtr >> i) & 1);
-    }
-}
-
-int main(int argc, char const *argv[])
-{
-    // bật led 2,6,7
-    LEDStatus ledStatus = {
-        .LED2 = HIGH,
-        .LED6 = HIGH,
-        .LED7 = HIGH
-    };
-
-    // tắt led 6
-    ledStatus.LED6 = LOW;
-
-    // hiển thị trạng thái các led
-    displayAllStatusLed(ledStatus);
-
-    return 0;
-}
-```
-
-Ưu điểm và nhược điểm của Bit Field
-
-**Ưu điểm**:
-
-- **Tiết kiệm bộ nhớ**: Bit field giúp tiết kiệm bộ nhớ khi chỉ cần sử dụng một số ít bit để lưu trữ giá trị.
-
-- **Truy cập nhanh**: Truy cập vào các trường bit trong một cấu trúc vẫn nhanh và hiệu quả, tương tự như truy cập vào các biến thông thường.
-
-**Nhược điểm**:
-
-- **Không di động**: Cách mà bit field được lưu trữ trong bộ nhớ có thể khác nhau giữa các kiến trúc phần cứng và trình biên dịch khác nhau.
-
-- **Không hỗ trợ cho toàn bộ kiểu dữ liệu**: Bit field thường chỉ được sử dụng với các kiểu số nguyên (unsigned int, signed int, int).
-
-## Overflow
-Khi các giá trị vượt quá phạm vi tối đa mà một trường bit có thể lưu trữ, hành vi của chương trình phụ thuộc vào cách trình biên dịch xử lý các trường hợp này. Tuy nhiên, thông thường, các giá trị sẽ bị cắt để chỉ giữ lại các bit có thể lưu trữ trong bit field đó.
-
-```cpp
-#include <stdio.h>
-
-typedef struct {
-    unsigned int a : 3; // a sẽ chiếm 3 bit
-    unsigned int b : 5; // b sẽ chiếm 5 bit
-    unsigned int c : 6; // c sẽ chiếm 6 bit
-}BitField;
-
-int main() {
-    BitField BF;
-
-    BF.a =  8; // Giá trị tối đa của a là 7  (2^3 - 1)
-    BF.b = 36; // Giá trị tối đa của b là 31 (2^5 - 1)
-    BF.c = 70; // Giá trị tối đa của c là 63 (2^6 - 1)
-
-    printf("a=%u b=%u c=%u\n", BF.a, BF.b, BF.c);
-    return 0;
-}
-```
-```cpp
-a=0  b=4  c=45
-```
-
-Bit field a chỉ có 3 bit, nên giá trị của nó chỉ có thể nằm trong khoảng từ 0 đến 7. Khi gán giá trị 8, nó sẽ bị cắt để chỉ giữ lại 3 bit cuối cùng của số 8 (1000 trong nhị phân). Do đó, giá trị thực sự được lưu trữ trong a sẽ là 0 (000 trong nhị phân).
-
-Bit field b có 5 bit, nên giá trị của nó có thể nằm trong khoảng từ 0 đến 31. Giá trị 36 (00100100 trong nhị phân) sẽ bị cắt 3 bit đầu để đảm bảo nằm trong phạm vi này, nên giá trị lưu trữ sẽ là 4 (00100).
-
-Bit field c có 6 bit, nên giá trị của nó có thể nằm trong khoảng từ 0 đến 63. Giá trị 45 (101101 trong nhị phân) nằm trong phạm vi này, nên giá trị lưu trữ sẽ là 45.
-
-## Bit Field Size 0
-Một bit field với kích thước 0 không thực sự lưu trữ bất kỳ bit nào. Nó được sử dụng để tạo sự căn chỉnh (alignment) giữa các bit field khác. Trình biên dịch sẽ sử dụng nó để bắt đầu một bit field mới từ một biên giới byte mới trong bộ nhớ, đảm bảo rằng các bit field tiếp theo sẽ được căn chỉnh đúng.
-
-```cpp
-#include <stdio.h>
-
-struct BitFieldExample {
-    unsigned int a : 3; // a sẽ chiếm 3 bit
-    unsigned int   : 0; // không lưu trữ bất kỳ bit nào, tạo căn chỉnh mới
-    unsigned int b : 5; // b sẽ chiếm 5 bit
-    unsigned int c : 6; // c sẽ chiếm 6 bit
-};
-
-int main() {
-    struct BitFieldExample example;
-
-    example.a = 5;  // Giá trị tối đa của a là 7 (2^3 - 1)
-    example.b = 18; // Giá trị tối đa của b là 31 (2^5 - 1)
-    example.c = 40; // Giá trị tối đa của c là 63 (2^6 - 1)
-
-    printf("a: %u\n", example.a);
-    printf("b: %u\n", example.b);
-    printf("c: %u\n", example.c);
-
-    return 0;
-}
-```
-
-Trong ví dụ trên, unsigned int : 0; không tạo ra bất kỳ bit field nào, nhưng nó buộc trình biên dịch căn chỉnh bit field tiếp theo (b) vào biên giới byte tiếp theo. Điều này đảm bảo rằng b sẽ bắt đầu từ một vị trí căn chỉnh đúng, có thể quan trọng đối với một số kiến trúc phần cứng hoặc để tối ưu hóa truy cập bộ nhớ.
-
-Tóm Lại
-
-- Bit Field size 0 không tạo ra bit field thực sự. Nó chỉ tạo ra một điểm căn chỉnh.
-
-- Sử dụng để đảm bảo căn chỉnh đúng của các bit field tiếp theo. Đảm bảo rằng bit field tiếp theo bắt đầu từ một biên giới byte mới.
-
-</p>
-</details>
-
-# Struct - Union - Enum
+# Struct - Union
 <details><summary>Chi tiết</summary>
 <p>
 
 ## Struct
+<details><summary>Chi tiết</summary>
+<p>
+	
 struct là một cấu trúc dữ liệu cho phép tự định nghĩa một kiểu dữ liệu mới bằng cách nhóm các biến có các kiểu dữ liệu khác nhau lại với nhau.
 
 struct cho phép tạo ra một thực thể dữ liệu lớn hơn và có tổ chức hơn từ các thành viên (members) của nó.
 
-### Khai báo tường minh
+### Cú pháp
+
+**Cách 1**
 ```cpp
 struct structureName{       struct student_t{       struct student_t sv1;
     dataType1 member1;          char ten[30];       struct student_t sv2;
@@ -1320,7 +693,8 @@ struct structureName{       struct student_t{       struct student_t sv1;
     ...                         int MSSV;           hoặc
 };                          };                     struct student_t sv[50];
 ```
-### Khai báo không tường minh
+
+**Cách 2**
 ```cpp
 typedef struct{             typedef struct{         student_t sv1;
     dataType1 member1;          char ten[30];       student_t sv2;
@@ -1333,29 +707,6 @@ typedef struct{             typedef struct{         student_t sv1;
 Sử dụng "." để truy xuất tới thành viên khi khai báo biến bình thường (int, char,…).
 
 Sử dụng "->" để truy xuất tới thành viên khi khai báo biến là con trỏ.
-
-### Data padding
-**Data alignment**
-```cpp
-typedef struct{
-    char id;
-    int age;
-}student_t;
-```
-
-Để có thể thực hiện alignment như trên, chúng ta cần phải “padding” (đệm) thêm một số byte vào sau biến  để khi đó biến  có thể nằm ở địa chỉ chẵn.
-
-![image](https://github.com/user-attachments/assets/a57226ad-742e-4f29-9c4d-92ed7f4964df)
-
---> kích thước của struct   là 8 bytes.
-
-- char – 1 byte: có thể bắt đầu ở bất cứ byte địa chỉ nào.
-
-- short – 2 bytes: bắt đầu bằng các bytes địa chỉ chẵn.
-
-- int – 4 bytes, float – 4 bytes: bắt đầu bằng các bytes địa chỉ chia hết cho 4.
-
-- long – 8 bytes, double – 8 bytes: bắt đầu bằng các bytes địa chỉ chia hết cho 8.
 
 ### Kích thước của struct
 Kích thước Struct bằng tổng các kích thước của các member và padding (nếu có).
@@ -1437,7 +788,7 @@ Giải thích:
 
 ![image](https://github.com/user-attachments/assets/0723e3e4-bb78-4de7-9737-fcf15e96158e)
 
-## Địa chỉ của Struct
+### Địa chỉ của Struct
 Địa chỉ của struct chính là địa chỉ của member đầu tiên
 
 ```cpp
@@ -1471,20 +822,20 @@ Các phần tử trong mảng **var1** đều có kiểu dữ liệu **uint16_t*
 
 ![image](https://github.com/user-attachments/assets/c7a36f7f-7068-4ff6-967c-4e636162b557)
 
-### Cách khắc phục phân mảnh bộ nhớ
-```cpp
-#pragma pack(n)
-```
-Từ khóa này sẽ cho trình biên dịch biết rằng cần cấp phát cho các phần tử trong struct theo n bytes một.
-
-![image](https://github.com/user-attachments/assets/812ffb4d-c08a-4444-9d1b-5eb4301bdfa8)
+</p>
+</details>
 
 ## Union
+<details><summary>Chi tiết</summary>
+<p>
+	
 Union là một cấu trúc dữ liệu giúp kết hợp nhiều kiểu dữ liệu khác nhau vào một cùng một vùng nhớ. 
 
 Mục đích chính của union là tiết kiệm bộ nhớ bằng cách chia sẻ cùng một vùng nhớ cho các thành viên của nó. Điều này có nghĩa là, trong một thời điểm, chỉ một thành viên của union có thể được sử dụng.
 
-### Khai báo tường minh
+### Cú pháp
+
+**Cách 1**
 ```cpp
 union unionName{       	    union student_t{       union student_t sv1;
     dataType1 member1;          char ten[30];       union student_t sv2;
@@ -1492,7 +843,8 @@ union unionName{       	    union student_t{       union student_t sv1;
     ...                         int MSSV;           hoặc
 };                           };                     union student_t sv[50];
 ```
-### Khai báo không tường minh
+
+**Cách 2**
 ```cpp
 typedef union{             typedef union{           student_t sv1;
     dataType1 member1;          char ten[30];       student_t sv2;
@@ -1501,7 +853,7 @@ typedef union{             typedef union{           student_t sv1;
 }unionName;                }student_t;
 ```
 
-## Kích thước Union
+### Kích thước Union
 Kích thước của Union chính là tổng của kích thước của member có kích thước lớn nhất và padding (nếu có).
 
 **Ví dụ 1**
@@ -1542,7 +894,7 @@ int main(int argc, char const *argv[]){
 ```
 Kết quả: ```24 byte```
 
-## Sử dụng vùng nhớ trong Union
+### Sử dụng vùng nhớ trong Union
 
 **Ví dụ 1**
 ```cpp
@@ -1633,8 +985,11 @@ member var2 có kiểu dữ liệu là uint32_t nên giữ nguyên giá trị
 
 member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở địa chỉ 0x005FFE9C và 0x005FFE9D -> var3 = 0b11111111 11111010 = 65530
 
-### Sự khác nhau giữa Struct và Union
-## Giống
+## So sánh Struct và Union
+<details><summary>Chi tiết</summary>
+<p>
+	
+### Giống
 
 Đều do lập trình viên tự định nghĩa (user defined type).
 
@@ -1643,109 +998,6 @@ member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở đ�
 ## Khác
 ![image](https://github.com/user-attachments/assets/10994e8c-37ff-4a6b-b947-3d2fa16eee65)
 
-Ví dụ: **Viết 1 chương trình cho phép nhập thông tin của giáo viên hoặc thông tin của sinh viên. Sau đó in ra màn hình thông tin vừa nhập. Chạy liên tục, sử dụng Struct và Union.**
-```cpp
-#include <stdio.h>
-#include <string.h>
-
-typedef struct{
-    char ten[30] ;
-    int  _class  ;
-}sinhvien_info_t ;
-
-typedef struct{
-    char ten[40] ;
-    int  _level  ;
-}giangvien_info_t;
-
-typedef union{
-    giangvien_info_t gv;
-    sinhvien_info_t  sv;
-}info_t;
-
-int main(){
-    info_t info;    //4 bytes
-    char ten_gv[30], ten_sv[30];
-
-    printf("Nhap ten giang vien: "); gets(info.gv.ten);
-    strcpy(ten_gv, info.gv.ten);
-
-    printf("Nhap ten sinh vien: ") ; gets(info.sv.ten);
-    strcpy(ten_sv, info.sv.ten);
-
-    printf("Ten giang vien: %s\n", ten_gv);
-    printf("Ten sinh vien: %s\n", info.gv.ten);
-    return 0;
-}
-```
-## Enum
-Enum (Enumeration) là kiểu dữ liệu cố định, chỉ cho phép biến nhận số số giá trị nhất định.
-
-Nếu không truyền giá trị cho các trạng thái trong enum thì C/C++ sẽ mặc định các giá trị tăng dần từ 0 hoặc tăng dần theo giá trị của trạng thái trước đó.
-
-Các trạng thái trong một enum **chỉ nhận giá trị là kiểu interger** và có thể có giá trị bằng nhau.
-
-Trong cùng một phạm vi (scope) thì sẽ không thể có 2 enum có trạng thái trùng tên.
-
-### Cú pháp khai báo
-```cpp
-typedef enum{
-	var1 = value1,
-	var2 = value2,
-	...
-}name_enum;
-```
-
-Ví dụ:
-```cpp
-typedef enum{
-	Mon = 2,
-	Tue,
-	Wed,
-	Thur,
-	Fri,
-	Sat,
-	Sun
-}day_of_week;
-```
-```cpp
-typedef enum{
-	red,
-	blue,
-	orange,
-	yellow
-}color;
-```
-
-## Enum class
-Class enum (còn được gọi là enum có phạm vi), làm cho các enum được nhấn mạnh và phạm vi mạnh hơn.
-
-Các quy tắc nhấn mạnh có nghĩa là mỗi lớp enum được coi là một loại duy nhất. Điều này có nghĩa là trình biên dịch sẽ không ngầm so sánh các phần tử của enum khác nhau.
-
-Ví dụ:
-```cpp
-#include <iostream>
-int main(){
-	// "enum class" defines this as a scoped enumeration instead of a standard enumeration
-    enum class Color{
-        red, // red is inside the scope of Color
-        blue
-    };
-    enum class Fruit{
-        banana, // banana is inside the scope of Fruit
-        apple
-    };
-    Color color = Color::red; // note: red is not directly accessible any more, we have to use Color::red
-    Fruit fruit{ Fruit::banana }; // note: banana is not directly accessible any more, we have to use Fruit::banana
-	
-    if (color == fruit) // compile error here, as the compiler doesn't know how to compare different types Color and Fruit
-        std::cout << "color and fruit are equal\n";
-    else
-        std::cout << "color and fruit are not equal\n";
- 
-    return 0;
-} 
-```
 </p>
 </details>
 

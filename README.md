@@ -985,6 +985,9 @@ member var2 có kiểu dữ liệu là uint32_t nên giữ nguyên giá trị
 
 member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở địa chỉ 0x005FFE9C và 0x005FFE9D -> var3 = 0b11111111 11111010 = 65530
 
+</p>
+</details>
+
 ## So sánh Struct và Union
 <details><summary>Chi tiết</summary>
 <p>
@@ -997,6 +1000,9 @@ member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở đ�
 
 ## Khác
 ![image](https://github.com/user-attachments/assets/10994e8c-37ff-4a6b-b947-3d2fa16eee65)
+
+</p>
+</details>
 
 </p>
 </details>

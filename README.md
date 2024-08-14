@@ -652,7 +652,7 @@ int main(int argc, char const *argv[])
 </p>
 </details>
 
-# Bit mask
+# Bitmask
 <details><summary>Chi tiết</summary>
 <p>
 

@@ -1016,9 +1016,6 @@ member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở đ�
 </p>
 </details>
 
-</p>
-</details>
-
 # Memory layout (Phân vùng nhớ)
 <details><summary>Chi tiết</summary>
 <p>

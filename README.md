@@ -47,7 +47,7 @@ void sum(int a, int b){
 }
 
 int main(int argc, char const *argv[]){
-    void *ptr_void;
+    void *ptr_void = NULL;
     ptr_void = (void*)sum;
     ((void (*)(int,int))ptr_void)(9,3);
 

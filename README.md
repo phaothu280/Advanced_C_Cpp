@@ -3,7 +3,7 @@
 <p>
     
 ## Định nghĩa
-Trong C, con trỏ (pointer) là một biến chứa địa chỉ bộ nhớ của một biến khác. Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
+Trong C, con trỏ (pointer) là một biến chứa địa chỉ của một đối tượng khác. Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
 ## Kích thước con trỏ
 **Kích thước của con trỏ phụ thuộc vào kiến trúc vi xử lý.**
 

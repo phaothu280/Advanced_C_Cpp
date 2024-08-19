@@ -1,4 +1,3 @@
-
 <details><summary><b>Pointer</b></summary>
 <p>
     
@@ -230,8 +229,9 @@ Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt
 </p>
 </details>
 
-# Static - Extern - Volatile - Register
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>Static - Extern - Volatile - Register</b></summary>
 <p>
 
 ## Static
@@ -440,8 +440,9 @@ Khi có register ```Thoi gian chay cua chuong trinh: 0.001 giay```
 </p>
 </details>
 
-# goto - thư viện setjmp
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>goto - thư viện setjmp</b></summary>
 <p>
 
 ## goto trong C
@@ -652,8 +653,9 @@ int main(int argc, char const *argv[])
 </p>
 </details>
 
-# Bitmask
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>Bitmask</b></summary>
 <p>
 
 ## Định nghĩa
@@ -671,8 +673,9 @@ Bitmask thường được sử dụng để tối ưu hóa bộ nhớ, thực h
 </p>
 </details>
 
-# Struct - Union
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>Struct - Union</b></summary>
 <p>
 
 ## Struct
@@ -1007,8 +1010,9 @@ member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở đ�
 </p>
 </details>
 
-# Cấp phát động với malloc - calloc - realloc
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>Cấp phát động với malloc - calloc - realloc</b></summary>
 <p>
 	
 ![image](https://github.com/user-attachments/assets/5108cbb1-ac28-4304-9d25-6c9817c06c57)
@@ -1016,8 +1020,9 @@ member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở đ�
 </p>
 </details>
 
-# Memory layout (Phân vùng nhớ)
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>Memory layout (Phân vùng nhớ)</b></summary>
 <p>
 
 File do người dùng viết (file .c), file .exe và file .hex (file chứa chương trình nạp vào vi điều khiển) sẽ được lưu ở bộ nhớ ROM hoặc FLASH. Khi nhấn chạy chương trình thì những chương trình này sẽ copy sang bộ nhớ RAM rồi mới bắt đầu thực thi.
@@ -1182,8 +1187,9 @@ void function() {
 </p>
 </details>
 
-# JSON
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>JSON</b></summary>
 <p>
 
 ## Khái niệm
@@ -1322,8 +1328,9 @@ Mỗi thành phần của union value sẽ lưu trữ một giá trị tương �
 </p>
 </details>
 
-# Linked List
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>Linked List</b></summary>
 <p>
 
 ## Định nghĩa
@@ -1479,8 +1486,9 @@ int size(Node_t *head){
 </p>
 </details>
 
-# Stack - Queue
-<details><summary>Chi tiết</summary>
+
+
+<details><summary><b>Stack - Queue</b></summary>
 <p>
 
 ## Stack

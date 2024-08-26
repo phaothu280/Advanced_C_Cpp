@@ -35,6 +35,7 @@ void calculateData(){
 }
 
 int main(int argc, char const *argv[]){
+    exception_code = NO_ERROR;
     TRY{
         readFile();
         networkOperation();

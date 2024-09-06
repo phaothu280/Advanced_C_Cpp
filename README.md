@@ -1512,9 +1512,9 @@ Các thao tác cơ bản trên stack bao gồm:
 #### Định nghĩa 1 Stack
 ```cpp
 typedef struct{
-    int* items;
+    int *items;
     int size;
-    int top;
+    int top;	// chỉ số của phần tử ở đỉnh stack
 } Stack;
 ```
 
@@ -1537,7 +1537,7 @@ int isEmpty(Stack stack){
 #### Kiểm tra Stack đầy
 ```cpp
 int isFull(Stack stack){
-    return stack.top == stack.size - 1;
+    return stack.top == (stack.size - 1);
 }
 ```
 

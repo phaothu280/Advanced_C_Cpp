@@ -174,10 +174,7 @@ int main(int argc, char const *argv[])
 <p
     
 - Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
-- Cú pháp:
-```cpp
-int *const const_ptr = &value;
-```
+- Cú pháp: ``` int *const const_ptr = &value; ```
 
 💻
 ```cpp
@@ -206,6 +203,7 @@ int main(int argc, char const *argv[])
 <p
     
 - Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.
+
 💻
 ```cpp
 int *ptr_null = NULL;

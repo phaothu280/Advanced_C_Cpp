@@ -229,7 +229,7 @@ Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt
 </p>
 </details>
 
-
+<p></p>
 
 <details><summary><b>Static - Extern - Volatile - Register</b></summary>
 <p>
@@ -440,7 +440,7 @@ Khi có register ```Thoi gian chay cua chuong trinh: 0.001 giay```
 </p>
 </details>
 
-
+<p></p>
 
 <details><summary><b>goto - thư viện setjmp</b></summary>
 <p>

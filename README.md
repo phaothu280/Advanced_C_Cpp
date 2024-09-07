@@ -1,9 +1,17 @@
 <details><summary><b>✨ Pointer</b></summary>
 <p>
-    
-## 📚 Định nghĩa
+
+<details><summary>📚 Khái niệm về con trỏ</summary>
+<p>
+
 Trong C, con trỏ (pointer) là một biến chứa địa chỉ của một đối tượng khác. Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
-## 📚 Kích thước con trỏ
+
+</p>
+</details>
+
+<details><summary>📚 Kích thước con trỏ</summary>
+<p>
+
 **Kích thước của con trỏ phụ thuộc vào kiến trúc vi xử lý.**
 
 Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
@@ -26,8 +34,11 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 ```
-## 📚 Các kiểu con trỏ
-<details><summary>▷ Con trỏ Void</summary>
+
+</p>
+</details>
+
+<details><summary>📚 Con trỏ Void</summary>
 <p>
 	
 Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
@@ -73,7 +84,7 @@ Dia chi: 00000000005FFE87, char: B
 </p>
 </details>
 
-<details><summary>▷ Con trỏ hàm</summary>
+<details><summary>📚 Con trỏ hàm</summary>
 <p>
 	
 Con trỏ hàm là một biến mà **giữ địa chỉ của hàm**.
@@ -129,7 +140,7 @@ int main(int argc, char const *argv[]){
 </p>
 </details>
 
-<details><summary>▷ Con trỏ hằng</summary>
+<details><summary>📚 Con trỏ hằng</summary>
 <p
 
 Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only)** nhưng không thể thay đổi được giá trị đó.
@@ -197,7 +208,7 @@ Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only variable
 </p>
 </details>
 
-<details><summary>▷ Con trỏ NULL</summary>
+<details><summary>📚 Con trỏ NULL</summary>
 <p
     
 Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.
@@ -209,7 +220,7 @@ int *ptr_null = NULL;
 </p>
 </details>
 
-<details><summary>▷ Pointer to pointer</summary>
+<details><summary>📚 Pointer to pointer</summary>
 <p
     
 Là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ. 

@@ -13,11 +13,9 @@
 <details><summary>📚 Kích thước con trỏ</summary>
 <p>
 
-**Kích thước của con trỏ phụ thuộc vào kiến trúc vi xử lý.**
-
-Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
-
-Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
+- **Kích thước của con trỏ phụ thuộc vào kiến trúc vi xử lý.**
+- Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
+- Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
 
 ```cpp
 #include <stdio.h>
@@ -44,11 +42,10 @@ int main(int argc, char const *argv[]){
 	
 - Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
 - Muốn in ra giá trị thì phải sử dụng ép kiểu để đưa con trỏ void về đến kiểu dữ liệu của giá trị đó.
-
-Cú pháp: ``` void *ptr_void; ```
+- Cú pháp: ``` void *ptr_void; ```
 
 Ví dụ:
-```cpp
+```cpp 🖥️
 #include <stdio.h>
 
 void sum(int a, int b){

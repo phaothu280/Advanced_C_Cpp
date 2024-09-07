@@ -27,8 +27,7 @@ int main(int argc, char const *argv[]){
 }
 ```
 ## 📚 Các kiểu con trỏ
-### ▷ 1.Con trỏ Void
-<details><summary></summary>
+<details><summary>▷ Con trỏ Void</summary>
 <p>
 	
 Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
@@ -74,8 +73,7 @@ Dia chi: 00000000005FFE87, char: B
 </p>
 </details>
 
-### ▷ 2.Con trỏ hàm
-<details><summary></summary>
+<details><summary>▷ Con trỏ hàm</summary>
 <p>
 	
 Con trỏ hàm là một biến mà **giữ địa chỉ của hàm**.
@@ -131,8 +129,7 @@ int main(int argc, char const *argv[]){
 </p>
 </details>
 
-### ▷ 3.Con trỏ hằng
-<details><summary></summary>
+<details><summary>▷ Con trỏ hằng</summary>
 <p
 
 Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only)** nhưng không thể thay đổi được giá trị đó.
@@ -167,8 +164,7 @@ Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only location
 </p>
 </details>
 
-### ▷ 4.Hằng con trỏ
-<details><summary></summary>
+<details><summary>▷ Hằng con trỏ</summary>
 <p
     
 Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
@@ -201,8 +197,7 @@ Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only variable
 </p>
 </details>
 
-### ▷ 5.Con trỏ NULL
-<details><summary></summary>
+<details><summary>▷ Con trỏ NULL</summary>
 <p
     
 Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.
@@ -214,8 +209,7 @@ int *ptr_null = NULL;
 </p>
 </details>
 
-### ▷ 6.Pointer to pointer
-<details><summary></summary>
+<details><summary>▷ Pointer to pointer</summary>
 <p
     
 Là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ. 
@@ -678,8 +672,7 @@ Bitmask thường được sử dụng để tối ưu hóa bộ nhớ, thực h
 <details><summary><b>✨ Struct - Union</b></summary>
 <p>
 
-## 📚 Struct
-<details><summary>Chi tiết</summary>
+<details><summary>📚 Struct</summary>
 <p>
 	
 struct là một cấu trúc dữ liệu cho phép tự định nghĩa một kiểu dữ liệu mới bằng cách nhóm các biến có các kiểu dữ liệu khác nhau lại với nhau.
@@ -828,8 +821,7 @@ Các phần tử trong mảng **var1** đều có kiểu dữ liệu **uint16_t*
 </p>
 </details>
 
-## 📚 Union
-<details><summary>Chi tiết</summary>
+<details><summary>📚 Union</summary>
 <p>
 	
 Union là một cấu trúc dữ liệu giúp kết hợp nhiều kiểu dữ liệu khác nhau vào một cùng một vùng nhớ. 
@@ -1718,7 +1710,7 @@ int front(Queue queue){
 
 <br>
 
-<details><summary><b✨ OOP</b></summary>
+<details><summary><b></b>✨ OOP</b></summary>
 <p>
 
 

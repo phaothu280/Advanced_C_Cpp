@@ -1,4 +1,4 @@
-<details><summary><b>Pointer</b></summary>
+<details><summary><b><span style="font-size: 20px;">Pointer</span></b></summary>
 <p>
     
 ## Định nghĩa

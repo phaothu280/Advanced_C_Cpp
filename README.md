@@ -229,7 +229,7 @@ Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt
 </p>
 </details>
 
-<p></p>
+<br>
 
 <details><summary><b>Static - Extern - Volatile - Register</b></summary>
 <p>

@@ -44,8 +44,8 @@ int main(int argc, char const *argv[]){
 - Muốn in ra giá trị thì phải sử dụng ép kiểu để đưa con trỏ void về đến kiểu dữ liệu của giá trị đó.
 - Cú pháp: ``` void *ptr_void; ```
 
-Ví dụ:
-```cpp 🖥️
+🖥️ Ví dụ:
+```cpp 
 #include <stdio.h>
 
 void sum(int a, int b){

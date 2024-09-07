@@ -1,4 +1,4 @@
-<details><summary><b># Pointer</b></summary>
+<details><summary><b> # Pointer</b></summary>
 <p>
     
 ## Định nghĩa

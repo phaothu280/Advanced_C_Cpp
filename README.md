@@ -1,9 +1,9 @@
 <details><summary><b>✨ Pointer</b></summary>
 <p>
     
-## Định nghĩa
+## 📚 Định nghĩa
 Trong C, con trỏ (pointer) là một biến chứa địa chỉ của một đối tượng khác. Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
-## Kích thước con trỏ
+## 📚 Kích thước con trỏ
 **Kích thước của con trỏ phụ thuộc vào kiến trúc vi xử lý.**
 
 Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
@@ -26,8 +26,8 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 ```
-## Các kiểu con trỏ
-### 1.Con trỏ Void
+## 📚 Các kiểu con trỏ
+### ▷ 1.Con trỏ Void
 <details><summary></summary>
 <p>
 	
@@ -74,7 +74,7 @@ Dia chi: 00000000005FFE87, char: B
 </p>
 </details>
 
-### 2.Con trỏ hàm
+### ▷ 2.Con trỏ hàm
 <details><summary></summary>
 <p>
 	
@@ -131,7 +131,7 @@ int main(int argc, char const *argv[]){
 </p>
 </details>
 
-### 3.Con trỏ hằng
+### ▷ 3.Con trỏ hằng
 <details><summary></summary>
 <p
 
@@ -167,7 +167,7 @@ Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only location
 </p>
 </details>
 
-### 4.Hằng con trỏ
+### ▷ 4.Hằng con trỏ
 <details><summary></summary>
 <p
     
@@ -201,7 +201,7 @@ Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only variable
 </p>
 </details>
 
-### 5.Con trỏ NULL
+### ▷ 5.Con trỏ NULL
 <details><summary></summary>
 <p
     
@@ -214,7 +214,7 @@ int *ptr_null = NULL;
 </p>
 </details>
 
-### 6.Pointer to pointer
+### ▷ 6.Pointer to pointer
 <details><summary></summary>
 <p
     
@@ -234,14 +234,14 @@ Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt
 <details><summary><b>✨ Static - Extern - Volatile - Register</b></summary>
 <p>
 
-## Static
-### Cú pháp
+## 📚 Static
+### ▷ Cú pháp
 ```cpp
 static <data_type> <name_variable>;
 static <data_type> <name_function>;
 ```
 
-### static local variables
+### ▷ static local variables
 Khi 1 biến cục bộ được khai báo với từ khóa static:
 
 - Giữ giá trị của biến qua các lần gọi hàm.
@@ -271,7 +271,7 @@ int main(int argc, char const *argv[]){
 }
 ```
 
-### static global variables
+### ▷ static global variables
 Khi **'static'** được sử dụng với các biến toàn cục, nó sẽ hạn chế phạm vi của biến chỉ có thể gọi trong file nguồn hiện tại.
 
 **Ví dụ:**
@@ -308,8 +308,8 @@ undefined reference to `value1'
 ```
 Dễ thấy file Ex1.c khi chạy sẽ gặp lỗi do cố gắng sử dụng extern để gọi 1 biến toàn cục đã được khai báo với static trong 1 file nguồn khác.
 
-## Extern
-### Định nghĩa
+## 📚 Extern
+### ▷ Định nghĩa
 Từ khóa **'extern'** được sử dụng cho 1 biến hoặc hàm với mục đích là thông báo rằng biến hoặc hàm này đã được định nghĩa ở một nơi khác trong chương trình hoặc trong 1 file nguồn khác. 
 
 Cho phép các file nguồn khác nhau trong cùng một chương trình chia sẽ và sử dụng các biến và hàm mà không cần định nghĩa lại.
@@ -318,7 +318,7 @@ Cho phép các file nguồn khác nhau trong cùng một chương trình chia s�
 
 Biến được tham chiếu phải được khai báo ở cấp độ cao nhất (toàn cục), và có thể nằm trong một file khác.
 
-### Cú pháp
+### ▷ Cú pháp
 ```cpp
 extern <data_type> <name_variable>;
 ```
@@ -348,7 +348,7 @@ void Func(){
 ```
 Thực hiện **make file**: ```gcc main.c File1.c -o main```
 
-### Ứng dụng
+### 📚 Ứng dụng
 **Chia sẻ biến và hàm giữa các file nguồn**
 
 - Extern cho phép bạn chia sẻ biến và hàm giữa nhiều file nguồn trong một chương trình.
@@ -370,15 +370,15 @@ Thực hiện **make file**: ```gcc main.c File1.c -o main```
 
 - Nếu bạn có một hằng số được sử dụng ở nhiều nơi, bạn có thể sử dụng extern để chia sẻ giá trị của hằng số đó giữa các file nguồn.
 
-## Volatile
-### Định nghĩa
+## 📚 Volatile
+### ▷ Định nghĩa
 Volatile có nghĩa là không dự đoán được. Một biến sử dụng với volatile có nghĩa là nói với compiler là biến này **có thể sẽ được thay đổi ở bởi yếu tố bên ngoài chương trình** như hardward (ngắt, nhấn button,…) hoặc một luồng khác. Việc này ngăn chặn trình biên dịch tối ưu hóa hoặc xóa bỏ các thao tác trên biến đó, giữ cho các thao tác trên biến được thực hiện như đã được định nghĩa.
 
 Một biến cần được khai báo dưới dạng biến volatile khi nào? Khi mà giá trị của nó có thể thay đổi một cách không báo trước. Việc khai báo biến volatile là rất cần thiết để tránh những lỗi sai khó phát hiện do tính năng optimization của compiler.
 
 Biến Volatile rất cần thiết trong lập trình nhúng, vì khi đó có các tác vụ như ngắt ảnh hưởng tới giá trị của biến. Trong lập trình C cơ bản thì rất ít gặp.
 
-### Cú pháp
+### ▷ Cú pháp
 ```cpp
 volatile <data_type> <name_variable>;
 ```
@@ -392,8 +392,8 @@ void interrupt_handler(){
 }
 ```
 
-## Register
-### Định nghĩa
+## 📚 Register
+### ▷ Định nghĩa
 
 ![image](https://github.com/user-attachments/assets/5325937f-1104-4845-9bda-7f1e7c1589b9)
 
@@ -401,7 +401,7 @@ Register trong C/C++ được sử dụng để định nghĩa các biến cục
 
 Từ khóa “register” làm tăng hiệu năng (performance) của chương trình.
 
-### Cú pháp
+### ▷ Cú pháp
 ```cpp
 register <data_type> <name_variable>;
 ```
@@ -445,8 +445,8 @@ Khi có register ```Thoi gian chay cua chuong trinh: 0.001 giay```
 <details><summary><b>✨ goto - thư viện setjmp</b></summary>
 <p>
 
-## goto trong C
-### Định nghĩa
+## 📚 goto trong C
+### ▷ Định nghĩa
 Từ khóa **"goto"** cho phép chương trình nhảy đến một label đã được đặt trước đó cùng một hàm.
 
 "goto" cung cấp khả năng kiểm soát luồng hoạt động của mã nguồn, nhưng việc sử dụng goto thường được xem là không tốt vì nó có thể làm cho mã nguồn trở nên khó đọc và khó bảo trì.
@@ -473,7 +473,7 @@ int main(){
 ```
 Trong ví dụ này, goto được sử dụng để tạo một vòng lặp đơn giản. Khi i đạt đến giá trị 5, control sẽ chuyển đến nhãn "end" và kết thúc chương trình.
 
-### Các ứng dụng của goto
+### ▷ Các ứng dụng của goto
 #### Thoát khỏi vòng lặp nhiều cấp độ
 Trong một số trường hợp, việc thoát khỏi nhiều cấp độ vòng lặp có thể trở nên phức tạp nếu sử dụng cấu trúc kiểm soát vòng lặp thông thường. Trong tình huống như vậy, goto có thể được sử dụng để dễ dàng thoát khỏi nhiều cấp độ vòng lặp.
 
@@ -530,17 +530,17 @@ switch (current_state) {
 }
 ```
 
-## Thư viện setjmp
+## 📚 Thư viện setjmp
 setjmp.h là một thư viện trong ngôn ngữ lập trình C, cung cấp hai hàm chính là **setjmp** và **longjmp**.
 
-### Hàm setjmp
+### ▷ Hàm setjmp
 - setjmp lưu trạng thái hiện tại của môi trường thực thi vào một biến kiểu jmp_buf.
 - setjmp thường được sử dụng để thiết lập một điểm quay lại (checkpoint) trong chương trình.
 - setjmp trả về giá trị 0 khi được gọi lần đầu tiên và giá trị khác 0 khi quay lại từ longjmp.
 
 ```setjmp(jmp_buf buf);```
 
-### Hàm longjmp
+### ▷ Hàm longjmp
 longjmp là hàm dùng để nhảy trở lại vị trí đã lưu bởi setjmp và tiếp tục thực thi chương trình từ đó.
 
 ```cpp
@@ -590,7 +590,7 @@ int main(int argc, char const *argv[]){
 }
 ```
 
-### Xử lý ngoại lệ
+### ▷ Xử lý ngoại lệ
 Cả hai hàm setjmp và longjmp thường được sử dụng để thực hiện xử lý ngoại lệ trong C thông qua 3 keywords chính là: **try, catch, throw**.
 
 ```cpp
@@ -658,14 +658,14 @@ int main(int argc, char const *argv[])
 <details><summary><b>✨ Bitmask</b></summary>
 <p>
 
-## Định nghĩa
+## 📚 Định nghĩa
 Bitmask là một kỹ thuật sử dụng các bit để lưu trữ và thao tác với các cờ (flags) hoặc trạng thái.
 
 Có thể sử dụng bitmask để đặt, xóa, kiểm tra trạng thái của các bit cụ thể trong 1 word.
 
 Bitmask thường được sử dụng để tối ưu hóa bộ nhớ, thực hiện các phép toán logic trên một cụm bit, và quản lý các trạng thái, quyền truy cập, hoặc các thuộc tính khác của một đối tượng.
 
-## Các toán tử bitwise
+## 📚 Các toán tử bitwise
 ![image](https://github.com/user-attachments/assets/e9b5fc2e-0d94-4708-bbe1-740f7a21d417)
 
 ![image](https://github.com/user-attachments/assets/c8549e26-9a0b-4835-a886-d11a6bed9fb1)
@@ -678,7 +678,7 @@ Bitmask thường được sử dụng để tối ưu hóa bộ nhớ, thực h
 <details><summary><b>✨ Struct - Union</b></summary>
 <p>
 
-## Struct
+## 📚 Struct
 <details><summary>Chi tiết</summary>
 <p>
 	
@@ -686,7 +686,7 @@ struct là một cấu trúc dữ liệu cho phép tự định nghĩa một ki�
 
 struct cho phép tạo ra một thực thể dữ liệu lớn hơn và có tổ chức hơn từ các thành viên (members) của nó.
 
-### Cú pháp
+### ▷ Cú pháp
 
 **Cách 1**
 ```cpp
@@ -706,12 +706,12 @@ typedef struct{             typedef struct{         student_t sv1;
 }structureName;             }student_t;
 ```
 
-### Truy xuất dữ liệu
+### ▷ Truy xuất dữ liệu
 Sử dụng "." để truy xuất tới thành viên khi khai báo biến bình thường (int, char,…).
 
 Sử dụng "->" để truy xuất tới thành viên khi khai báo biến là con trỏ.
 
-### Kích thước của struct
+### ▷ Kích thước của struct
 Kích thước Struct bằng tổng các kích thước của các member và padding (nếu có).
 
 **Ví dụ 1**
@@ -791,7 +791,7 @@ Giải thích:
 
 ![image](https://github.com/user-attachments/assets/0723e3e4-bb78-4de7-9737-fcf15e96158e)
 
-### Địa chỉ của Struct
+### ▷ Địa chỉ của Struct
 Địa chỉ của struct chính là địa chỉ của member đầu tiên
 
 ```cpp
@@ -828,7 +828,7 @@ Các phần tử trong mảng **var1** đều có kiểu dữ liệu **uint16_t*
 </p>
 </details>
 
-## Union
+## 📚 Union
 <details><summary>Chi tiết</summary>
 <p>
 	
@@ -836,7 +836,7 @@ Union là một cấu trúc dữ liệu giúp kết hợp nhiều kiểu dữ li
 
 Mục đích chính của union là tiết kiệm bộ nhớ bằng cách chia sẻ cùng một vùng nhớ cho các thành viên của nó. Điều này có nghĩa là, trong một thời điểm, chỉ một thành viên của union có thể được sử dụng.
 
-### Cú pháp
+### ▷ Cú pháp
 
 **Cách 1**
 ```cpp
@@ -856,7 +856,7 @@ typedef union{             typedef union{           student_t sv1;
 }unionName;                }student_t;
 ```
 
-### Kích thước Union
+### ▷ Kích thước Union
 Kích thước của Union chính là tổng của kích thước của member có kích thước lớn nhất và padding (nếu có).
 
 **Ví dụ 1**
@@ -897,7 +897,7 @@ int main(int argc, char const *argv[]){
 ```
 Kết quả: ```24 byte```
 
-### Sử dụng vùng nhớ trong Union
+### ▷ Sử dụng vùng nhớ trong Union
 
 **Ví dụ 1**
 ```cpp
@@ -991,17 +991,17 @@ member var3 có kiểu dữ liệu là uint16_t nên chỉ lấy 16 bit ở đ�
 </p>
 </details>
 
-## So sánh Struct và Union
+## 📚 So sánh Struct và Union
 <details><summary>Chi tiết</summary>
 <p>
 	
-### Giống
+### ▷ Giống
 
 Đều do lập trình viên tự định nghĩa (user defined type).
 
 Đều sử dụng dấu “.” hoặc “ ” để truy cập các phần tử (hoặc có thể gọi là thuộc tính).
 
-## Khác
+### ▷ Khác
 ![image](https://github.com/user-attachments/assets/10994e8c-37ff-4a6b-b947-3d2fa16eee65)
 
 </p>
@@ -1038,7 +1038,7 @@ Memory layout của một chương trình C/C++ gồm 5 phần chính:
 
 ![image](https://github.com/user-attachments/assets/0092a0ac-943b-40f1-b376-caacf7bc470c)
 
-## 1.Text Segment
+## 📚 1.Text Segment
 ![image](https://github.com/user-attachments/assets/5af24f47-6c8b-4b6b-ad10-dd6b08401e32)
 
 
@@ -1057,7 +1057,7 @@ Kết quả sau khi chạy sẽ hiện lỗi ```invalid conversion from 'const c
 
 Do con trỏ ptr được khai báo kiểu char nên khi ta cố gắng thay đổi giá trị của nó sẽ gặp lỗi.
 
-## 2.Initialized Data Segment (DS)
+## 📚 2.Initialized Data Segment (DS)
 ![image](https://github.com/user-attachments/assets/5f4e8151-4160-4de8-8648-672bc55adee3)
 
 ```cpp
@@ -1080,7 +1080,7 @@ Các địa chỉ trên sẽ bị thu hồi khi chương trình kết thúc.
 
 Biến a, b, c đều có thể thay đổi trong quá trình thực thi (đọc – ghi).
 
-## 3.Uninitialized Data Segment (BSS)
+## 📚 3.Uninitialized Data Segment (BSS)
 ![image](https://github.com/user-attachments/assets/cbcccc8e-8113-42cf-8c1d-64153ba4fb8a)
 
 ```cpp
@@ -1114,7 +1114,7 @@ Tất cả các biến khai báo như trên đều sẽ được lưu trữ ở 
 
 2 biến x,y trong struct Point_Data sẽ nằm phân vùng BSS mặc dù sau đó được khởi tạo giá trị là 5,7.
 
-## 4.Stack (Automatic Variable Storage)
+## 📚 4.Stack (Automatic Variable Storage)
 ![image](https://github.com/user-attachments/assets/bc290383-e76f-490a-805e-ed4d7c567aae)
 
 ```cpp
@@ -1136,7 +1136,7 @@ Khi chạy lệnh printf() đầu tiên, a=5 và được cấp phát địa ch�
 
 Khi chạy lệnh printf() thứ hai, a=9 và tiếp tục được cấp phát địa chỉ (có thể là 0x01 hoặc khác), tương tự b, c và sau khi return kết quả thì các địa chỉ cũng bi thu hồi.
 
-## 5.Heap (Dynamic Memory Allocation)
+## 📚 5.Heap (Dynamic Memory Allocation)
 ![image](https://github.com/user-attachments/assets/96602d39-cc3f-4f94-a285-a3556b22fccb)
 
 **Ví dụ**
@@ -1160,7 +1160,7 @@ Trong đoạn mã nguồn bên trái, sử dụng malloc() để cấp phát đ�
 
 Ở mã nguồn bên phải, địa chỉ của các phần tử sau khi thực thi là giống nhau. Nguyên nhân là do người dùng đã giải phóng bộ nhớ (hàm free()) nên sau lần chạy hàm generate_array() đầu tiên, hệ thống đã thu hồi địa chỉ và các địa chỉ đó sẽ trống và được cấp phát cho lần thực thi tiếp theo.
 
-## So sánh vùng nhớ Stack và Heap
+## 📚 So sánh vùng nhớ Stack và Heap
 ![image](https://github.com/user-attachments/assets/8c97367c-f81e-42aa-a80c-9a156ca6ef55)
 
 **Khi nào sử dụng Heap? Khi nào sử dụng Stack?**
@@ -1192,7 +1192,7 @@ void function() {
 <details><summary><b>✨ JSON</b></summary>
 <p>
 
-## Khái niệm
+## 📚 Khái niệm
 JSON là viết tắt của “JavaScript Object Notation” (Ghi chú về đối tượng JavaScript).
 
 Là một định dạng truyền tải dữ liệu phổ biến trong lập trình và giao tiếp giữa các máy chủ và trình duyệt web, cũng như giữa các hệ thống khác.
@@ -1210,9 +1210,9 @@ JSON được thiết kế để dễ đọc và dễ viết cho con người, d
 }
 ```
 
-## Định dạng của JSON
+## 📚 Định dạng của JSON
 
-### Kiểu dữ liệu
+### ▷ Kiểu dữ liệu
 
 - NULL: ```null```
 - Boolean: ```true``` hoặc ```false```
@@ -1239,7 +1239,7 @@ JSON được thiết kế để dễ đọc và dễ viết cho con người, d
 }
 ```
 
-### Key - Value
+### ▷ Key - Value
 
 - Mỗi cặp key - value được phân tách bằng dấu hai chấm (:).
 - Các cặp key - value trong object được phân tách bằng dấu phẩy (,).
@@ -1252,20 +1252,20 @@ JSON được thiết kế để dễ đọc và dễ viết cho con người, d
 }
 ```
 
-### Dấu ngoặc
+### ▷ Dấu ngoặc
 
 - Dấu ngoặc nhọn ({}) được sử dụng để bao bọc đối tượng.
 - Dấu ngoặc vuông ([]) được sử dụng để bao bọc mảng.
 
-### Dấu phẩy
+### ▷ Dấu phẩy
 
 Dấu phẩy được sử dụng để phân tách giữa các thành phần trong mảng hoặc các cặp key-value trong đối tượng.
 
-### Khoảng trắng
+### ▷ Khoảng trắng
 
 Khoảng trắng, dấu xuống dòng và tab không ảnh hưởng đến tính chính xác của JSON và thường được sử dụng để làm cho JSON dễ đọc hơn.
 
-### Nhận xét
+### ▷ Nhận xét
 
 JSON không hỗ trợ cú pháp nhận xét nội dung. Bất kỳ văn bản nào sau dấu nhận xét (// hoặc /* */) không được hiểu là hợp lệ trong JSON.
 
@@ -1300,7 +1300,7 @@ typedef struct JSONValue{
 } JSONValue;
 ```
 
-### 1. JSONType
+### ▷ 1. JSONType
 
 Là một kiểu liệt kê (enum) xác định các loại giá trị mà một đối tượng JSON có thể có, bao gồm các giá trị như sau:
 
@@ -1311,7 +1311,7 @@ Là một kiểu liệt kê (enum) xác định các loại giá trị mà một
 - JSON_ARRAY: Đại diện cho một mảng các giá trị JSON khác.
 - JSON_OBJECT: Đại diện cho một đối tượng (object) JSON, bao gồm các cặp khóa-giá trị.
 
-### 2. JSONValue
+### ▷ 2. JSONValue
 
 Là một cấu trúc dữ liệu (struct) đại diện cho một giá trị JSON bất kỳ. Nó bao gồm hai thành phần chính:
 
@@ -1333,7 +1333,7 @@ Mỗi thành phần của union value sẽ lưu trữ một giá trị tương �
 <details><summary><b>✨ Linked List</b></summary>
 <p>
 
-## Định nghĩa
+## 📚 Định nghĩa
 
 Danh sách liên kết (Linked List) là một cấu trúc dữ liệu trong lập trình máy tính, được sử dụng để tổ chức và lưu trữ dữ liệu. Một Linked list bao gồm một chuỗi các nút (nodes) được phân bổ động, được sắp xếp theo cách mà mỗi node sẽ chứa một giá trị và một con trỏ (pointer) trỏ đến node tiếp theo nó. Nếu con trỏ là NULL thì nó là node cuối cùng trong danh sách.
 
@@ -1348,15 +1348,15 @@ Một danh sách được liên kết được giữ bằng cách sử dụng m�
 
 ![image](https://github.com/user-attachments/assets/c2669fde-dacb-4f2b-9cd8-cb861c7e9e3e)
 
-## Các hàm trong Linked List
-### Định nghĩa 1 node trong singly linked list
+## 📚 Các hàm trong Linked List
+### ▷ Định nghĩa 1 node trong singly linked list
 ```cpp
 typedef struct Node{
     int data;
     struct Node *next;
 } Node_t;
 ```
-### Khởi tạo 1 node mới
+### ▷ Khởi tạo 1 node mới
 ```cpp
 // khởi tạo giá trị ban đầu và trả địa chỉ về cho node được cấp phát.
 Node_t *createNode(int data){
@@ -1367,7 +1367,7 @@ Node_t *createNode(int data){
     return temp;
 }
 ```
-### Thêm node mới vào đầu danh sách
+### ▷ Thêm node mới vào đầu danh sách
 ```cpp
 void push_front(Node_t **head, int data){
     Node_t *new_node = createNode(data);
@@ -1380,7 +1380,7 @@ void push_front(Node_t **head, int data){
     }
 }
 ```
-### Thêm node mới vào cuối danh sách
+### ▷ Thêm node mới vào cuối danh sách
 ```cpp
 void push_back(Node_t **head, int data){
     Node_t *new_node = createNode(data);
@@ -1396,7 +1396,7 @@ void push_back(Node_t **head, int data){
     }
 }
 ```
-### Thêm node mới vào vị trí bất kỳ trong danh sách
+### ▷ Thêm node mới vào vị trí bất kỳ trong danh sách
 ```cpp
 void insert(Node_t **head, int data, int position){
     Node_t *new_node = createNode(data);
@@ -1415,7 +1415,7 @@ void insert(Node_t **head, int data, int position){
     else return;
 }
 ```
-### Xóa node đầu tiên trong danh sách
+### ▷ Xóa node đầu tiên trong danh sách
 ```cpp
 void pop_front(Node_t **head){
     Node_t *new_head = (*head)->next;
@@ -1423,7 +1423,7 @@ void pop_front(Node_t **head){
     *head = new_head;
 }
 ```
-### Xóa node cuối cùng trong danh sách
+### ▷ Xóa node cuối cùng trong danh sách
 ```cpp
 void pop_back(Node_t **head){
     if (*head == NULL){
@@ -1439,7 +1439,7 @@ void pop_back(Node_t **head){
     }
 }
 ```
-### Xóa node bất kỳ trong danh sách
+### ▷ Xóa node bất kỳ trong danh sách
 ```cpp
 void delete_node(Node_t **head, int position){
     Node_t *p = *head;
@@ -1458,7 +1458,7 @@ void delete_node(Node_t **head, int position){
     else return;
 }
 ```
-### Xóa toàn bộ node trong danh sách
+### ▷ Xóa toàn bộ node trong danh sách
 ```cpp
 void clear_all(Node_t **head){
     Node_t *p = *head;
@@ -1470,7 +1470,7 @@ void clear_all(Node_t **head){
     *head = NULL;
 }
 ```
-### Tính kích thước của danh sách
+### ▷ Tính kích thước của danh sách
 ```cpp
 int size(Node_t *head){
     Node_t *p = head;
@@ -1491,11 +1491,11 @@ int size(Node_t *head){
 <details><summary><b>✨ Stack - Queue</b></summary>
 <p>
 
-## Stack
+## 📚 Stack
 <details><summary>Chi tiết</summary>
 <p>
 
-### Định nghĩa Stack (Ngăn xếp)
+### ▷ Định nghĩa Stack (Ngăn xếp)
 
 Stack (ngăn xếp) là một cấu trúc dữ liệu tuân theo nguyên tắc "Last In, First Out" (LIFO), nghĩa là phần tử cuối cùng được thêm vào stack sẽ là phần tử đầu tiên được lấy ra. 
 
@@ -1507,9 +1507,6 @@ Các thao tác cơ bản trên stack bao gồm:
 
 ![image](https://github.com/user-attachments/assets/fcf7c263-0f88-4899-993d-4d8946df2068)
 
-### Các hàm sử dụng trong Stack
-
-#### Định nghĩa 1 Stack
 ```cpp
 typedef struct{
     int *items;
@@ -1518,7 +1515,7 @@ typedef struct{
 } Stack;
 ```
 
-#### Khởi tạo 1 Stack mới
+### ▷ Khởi tạo 1 Stack mới
 ```cpp
 void initialize(Stack *stack, int size){
     stack->items = (int*)malloc(sizeof(int)*size);
@@ -1527,21 +1524,21 @@ void initialize(Stack *stack, int size){
 }
 ```
 
-#### Kiểm tra Stack rỗng
+### ▷ Kiểm tra Stack rỗng
 ```cpp
 int isEmpty(Stack stack){
     return stack.top == -1;
 }
 ```
 
-#### Kiểm tra Stack đầy
+### ▷ Kiểm tra Stack đầy
 ```cpp
 int isFull(Stack stack){
     return stack.top == (stack.size - 1);
 }
 ```
 
-#### Thêm phần tử vào Stack
+### ▷ Thêm phần tử vào Stack
 ```cpp
 void push(Stack *stack, int value){
     if (!isFull(*stack)){
@@ -1553,7 +1550,7 @@ void push(Stack *stack, int value){
 }
 ```
 
-#### Xóa phần tử ra khỏi Stack
+### ▷ Xóa phần tử ra khỏi Stack
 ```cpp
 int pop(Stack *stack){
     if (!isEmpty(*stack)){
@@ -1566,7 +1563,7 @@ int pop(Stack *stack){
 }
 ```
 
-#### Lấy giá trị của phần tử ở đỉnh Stack
+### ▷ Lấy giá trị của phần tử ở đỉnh Stack
 ```cpp
 int top(Stack stack){
     if (!isEmpty(stack)){
@@ -1582,11 +1579,11 @@ int top(Stack stack){
 </p>
 </details>
 
-## Queue
+## 📚 Queue
 <details><summary>Chi tiết</summary>
 <p>
 
-### Định nghĩa Queue (Hàng đợi)
+### ▷ Định nghĩa Queue (Hàng đợi)
 
 Queue là một cấu trúc dữ liệu tuân theo nguyên tắc "First In, First Out" (FIFO), nghĩa là phần tử đầu tiên được thêm vào hàng đợi sẽ là phần tử đầu tiên được lấy ra. 
 
@@ -1596,9 +1593,6 @@ Các thao tác cơ bản trên hàng đợi bao gồm:
 - "dequeue": lấy phần tử từ đầu hàng đợi.
 - "front": lấy giá trị của phần tử đứng đầu hàng đợi.
 
-### Các hàm sử dụng trong Queue
-
-#### Định nghĩa 1 hàng đợi
 ```cpp
 typedef struct{
     int *item;    // mảng tượng trưng chứa các giá trị của phần tử trong queue
@@ -1608,7 +1602,7 @@ typedef struct{
 } Queue;
 ```
 
-#### Khởi tạo 1 hàng đợi mới
+### ▷ Khởi tạo 1 hàng đợi mới
 ```cpp
 Queue *initialize(int size){
     Queue *queue = (Queue*)malloc(sizeof(Queue));
@@ -1619,21 +1613,21 @@ Queue *initialize(int size){
 }
 ```
 
-#### Kiểm tra hàng đợi rỗng
+### ▷ Kiểm tra hàng đợi rỗng
 ```cpp
 int isEmpty(Queue queue){
     return (queue.front == -1);
 }
 ```
 
-#### Kiểm tra hàng đợi đầy
+### ▷ Kiểm tra hàng đợi đầy
 ```cpp
 int isFull(Queue queue){
     return (queue.rear + 1) % queue.size == queue.front;
 }
 ```
  
-#### Thêm phần tử vào cuối hàng đợi
+### ▷ Thêm phần tử vào cuối hàng đợi
 ```cpp
 void enqueue(Queue *queue, int data){
     if (isFull(*queue)){
@@ -1652,7 +1646,7 @@ void enqueue(Queue *queue, int data){
 }
 ```
 
-#### Xóa phần tử từ đầu hàng đợi
+### ▷ Xóa phần tử từ đầu hàng đợi
 ```cpp
 int dequeue(Queue *queue){
     if (isEmpty(*queue)){
@@ -1673,7 +1667,7 @@ int dequeue(Queue *queue){
 }
 ```
  
-#### Lấy giá trị của phần tử đứng đầu hàng đợi	
+### ▷ Lấy giá trị của phần tử đứng đầu hàng đợi	
 ```cpp
 int front(Queue queue){
     if (isEmpty(queue)){

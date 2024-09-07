@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]){
 - Muốn in ra giá trị thì phải sử dụng ép kiểu để đưa con trỏ void về đến kiểu dữ liệu của giá trị đó.
 - Cú pháp: ``` void *ptr_void; ```
 
-🖥️ Ví dụ:
+🖥️
 ```cpp 
 #include <stdio.h>
 
@@ -85,11 +85,10 @@ Dia chi: 00000000005FFE87, char: B
 <details><summary>📚 Con trỏ hàm</summary>
 <p>
 	
-Con trỏ hàm là một biến mà **giữ địa chỉ của hàm**.
-
-Khi khai báo một con trỏ hàm, ta sẽ cần chỉ định kiểu dữ liệu của hàm mà con trỏ đó sẽ tham chiếu đến, bao gồm kiểu trả về và các tham số của hàm. Sau đó, ta có thể gán con trỏ hàm này cho một hàm cụ thể. Khi gọi con trỏ hàm, chương trình sẽ thực thi hàm mà con trỏ đang tham chiếu đến.
-
-Cú pháp:
+- Con trỏ hàm là một biến mà **giữ địa chỉ của hàm**.
+- Cần chỉ định kiểu dữ liệu của hàm mà con trỏ đó sẽ tham chiếu đến khi khai báo, bao gồm kiểu trả về và các tham số của hàm. Sau đó, ta có thể gán con trỏ hàm này cho một hàm cụ thể.
+- Khi gọi con trỏ hàm, chương trình sẽ thực thi hàm mà con trỏ đang tham chiếu đến.
+- Cú pháp:
 ```cpp
 <return_type> (* func_pointer)(input_1_data type, input_2_data type,....);
 
@@ -98,7 +97,7 @@ int (*ptr)(int,double);
 void (*array[])(int,int);
 ```
 
-Ví dụ:
+🖥️
 ```cpp
 #include <stdio.h>
 
@@ -141,17 +140,15 @@ int main(int argc, char const *argv[]){
 <details><summary>📚 Con trỏ hằng</summary>
 <p
 
-Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only)** nhưng không thể thay đổi được giá trị đó.
-
-Đối với biến là hằng số thì phải luôn dùng con trỏ hằng khi trỏ đến.
-
-Cú pháp: 
+- Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only)** nhưng không thể thay đổi được giá trị đó.
+- Đối với biến là hằng số thì phải luôn dùng con trỏ hằng khi trỏ đến.
+- Cú pháp: 
 ```cpp
 <data_type> const *ptr_const;
 const <data_type> *ptr_const;
 ```
 
-**Ví dụ**
+🖥️
 ```cpp
 #include <stdio.h>
 
@@ -168,7 +165,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
-Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only location '*ptr_const'```
+📝 Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only location '*ptr_const'```
 
 </p>
 </details>
@@ -176,14 +173,13 @@ Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only location
 <details><summary>📚 Hằng con trỏ</summary>
 <p
     
-Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
-
-Cú pháp:
+- Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
+- Cú pháp:
 ```cpp
 int *const const_ptr = &value;
 ```
 
-**Ví dụ**
+💻
 ```cpp
 #include <stdio.h>
 
@@ -201,7 +197,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
-Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only variable 'const_ptr'```
+📝 Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only variable 'const_ptr'```
 
 </p>
 </details>
@@ -209,7 +205,8 @@ Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only variable
 <details><summary>📚 Con trỏ NULL</summary>
 <p
     
-Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.
+- Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.
+💻
 ```cpp
 int *ptr_null = NULL;
 //  ptr_null = 0x00: địa chỉ khởi tạo
@@ -221,11 +218,10 @@ int *ptr_null = NULL;
 <details><summary>📚 Pointer to pointer</summary>
 <p
     
-Là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ. 
+- Là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ.
+- Con trỏ đến con trỏ cung cấp một cấp bậc trỏ mới, cho phép bạn thay đổi giá trị của con trỏ gốc.
+- Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt là khi bạn làm việc với các hàm cần thay đổi giá trị của con trỏ.
 
-Con trỏ đến con trỏ cung cấp một cấp bậc trỏ mới, cho phép bạn thay đổi giá trị của con trỏ gốc. 
-
-Cấp bậc này có thể hữu ích trong nhiều tình huống, đặc biệt là khi bạn làm việc với các hàm cần thay đổi giá trị của con trỏ.
 </p>
 </details>
 

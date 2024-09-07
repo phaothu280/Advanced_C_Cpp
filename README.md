@@ -175,7 +175,7 @@ Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only location
 </p>
 </details>
 
-<details><summary>▷ Hằng con trỏ</summary>
+<details><summary>📚 Hằng con trỏ</summary>
 <p
     
 Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.

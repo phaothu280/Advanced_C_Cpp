@@ -4,7 +4,8 @@
 <details><summary>📚 Khái niệm về con trỏ</summary>
 <p>
 
-Trong C, con trỏ (pointer) là một biến chứa địa chỉ của một đối tượng khác. Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
+- Con trỏ (pointer) là một biến chứa địa chỉ của một đối tượng (biến hoặc hàm) khác.
+- Việc sử dụng con trỏ giúp thực hiện các thao tác trên bộ nhớ một cách linh hoạt hơn.
 
 </p>
 </details>
@@ -41,9 +42,8 @@ int main(int argc, char const *argv[]){
 <details><summary>📚 Con trỏ Void</summary>
 <p>
 	
-Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
-
-Muốn in ra giá trị thì phải sử dụng ép kiểu để đưa con trỏ void về đến kiểu dữ liệu của giá trị đó.
+- Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
+- Muốn in ra giá trị thì phải sử dụng ép kiểu để đưa con trỏ void về đến kiểu dữ liệu của giá trị đó.
 
 Cú pháp: ``` void *ptr_void; ```
 

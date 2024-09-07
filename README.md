@@ -17,7 +17,7 @@
 - Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
 - Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
 
-```cpp
+🖥️```cpp
 #include <stdio.h>
 #include <stdbool.h>
 

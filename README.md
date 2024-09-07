@@ -1603,8 +1603,8 @@ Các thao tác cơ bản trên hàng đợi bao gồm:
 typedef struct{
     int *item;    // mảng tượng trưng chứa các giá trị của phần tử trong queue
     int size;     // kích thước của queue
-    int front;    // phần tử đầu queue
-    int rear;     // phần tử cuối queue
+    int front;    // vị trí phần tử đầu queue
+    int rear;     // vị trí phần tử cuối queue
 } Queue;
 ```
 

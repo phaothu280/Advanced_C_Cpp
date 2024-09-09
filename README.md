@@ -106,6 +106,8 @@ int main(int argc, char const *argv[])
 
 📝 Định nghĩa ``` SIZE ``` cũng được thay thế bằng giá trị 20 -> ``` int array[20] ```
 
+<br>
+
 </p>
 </details>
 
@@ -148,6 +150,8 @@ display:
 ...
 ```
 
+<br>
+
 </p>
 </details>
 
@@ -163,6 +167,8 @@ File **main.o**
 
 📝 Khi code trên VĐK thì đây chính là chương trình sẽ ghi vào bộ nhớ Flash của VĐK. Khi cấp nguồn cho VĐK thì nó sẽ tiến hành khởi tạo các PC, Stack Pointer và copy chương trình này vào bộ nhớ Flash và RAM rồi sau đó mới bắt đầu đi đến từng địa chỉ để thực thi.
 
+<br>
+
 </p>
 </details>
 
@@ -173,6 +179,8 @@ File **main.o**
 - Mã máy của các hàm thư viện gọi trong chương trình cũng được đưa vào chương trình cuối trong giai đoạn này.
 - Các lỗi liên quan đến việc gọi hàm hay sử dụng biến tổng thể mà không tồn tại sẽ bị phát hiện. Kể cả lỗi viết chương trình chính không có hàm main() cũng được phát hiện trong liên kết.
 - Câu lệnh: ``` gcc main.o -o main ```
+
+<br>
 
 </p>
 </details>
@@ -214,6 +222,7 @@ File **main.o**
 - Khi sử dụng dấu **""**, bộ tiền xử lý sẽ tìm file name trong thư mục chứa project. Nếu tìm không thấy thì nó sẽ tiếp tục tìm trong các file có sẵn trong thư mục cài đặt.
 ``` #include "uart.h" ```
 
+<br>
 
 </p>
 </details>
@@ -276,9 +285,9 @@ int sum(int a, int b){
 ```
 📝 Cả 2 đều cho ra kết quả giống nhau. Vậy câu hỏi đặt ra là:
 
-❓ Sự khác nhau giữa Macro và Function là gì? 🤔
+🤔 Sự khác nhau giữa Macro và Function là gì❓ 
 
-❓ Khi nào sử dụng Macro? Khi nào sử dụng Function? 🤔
+🤔 Khi nào sử dụng Macro? Khi nào sử dụng Function❓ 
 
 <br>
 
@@ -341,6 +350,7 @@ int main(int argc, char const *argv[])
   </tr>
 </table>
 
+<br>
 
 </p>
 </details>
@@ -348,11 +358,184 @@ int main(int argc, char const *argv[])
 <details><summary><b>🔍 Chi thị hủy định nghĩa Macro (#undef)</b></summary>
 <p>
 
+Chỉ thị #undef dùng để hủy định nghĩa của một macro đã được định nghĩa trước đó bằng #define.
+
+💻
+```cpp
+#include <stdio.h>
+
+#define data 30
+
+int main(int argc, char const *argv[])
+{
+    printf("Data = %d\n", data);
+
+    #undef data
+
+    #define data 50
+
+    printf("Data = %d\n", data);
+
+    return 0;
+}
+```
+
+<br>
+
 </p>
 </details>
 
 <details><summary><b>🔍 Chỉ thị biên dịch có điều kiện (#if, #elif, #else, #ifdef, #ifndef)</b></summary>
 <p>
+
+- Chỉ thị #ifdef dùng để kiểm tra một macro đã được định nghĩa hay chưa, nếu macro đã được định nghĩa thì mã nguồn sau #ifdef sẽ được biên dịch.
+- Chỉ thị #ifndef dùng để kiểm tra một macro đã được định nghĩa hay chưa, nếu macro chưa được định nghĩa thì mã nguồn sau #ifndef sẽ được biên dịch.
+
+💻
+```cpp
+#include <stdio.h>
+
+//#define SIZE 30
+
+#ifndef SIZE
+#define SIZE 5
+
+int arr[SIZE] = {1,2,3,4,5};
+
+#endif
+
+int main(int argc, char const *argv[])
+{
+
+    for (int i=0; i<SIZE; i++){
+        printf("arr[%d] = %d\n", i, arr[i]);
+    }
+
+    return 0;
+}
+```
+
+<br>
+
+- Chỉ thị #if sử dụng để bắt đầu một điều kiện tiền xử lý.Nếu điều kiện trong #if là đúng, các dòng mã nguồn sau #if sẽ được biên dịch. Nếu sai, các dòng mã nguồn sẽ bị bỏ qua đến khi gặp #endif.
+- Chỉ thị #elif dùng để thêm một điều kiện mới khi điều kiện trước đó trong #if hoặc #elif là sai.
+- Chỉ thị #else dùng khi không có điều kiện nào ở trên đúng.
+
+💻
+```cpp
+#include <stdio.h>
+
+#define ESP32     1
+#define STM32     2
+#define ATmega324 3
+
+#define MCU ESP32
+
+int main(int argc, char const *argv[])
+{
+    #if (MCU == ESP32)
+        printf("ESP32\n");
+    #elif (MCU == STM32)
+        printf("STM32\n");
+    #else
+        printf("ATmega324\n");
+    #endif
+
+    return 0;
+}
+```
+
+<br>
+
+</p>
+</details>
+
+<details><summary><b>🔍 Một số toán tử Macro</b></summary>
+<p>
+
+- Sử dụng **##** để nối chuỗi.
+- Sử dụng **#** để chuẩn hóa đoạn văn bản lên chuỗi.
+💻
+File **main.c**
+```cpp
+#include <stdio.h>
+
+#define CREATE_VAR(name)    \
+int    int_##name;          \
+char   char_##name;         \
+double double_##name     
+
+// ## dùng để nối chuỗi
+
+#define CREATE_STRING(cmd) printf(#cmd)
+
+// # chuẩn hóa đoạn văn bản lên chuỗi
+
+int main(int argc, char const *argv[])
+{
+    CREATE_VAR(test);  
+    CREATE_STRING(abc);
+    return 0;
+}
+```
+File **main.i**
+```cpp
+# 20 "main.c"
+int main(int argc, char const *argv[])
+{
+    int int_test; char char_test; double double_test;
+    printf("abc");
+    return 0;
+}
+```
+
+<br>
+
+- Variadic macro: là một dạng macro cho phép nhận một số lượng biến tham số có thể thay đổi.
+💻 Tạo menu
+```cpp
+#include <stdio.h>
+
+#define PRINT_MENU_ITEM(number, item) printf("%d. %s\n", number, item)
+
+#define PRINT_MENU(...)                             \
+        const char* items[] = {__VA_ARGS__};        \
+        int n = sizeof(items) / sizeof(items[0]);   \
+        for (int i = 0; i < n; i++) {               \
+            PRINT_MENU_ITEM(i + 1, items[i]);       \
+        }
+
+#define CASE_OPTION(number, function) case number: function(); break;
+
+#define HANDLE_OPTION(option, ...)              \
+    switch (option) {                           \
+        __VA_ARGS__                             \
+        default: printf("Invalid option!\n");   \
+    }
+
+void feature1() { printf("Feature 1 selected\n"); }
+void feature2() { printf("Feature 2 selected\n"); }
+void feature3() { printf("Feature 3 selected\n"); }
+void feature4() { printf("Feature 4 selected\n"); }
+
+int main(int argc, char const *argv[])
+{   
+    PRINT_MENU("Option 1", "Option 2", "Option 3", "Option 4", "Exit");
+
+    int option;
+    scanf("%d", &option);
+
+    HANDLE_OPTION(option, 
+        CASE_OPTION(1,feature1)
+        CASE_OPTION(2,feature2)
+        CASE_OPTION(3,feature3)
+        CASE_OPTION(4,feature4)
+        )
+    return 0;
+}
+```
+
+<br>
 
 </p>
 </details>

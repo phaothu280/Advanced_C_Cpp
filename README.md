@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/f70968f8-c7d1-4f17-b275-3b5ab0279a75)<details><summary><b>✨ Compiler</b></summary>
+<details><summary><b>✨ Compiler</b></summary>
 <p>
 
 <details><summary><b>📚 Giới thiệu về compiler</b></summary>

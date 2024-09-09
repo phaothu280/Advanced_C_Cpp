@@ -455,6 +455,7 @@ int main(int argc, char const *argv[])
 
 - Sử dụng **##** để nối chuỗi.
 - Sử dụng **#** để chuẩn hóa đoạn văn bản lên chuỗi.
+
 💻
 File **main.c**
 ```cpp
@@ -492,6 +493,7 @@ int main(int argc, char const *argv[])
 <br>
 
 - Variadic macro: là một dạng macro cho phép nhận một số lượng biến tham số có thể thay đổi.
+
 💻 Tạo menu
 ```cpp
 #include <stdio.h>

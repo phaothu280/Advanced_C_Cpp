@@ -1,13 +1,13 @@
 <details><summary><b>✨ Compiler</b></summary>
 <p>
 
-<details><summary>📚 Giới thiệu về compiler</summary>
+<details><summary><b>📚 Giới thiệu về compiler</b></summary>
 <p>
 
 </p>
 </details>
 
-<details><summary>📚 Compiler process</summary>
+<details><summary><b>📚 Compiler process</b></summary>
 <p>
 
 <details><summary><b>🔍 1. Quá trình tiền xử lý (Preprocessor)</b></summary>

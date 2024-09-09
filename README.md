@@ -45,13 +45,13 @@
 <details><summary><b>✨ Macro</b></summary>
 <p>
 
-<details><summary>📚 Giới thiệu về Macro</summary>
+<details><summary><b>📚 Giới thiệu về Macro</b></summary>
 <p>
 
 </p>
 </details>
 
-<details><summary>📚 Các nhóm chỉ thị Macro</summary>
+<details><summary><b>📚 Các nhóm chỉ thị Macro</b></summary>
 <p>
 
 <details><summary><b>🔍 Chi thị bao hàm tệp (#include)</b></summary>
@@ -89,13 +89,13 @@
 <details><summary><b>✨ Thư viện STDARG</b></summary>
 <p>
 
-<details><summary>📚 Giới thiệu thư viện stdarg</summary>
+<details><summary><b>📚 Giới thiệu thư viện stdarg</b></summary>
 <p>
 
 </p>
 </details>
 
-<details><summary>📚 Các Macro trong thư viện stdarg</summary>
+<details><summary><b>📚 Các Macro trong thư viện stdarg</b></summary>
 <p>
 
 <details><summary><b>🔍 va_list</b></summary>

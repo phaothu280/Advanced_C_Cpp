@@ -111,17 +111,66 @@ int main(int argc, char const *argv[])
 <details><summary><b>🔍 2. Quá trình dịch ngôn ngữ bậc cao sang Assembly (Compiler)</b></summary>
 <p>
 
+- Phân tích cú pháp (syntax) sau đó chuyển sang Assembly code – hợp ngữ, là ngôn ngữ bậc thấp gần với tập lệnh của bộ vi xử lý.
+- Câu lệnh: ``` gcc -S main.i -o main.s ```
+
+File **main.s**
+```cpp
+	.file	"main.c"
+	.text
+	.section .rdata,"dr"
+.LC0:
+	.ascii "This is file test.c\0"
+	.text
+	.globl	display
+	.def	display;	.scl	2;	.type	32;	.endef
+	.seh_proc	display
+display:
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	movq	%rsp, %rbp
+	.seh_setframe	%rbp, 0
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	leaq	.LC0(%rip), %rax
+	movq	%rax, %rcx
+	call	puts
+	nop
+	addq	$32, %rsp
+	popq	%rbp
+	ret
+	.seh_endproc
+	.globl	array
+	.bss
+	.align 32
+```
+
 </p>
 </details>
 
 <details><summary><b>🔍 3. Quá trình dịch Assembly sang ngôn ngữ máy (Assembler)</b></summary>
 <p>
 
+- Dịch chương trình sang mã máy 0 và 1.
+- Một tệp mã máy (.obj) được sinh ra trong hệ thống sau đó.
+- Câu lệnh: ``` gcc -c main.s -o main.o ```
+
+File **main.o**
+![image](https://github.com/user-attachments/assets/42711a58-af7e-4fd9-aece-795dda6cec99)
+
+📝 Khi code trên VĐK thì đây chính là chương trình sẽ ghi vào bộ nhớ Flash của VĐK. Khi cấp nguồn cho VĐK thì nó sẽ tiến hành khởi tạo các PC, Stack Pointer và copy chương trình này vào bộ nhớ Flash và RAM rồi sau đó mới bắt đầu đi đến từng địa chỉ để thực thi.
+
 </p>
 </details>
 
 <details><summary><b>🔍 4. Quá trình liên kết (Linker)</b></summary>
 <p>
+
+- Trong giai đoạn này mã máy của một chương trình dịch từ nhiều nguồn (file .c hoặc file thư viện .lib) được liên kết lại với nhau để tạo thành chương trình đích duy nhất.
+- Mã máy của các hàm thư viện gọi trong chương trình cũng được đưa vào chương trình cuối trong giai đoạn này.
+- Các lỗi liên quan đến việc gọi hàm hay sử dụng biến tổng thể mà không tồn tại sẽ bị phát hiện. Kể cả lỗi viết chương trình chính không có hàm main() cũng được phát hiện trong liên kết.
+- Câu lệnh: ``` gcc main.o -o main ```
 
 </p>
 </details>

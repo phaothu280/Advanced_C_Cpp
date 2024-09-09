@@ -89,6 +89,48 @@
 <details><summary><b>✨ Thư viện STDARG</b></summary>
 <p>
 
+<details><summary>📚 Giới thiệu thư viện stdarg</summary>
+<p>
+
+</p>
+</details>
+
+<details><summary>📚 Các Macro trong thư viện stdarg</summary>
+<p>
+
+<details><summary><b>🔍 va_list</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 va_start</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 va_arg</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 va_copy</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 va_end</b></summary>
+<p>
+
+</p>
+</details>
+
+</p>
+</details>
+
 </p>
 </details>
 

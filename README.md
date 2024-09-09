@@ -68,6 +68,41 @@ int main(int argc, char const *argv[]){
 }
 ```
 
+📝 Thực hiện câu lệnh để tạo file main.i: ``` gcc -E main.c -o main.i ```
+
+File **main.i**
+```cpp
+# 1650 "D:/C++/msys64/ucrt64/include/stdio.h" 2 3
+# 2 "main.c" 2
+# 1 "test.c" 1
+
+
+# 3 "test.c"
+void display(){
+    printf("This is file test.c\n");
+}
+# 3 "main.c" 2
+
+int array[20];
+
+void test(){
+    printf("Hello world\n");
+}
+
+int SIZE2 = 30;
+
+int main(int argc, char const *argv[])
+{
+    int array2[SIZE2];
+    display();
+    test();
+    return 0;
+}
+```
+📝 Toàn bộ source của thư viện stdio và file test.c đều được copy vào file main.i
+📝 2 comment đều đã bị xóa.
+📝 Định nghĩa cũng được thay thế -> ``` int array[20] ```
+
 </p>
 </details>
 

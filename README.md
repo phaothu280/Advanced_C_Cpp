@@ -45,6 +45,42 @@
 <details><summary><b>✨ Macro</b></summary>
 <p>
 
+<details><summary>📚 Giới thiệu về Macro</summary>
+<p>
+
+</p>
+</details>
+
+<details><summary>📚 Các nhóm chỉ thị Macro</summary>
+<p>
+
+<details><summary><b>🔍 Chi thị bao hàm tệp (#include)</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 Chi thị định nghĩa Macro (#define)</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 Chi thị hủy định nghĩa Macro (#undef)</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 Chỉ thị biên dịch có điều kiện (#if, #elif, #else, #ifdef, #ifndef)</b></summary>
+<p>
+
+</p>
+</details>
+
+</p>
+</details>
+
 </p>
 </details>
 

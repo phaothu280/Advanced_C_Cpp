@@ -10,13 +10,13 @@
 <details><summary>📚 Compiler process</summary>
 <p>
 
-<details><summary><b>1. Quá trình tiền xử lý (Preprocessor)</b></summary>
+<details><summary><b>🔍  Quá trình tiền xử lý (Preprocessor)</b></summary>
 <p>
 
 </p>
 </details>
 
-<details><summary>2. Giai đoạn tiền xử lý (Preprocessor)</summary>
+<details><summary><b>🔍  Giai đoạn tiền xử lý (Preprocessor)</b></summary>
 <p>
 
 </p>

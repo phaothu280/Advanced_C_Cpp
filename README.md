@@ -16,7 +16,19 @@
 </p>
 </details>
 
-<details><summary><b>🔍 2. Giai đoạn tiền xử lý (Preprocessor)</b></summary>
+<details><summary><b>🔍 2. Quá trình dịch ngôn ngữ bậc cao sang Assembly (Compiler)</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 3. Quá trình dịch Assembly sang ngôn ngữ máy (Assembler)</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 4. Quá trình liên kết (Linker)</b></summary>
 <p>
 
 </p>

@@ -262,20 +262,79 @@ int main(int argc, char const *argv[])
 ```
 
 
-💻 Macro
+💻
 ```cpp
+// Macro
 #define sum(a,b) a+b
 ```
-💻 Function
 ```cpp
+// Function
 int sum(int a, int b){ 
 	return a+b;
 }
 ```
 📝 Cả 2 đều cho ra kết quả giống nhau. Vậy câu hỏi đặt ra là:
 
-❓ Sự khác nhau giữa Macro và Function là gì?
-❓ Khi nào sử dụng Macro? Khi nào sử dụng Function?
+❓ Sự khác nhau giữa Macro và Function là gì? 🤔
+
+❓ Khi nào sử dụng Macro? Khi nào sử dụng Function? 🤔
+
+**Sử dụng Function**
+```cpp
+#include <stdio.h>
+
+int sum(int a, int b){   // 0xc1 - 0xc9
+    return a+b;
+}
+
+int main(int argc, char const *argv[]){
+    int a;         // 0x01              
+    int b;         // 0x05
+    int c = a+b;   // 0x09
+    sum(5,7);       
+    return 0;
+}
+```
+📝 Khi sử dụng hàm thì compiler sẽ cấp 1 vùng nhớ cho hàm (giả sử 0xc1 – 0xc9).
+
+📝 Trong hàm main(), PC sẽ đi đến từng địa chỉ: 0x01 -> 0x02 -> 0x03 -> 0x04 ->... -> 0x09. Khi đến hàm sum(), địa chỉ 0x0A sẽ được lưu vào main stack pointer, sau đó PC nhảy đến 0xc1 để thực hiện sum.
+
+📝 Khi thực hiện xong hàm sum() thì sẽ vào main stack pointer và lấy lại địa chỉ 0x0A để PC tiếp tục thực thi từ đó.
+
+<br>
+
+**Sử dụng Macro**
+```cpp
+#include <stdio.h>
+
+#define sum(a,b) a+b        
+
+int main(int argc, char const *argv[])
+{
+    int a;         // 0x01              
+    int b;         // 0x05
+    int c = a+b;   // 0x09
+    5+7;           // 0x0A
+    5+4;           // 0x0B
+    return 0;
+}
+```
+📝 Khi sử dụng Macro thì PC sẽ trỏ đến những địa chỉ liền kề nhau do đó sẽ tốn bộ nhớ để lưu giá trị sau mỗi lần gọi macro nhưng tốc độ xử lý sẽ nhanh hơn khi sử dụng hàm do không cần phải lưu vào main stack pointer.
+
+<table>
+  <tr>
+    <th style="text-align: center;">Cột 1</th>
+    <th style="text-align: center;">Cột 2</th>
+  </tr>
+  <tr>
+    <td style="text-align: center;">Hàng 1, Cột 1</td>
+    <td style="text-align: center;">Hàng 1, Cột 2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">Hàng 2, Cột 1</td>
+    <td style="text-align: center;">Hàng 2, Cột 2</td>
+  </tr>
+</table>
 
 
 </p>

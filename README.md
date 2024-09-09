@@ -1,4 +1,4 @@
-<details><summary><b>✨ Compiler</b></summary>
+![image](https://github.com/user-attachments/assets/f70968f8-c7d1-4f17-b275-3b5ab0279a75)<details><summary><b>✨ Compiler</b></summary>
 <p>
 
 <details><summary><b>📚 Giới thiệu về compiler</b></summary>
@@ -28,6 +28,13 @@ Quá trình biên dịch của gcc sẽ trải qua 4 bước chính:
 
 <details><summary><b>🔍 1. Quá trình tiền xử lý (Preprocessor)</b></summary>
 <p>
+
+- Nhận mã nguồn.
+- Xóa bỏ tất cả chú thích, comment trong chương trình.
+- Các đoạn mã khi được thêm vào (#include) sẽ được copy vào file .i
+- Các định nghĩa (#define) cũng sẽ được copy vào file .i
+- Câu lệnh: ``` gcc -E file.c -o file.i ```
+
 
 </p>
 </details>

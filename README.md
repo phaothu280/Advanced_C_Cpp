@@ -103,7 +103,7 @@ int main(int argc, char const *argv[])
 
 📝 2 comment đều đã bị xóa.
 
-📝 Định nghĩa cũng được thay thế -> ``` int array[20] ```
+📝 Định nghĩa ``` SIZE ``` cũng được thay thế bằng giá trị 20 -> ``` int array[20] ```
 
 </p>
 </details>

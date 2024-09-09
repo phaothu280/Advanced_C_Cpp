@@ -35,6 +35,7 @@ Quá trình biên dịch của gcc sẽ trải qua 4 bước chính:
 - Các định nghĩa (#define) cũng sẽ được copy vào file .i
 - Câu lệnh: ``` gcc -E file.c -o file.i ```
 
+💻
 File **test.c**
 ```cpp
 #include <stdio.h>
@@ -144,6 +145,7 @@ display:
 	.globl	array
 	.bss
 	.align 32
+...
 ```
 
 </p>
@@ -189,6 +191,9 @@ File **main.o**
 <details><summary><b>📚 Giới thiệu về Macro</b></summary>
 <p>
 
+- Macro là từ dùng để chỉ những thông tin được xử lý ở quá trình tiền xử lý (Preprocessor), được sử dụng để thay thế một đoạn mã trước khi chương trình được biên dịch.
+- Macro giúp tạo ra các định nghĩa chung, thường để tránh việc viết lại mã nhiều lần hoặc để làm cho mã dễ bảo trì hơn. 
+
 </p>
 </details>
 
@@ -198,11 +203,80 @@ File **main.o**
 <details><summary><b>🔍 Chi thị bao hàm tệp (#include)</b></summary>
 <p>
 
+- Chỉ thị #include dùng để chèn nội dung của một file khác vào mã nguồn chương trình.
+- Tái sử dụng mã nguồn.
+- Phân chia chương trình thành các phần nhỏ, giúp quản lý mã nguồn hiệu quả.
+- Khi sử dụng **<>** thì preprocessor sẽ thêm nội dung những file.h trong thư mục cài đặt. 
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+```
+- Khi sử dụng dấu **""**, bộ tiền xử lý sẽ tìm file name trong thư mục chứa project. Nếu tìm không thấy thì nó sẽ tiếp tục tìm trong các file có sẵn trong thư mục cài đặt.
+``` #include "uart.h" ```
+
+
 </p>
 </details>
 
 <details><summary><b>🔍 Chi thị định nghĩa Macro (#define)</b></summary>
 <p>
+
+Chỉ thị #define dùng để thay thế một chuỗi mã nguồn bằng một chuỗi khác trước khi chương trình biên dịch. Nó giúp giảm lặp lại mã, dễ bảo trì chương trình.
+
+💻
+File **main.c**
+```cpp
+#include <stdio.h>
+
+#define CREATE_FUNC(name,cmd)   \
+void name(){                    \
+    printf(cmd);                \
+}
+
+CREATE_FUNC(test1, "this is function test1()\n");
+CREATE_FUNC(test2, "this is function test2()\n");
+CREATE_FUNC(test3, "this is function test3()\n");
+
+int main(int argc, char const *argv[])
+{
+    test1();
+    test2();
+    test3();
+    return 0;
+}
+```
+File **main.i**
+```cpp
+# 8 "main.c"
+void test1(){ printf("this is function test1()\n"); };
+void test2(){ printf("this is function test2()\n"); };
+void test3(){ printf("this is function test3()\n"); };
+
+int main(int argc, char const *argv[])
+{
+    test1();
+    test2();
+    test3();
+    return 0;
+}
+```
+
+
+💻 Macro
+```cpp
+#define sum(a,b) a+b
+```
+💻 Function
+```cpp
+int sum(int a, int b){ 
+	return a+b;
+}
+```
+📝 Cả 2 đều cho ra kết quả giống nhau. Vậy câu hỏi đặt ra là:
+
+❓ Sự khác nhau giữa Macro và Function là gì?
+❓ Khi nào sử dụng Macro? Khi nào sử dụng Function?
+
 
 </p>
 </details>

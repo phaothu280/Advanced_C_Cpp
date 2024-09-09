@@ -261,6 +261,7 @@ int main(int argc, char const *argv[])
 }
 ```
 
+<br>
 
 💻
 ```cpp
@@ -278,6 +279,8 @@ int sum(int a, int b){
 ❓ Sự khác nhau giữa Macro và Function là gì? 🤔
 
 ❓ Khi nào sử dụng Macro? Khi nào sử dụng Function? 🤔
+
+<br>
 
 **Sử dụng Function**
 ```cpp
@@ -321,18 +324,20 @@ int main(int argc, char const *argv[])
 ```
 📝 Khi sử dụng Macro thì PC sẽ trỏ đến những địa chỉ liền kề nhau do đó sẽ tốn bộ nhớ để lưu giá trị sau mỗi lần gọi macro nhưng tốc độ xử lý sẽ nhanh hơn khi sử dụng hàm do không cần phải lưu vào main stack pointer.
 
+<br>
+
 <table>
   <tr>
-    <th style="text-align: center;">Cột 1</th>
-    <th style="text-align: center;">Cột 2</th>
+    <th style="text-align: center;">Macro</th>
+    <th style="text-align: center;">Function</th>
   </tr>
   <tr>
-    <td style="text-align: center;">Hàng 1, Cột 1</td>
-    <td style="text-align: center;">Hàng 1, Cột 2</td>
+    <td style="text-align: center;">Tốn nhiều bộ nhớ để lưu chương trình</td>
+    <td style="text-align: center;">Không tốn nhiều bộ nhớ trên RAM</td>
   </tr>
   <tr>
-    <td style="text-align: center;">Hàng 2, Cột 1</td>
-    <td style="text-align: center;">Hàng 2, Cột 2</td>
+    <td style="text-align: center;">Tốc độ xử lý nhanh</td>
+    <td style="text-align: center;">Tốc độ xử lý chậm</td>
   </tr>
 </table>
 

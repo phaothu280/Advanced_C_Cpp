@@ -136,7 +136,7 @@
 
 <br>
 
-<details><summary><b>✨ assert</b></summary>
+<details><summary><b>✨ Thư viện assert</b></summary>
 <p>
 
 </p>

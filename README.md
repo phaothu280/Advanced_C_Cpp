@@ -35,6 +35,38 @@ Quá trình biên dịch của gcc sẽ trải qua 4 bước chính:
 - Các định nghĩa (#define) cũng sẽ được copy vào file .i
 - Câu lệnh: ``` gcc -E file.c -o file.i ```
 
+File **test.c**
+```cpp
+#include <stdio.h>
+
+void display(){
+    printf("This is file test.c\n");
+}
+```
+
+File **main.c**
+```cpp
+#include <stdio.h>
+#include "test.c"
+
+// create size array
+#define SIZE 20
+int array[SIZE];
+
+// create the function
+void test(){
+    printf("Hello world\n");
+}
+
+int SIZE2 = 30;
+
+int main(int argc, char const *argv[]){
+    int array2[SIZE2];
+    display();
+    test();
+    return 0;
+}
+```
 
 </p>
 </details>

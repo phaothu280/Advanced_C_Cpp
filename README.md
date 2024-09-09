@@ -147,7 +147,7 @@
 <details><summary><b>✨ Pointer</b></summary>
 <p>
 
-<details><summary>📚 Khái niệm về con trỏ</summary>
+<details><summary><b>📚 Khái niệm về con trỏ</b></summary>
 <p>
 
 - Con trỏ (pointer) là một biến chứa địa chỉ của một đối tượng (biến hoặc hàm) khác.
@@ -156,7 +156,7 @@
 </p>
 </details>
 
-<details><summary>📚 Kích thước con trỏ</summary>
+<details><summary><b>📚 Kích thước con trỏ</b></summary>
 <p>
 
 - **Kích thước của con trỏ phụ thuộc vào kiến trúc vi xử lý.**
@@ -184,7 +184,7 @@ int main(int argc, char const *argv[]){
 </p>
 </details>
 
-<details><summary>📚 Con trỏ Void</summary>
+<details><summary><b>📚 Con trỏ Void</b></summary>
 <p>
 	
 - Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
@@ -228,7 +228,7 @@ Dia chi: 00000000005FFE87, char: B
 </p>
 </details>
 
-<details><summary>📚 Con trỏ hàm</summary>
+<details><summary><b>📚 Con trỏ hàm</b></summary>
 <p>
 	
 - Con trỏ hàm là một biến mà **giữ địa chỉ của hàm**.
@@ -283,7 +283,7 @@ int main(int argc, char const *argv[]){
 </p>
 </details>
 
-<details><summary>📚 Con trỏ hằng</summary>
+<details><summary><b>📚 Con trỏ hằng</b></summary>
 <p
 
 - Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only)** nhưng không thể thay đổi được giá trị đó.
@@ -316,7 +316,7 @@ int main(int argc, char const *argv[])
 </p>
 </details>
 
-<details><summary>📚 Hằng con trỏ</summary>
+<details><summary><b>📚 Hằng con trỏ</b></summary>
 <p
     
 - Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
@@ -345,7 +345,7 @@ int main(int argc, char const *argv[])
 </p>
 </details>
 
-<details><summary>📚 Con trỏ NULL</summary>
+<details><summary><b>📚 Con trỏ NULL</b></summary>
 <p
     
 - Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.
@@ -359,7 +359,7 @@ int *ptr_null = NULL;
 </p>
 </details>
 
-<details><summary>📚 Pointer to pointer</summary>
+<details><summary><b>📚 Pointer to pointer</b></summary>
 <p
     
 - Là một kiểu dữ liệu trong ngôn ngữ lập trình cho phép bạn lưu trữ địa chỉ của một con trỏ.
@@ -1859,7 +1859,7 @@ int front(Queue queue){
 
 <br>
 
-<details><summary><b></b>✨ OOP</b></summary>
+<details><summary><b>✨ OOP</b></summary>
 <p>
 
 

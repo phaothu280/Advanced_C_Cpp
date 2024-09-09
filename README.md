@@ -100,7 +100,9 @@ int main(int argc, char const *argv[])
 }
 ```
 📝 Toàn bộ source của thư viện stdio và file test.c đều được copy vào file main.i
+
 📝 2 comment đều đã bị xóa.
+
 📝 Định nghĩa cũng được thay thế -> ``` int array[20] ```
 
 </p>

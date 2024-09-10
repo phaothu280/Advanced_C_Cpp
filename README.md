@@ -1097,13 +1097,16 @@ int main() {
 <details><summary><b>✨ goto - thư viện setjmp</b></summary>
 <p>
 
-## 📚 goto trong C
-### ▷ Định nghĩa
-Từ khóa **"goto"** cho phép chương trình nhảy đến một label đã được đặt trước đó cùng một hàm.
+<details><summary><b>📚 goto trong C</b></summary>
+<p>
 
-"goto" cung cấp khả năng kiểm soát luồng hoạt động của mã nguồn, nhưng việc sử dụng goto thường được xem là không tốt vì nó có thể làm cho mã nguồn trở nên khó đọc và khó bảo trì.
+<details><summary><b>🔍 Khái niệm</b></summary>
+<p>
 
-**Ví dụ**
+- Từ khóa **"goto"** cho phép chương trình nhảy đến một label đã được đặt trước đó cùng một hàm.
+- "goto" cung cấp khả năng kiểm soát luồng hoạt động của mã nguồn, nhưng việc sử dụng goto thường được xem là không tốt vì nó có thể làm cho mã nguồn trở nên khó đọc và khó bảo trì.
+
+💻
 ```cpp
 int main(){
     int i=0;
@@ -1123,12 +1126,19 @@ int main(){
     return 0;
 }
 ```
-Trong ví dụ này, goto được sử dụng để tạo một vòng lặp đơn giản. Khi i đạt đến giá trị 5, control sẽ chuyển đến nhãn "end" và kết thúc chương trình.
+📝 Trong ví dụ này, goto được sử dụng để tạo một vòng lặp đơn giản. Khi i đạt đến giá trị 5, control sẽ chuyển đến nhãn "end" và kết thúc chương trình.
 
-### ▷ Các ứng dụng của goto
-#### Thoát khỏi vòng lặp nhiều cấp độ
+</p>
+</details>
+
+<details><summary><b>🔍 Ứng dụng</b></summary>
+<p>
+
+**Thoát khỏi vòng lặp nhiều cấp độ**
+
 Trong một số trường hợp, việc thoát khỏi nhiều cấp độ vòng lặp có thể trở nên phức tạp nếu sử dụng cấu trúc kiểm soát vòng lặp thông thường. Trong tình huống như vậy, goto có thể được sử dụng để dễ dàng thoát khỏi nhiều cấp độ vòng lặp.
 
+💻
 ```cpp
 int main(int argc, char const *argv[]){
     int count=0;
@@ -1147,9 +1157,11 @@ int main(int argc, char const *argv[]){
 }
 ```
 
-#### Xử lý lỗi và giải phóng bộ nhớ
+**Xử lý lỗi và giải phóng bộ nhớ**
+
 Trong trường hợp xử lý lỗi, có thể sử dụng goto để dễ dàng giải phóng bộ nhớ đã được cấp phát trước khi thoát khỏi hàm.
 
+💻
 ```cpp
 void process_data() {
     int *data = malloc(sizeof(int) * 100);
@@ -1164,9 +1176,10 @@ void process_data() {
 }
 ```
 
-#### Thực hiện Finite State Machine
+**Thực hiện Finite State Machine**
 Trong một số trường hợp, đặc biệt là khi triển khai Finite State Machines, goto có thể được sử dụng để chuyển đến các trạng thái khác nhau một cách dễ dàng.
 
+💻
 ```cpp
 switch (current_state) {
     case STATE_A:
@@ -1182,18 +1195,33 @@ switch (current_state) {
 }
 ```
 
-## 📚 Thư viện setjmp
-setjmp.h là một thư viện trong ngôn ngữ lập trình C, cung cấp hai hàm chính là **setjmp** và **longjmp**.
+<br>
 
-### ▷ Hàm setjmp
+</p>
+</details>
+
+</p>
+</details>
+
+<details><summary><b>📚 Thư viện setjmp</b></summary>
+<p>
+
+<details><summary><b>🔍 Hàm setjmp</b></summary>
+<p>
+
 - setjmp lưu trạng thái hiện tại của môi trường thực thi vào một biến kiểu jmp_buf.
 - setjmp thường được sử dụng để thiết lập một điểm quay lại (checkpoint) trong chương trình.
 - setjmp trả về giá trị 0 khi được gọi lần đầu tiên và giá trị khác 0 khi quay lại từ longjmp.
 
 ```setjmp(jmp_buf buf);```
 
-### ▷ Hàm longjmp
-longjmp là hàm dùng để nhảy trở lại vị trí đã lưu bởi setjmp và tiếp tục thực thi chương trình từ đó.
+</p>
+</details>
+
+<details><summary><b>🔍 Hàm longjmp</b></summary>
+<p>
+
+- longjmp là hàm dùng để nhảy trở lại vị trí đã lưu bởi setjmp và tiếp tục thực thi chương trình từ đó.
 
 ```cpp
 void longjmp(jmp_buf buf, int value);
@@ -1201,7 +1229,7 @@ void longjmp(jmp_buf buf, int value);
 // value: giá trị trả về từ 'setjmp'. Nếu value=0 thì 'setjmp' trả về 1
 ```
 
-**Ví dụ**
+💻
 ```cpp
 #include <stdio.h>
 #include <setjmp.h>
@@ -1242,7 +1270,12 @@ int main(int argc, char const *argv[]){
 }
 ```
 
-### ▷ Xử lý ngoại lệ
+</p>
+</details>
+
+<details><summary><b>🔍 Xử lý ngoại lệ</b></summary>
+<p>
+
 Cả hai hàm setjmp và longjmp thường được sử dụng để thực hiện xử lý ngoại lệ trong C thông qua 3 keywords chính là: **try, catch, throw**.
 
 ```cpp
@@ -1301,6 +1334,14 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
+
+<br>
+
+</p>
+</details>
+
+</p>
+</details>
 
 </p>
 </details>

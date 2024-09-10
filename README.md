@@ -844,17 +844,26 @@ int *ptr_null = NULL;
 
 <br>
 
-<details><summary><b>✨ Static - Extern - Volatile - Register</b></summary>
+<details><summary><b>✨ Các biến đặc biệt</b></summary>
 <p>
 
-## 📚 Static
-### ▷ Cú pháp
+<details><summary><b>📚 Static</b></summary>
+<p>
+
+<details><summary><b>🔍 Cú pháp</b></summary>
+<p>
+
 ```cpp
 static <data_type> <name_variable>;
 static <data_type> <name_function>;
 ```
 
-### ▷ static local variables
+</p>
+</details>
+
+<details><summary><b>🔍 Static local</b></summary>
+<p>
+	
 Khi 1 biến cục bộ được khai báo với từ khóa static:
 
 - Giữ giá trị của biến qua các lần gọi hàm.
@@ -862,7 +871,7 @@ Khi 1 biến cục bộ được khai báo với từ khóa static:
 
 Biến cục bộ static chỉ có thể được gọi trong nội bộ hàm khởi tạo ra nó. Mỗi lần hàm được gọi, giá trị của biến chính bằng giá trị tại lần gần nhất hàm được gọi.
 
-**Ví dụ:**
+💻
 ```cpp
 #include <stdio.h>
 
@@ -884,10 +893,15 @@ int main(int argc, char const *argv[]){
 }
 ```
 
-### ▷ static global variables
+</p>
+</details>
+
+<details><summary><b>🔍 Static global</b></summary>
+<p>
+
 Khi **'static'** được sử dụng với các biến toàn cục, nó sẽ hạn chế phạm vi của biến chỉ có thể gọi trong file nguồn hiện tại.
 
-**Ví dụ:**
+💻
 
 File Ex1.c
 ```cpp
@@ -916,27 +930,35 @@ void display(){
     printf("value2=%d\n",value2);
 }
 ```
-```cpp
-undefined reference to `value1'
-```
-Dễ thấy file Ex1.c khi chạy sẽ gặp lỗi do cố gắng sử dụng extern để gọi 1 biến toàn cục đã được khai báo với static trong 1 file nguồn khác.
 
-## 📚 Extern
-### ▷ Định nghĩa
-Từ khóa **'extern'** được sử dụng cho 1 biến hoặc hàm với mục đích là thông báo rằng biến hoặc hàm này đã được định nghĩa ở một nơi khác trong chương trình hoặc trong 1 file nguồn khác. 
+📝 Kết quả sau khi chạy: ``` undefined reference to `value1' ```
 
-Cho phép các file nguồn khác nhau trong cùng một chương trình chia sẽ và sử dụng các biến và hàm mà không cần định nghĩa lại.
+📝 Dễ thấy file Ex1.c khi chạy sẽ gặp lỗi do cố gắng sử dụng extern để gọi 1 biến toàn cục đã được khai báo với static trong 1 file nguồn khác.
 
-**Extern chỉ cho phép khai báo chứ không định nghĩa.**
+<br>
 
-Biến được tham chiếu phải được khai báo ở cấp độ cao nhất (toàn cục), và có thể nằm trong một file khác.
+</p>
+</details>
 
-### ▷ Cú pháp
+</p>
+</details>
+
+<details><summary><b>📚 Extern</b></summary>
+<p>
+
+<details><summary><b>🔍 Khái niệm</b></summary>
+<p>
+
+- Từ khóa **'extern'** được sử dụng cho 1 biến hoặc hàm với mục đích là thông báo rằng biến hoặc hàm này đã được định nghĩa ở một nơi khác trong chương trình hoặc trong 1 file nguồn khác.
+- Cho phép các file nguồn khác nhau trong cùng một chương trình chia sẽ và sử dụng các biến và hàm mà không cần định nghĩa lại.
+- **Extern chỉ cho phép khai báo chứ không định nghĩa.**
+- Biến được tham chiếu phải được khai báo ở cấp độ cao nhất (toàn cục), và có thể nằm trong một file khác.
+- Cú pháp
 ```cpp
 extern <data_type> <name_variable>;
 ```
 
-**Ví dụ:**
+💻
 
 File main.c
 ```cpp
@@ -959,9 +981,14 @@ void Func(){
     printf("%d\n",var_global);
 }
 ```
-Thực hiện **make file**: ```gcc main.c File1.c -o main```
+📝 Thực hiện **make file**: ```gcc main.c File1.c -o main```
 
-### 📚 Ứng dụng
+</p>
+</details>
+
+<details><summary><b>🔍 Ứng dụng</b></summary>
+<p>
+
 **Chia sẻ biến và hàm giữa các file nguồn**
 
 - Extern cho phép bạn chia sẻ biến và hàm giữa nhiều file nguồn trong một chương trình.
@@ -983,20 +1010,26 @@ Thực hiện **make file**: ```gcc main.c File1.c -o main```
 
 - Nếu bạn có một hằng số được sử dụng ở nhiều nơi, bạn có thể sử dụng extern để chia sẻ giá trị của hằng số đó giữa các file nguồn.
 
-## 📚 Volatile
-### ▷ Định nghĩa
-Volatile có nghĩa là không dự đoán được. Một biến sử dụng với volatile có nghĩa là nói với compiler là biến này **có thể sẽ được thay đổi ở bởi yếu tố bên ngoài chương trình** như hardward (ngắt, nhấn button,…) hoặc một luồng khác. Việc này ngăn chặn trình biên dịch tối ưu hóa hoặc xóa bỏ các thao tác trên biến đó, giữ cho các thao tác trên biến được thực hiện như đã được định nghĩa.
+<br>
 
-Một biến cần được khai báo dưới dạng biến volatile khi nào? Khi mà giá trị của nó có thể thay đổi một cách không báo trước. Việc khai báo biến volatile là rất cần thiết để tránh những lỗi sai khó phát hiện do tính năng optimization của compiler.
+</p>
+</details>
 
-Biến Volatile rất cần thiết trong lập trình nhúng, vì khi đó có các tác vụ như ngắt ảnh hưởng tới giá trị của biến. Trong lập trình C cơ bản thì rất ít gặp.
+</p>
+</details>
 
-### ▷ Cú pháp
+<details><summary><b>📚 Volatile</b></summary>
+<p>
+
+- Volatile có nghĩa là không dự đoán được. Một biến sử dụng với volatile có nghĩa là nói với compiler là biến này **có thể sẽ được thay đổi ở bởi yếu tố bên ngoài chương trình** như hardward (ngắt, nhấn button,…) hoặc một luồng khác. Việc này ngăn chặn trình biên dịch tối ưu hóa hoặc xóa bỏ các thao tác trên biến đó, giữ cho các thao tác trên biến được thực hiện như đã được định nghĩa.
+- Một biến cần được khai báo dưới dạng biến volatile khi nào? Khi mà giá trị của nó có thể thay đổi một cách không báo trước. Việc khai báo biến volatile là rất cần thiết để tránh những lỗi sai khó phát hiện do tính năng optimization của compiler.
+- Biến Volatile rất cần thiết trong lập trình nhúng, vì khi đó có các tác vụ như ngắt ảnh hưởng tới giá trị của biến. Trong lập trình C cơ bản thì rất ít gặp.
+- Cú pháp
 ```cpp
 volatile <data_type> <name_variable>;
 ```
 
-Ví dụ:
+💻
 ```cpp
 volatile int flag;
 
@@ -1005,21 +1038,24 @@ void interrupt_handler(){
 }
 ```
 
-## 📚 Register
-### ▷ Định nghĩa
+<br>
+
+</p>
+</details>
+
+<details><summary><b>📚 Register</b></summary>
+<p>
 
 ![image](https://github.com/user-attachments/assets/5325937f-1104-4845-9bda-7f1e7c1589b9)
 
-Register trong C/C++ được sử dụng để định nghĩa các biến cục bộ mà nên được lưu giữ trong một thanh ghi thay vì RAM.
-
-Từ khóa “register” làm tăng hiệu năng (performance) của chương trình.
-
-### ▷ Cú pháp
+- Register trong C/C++ được sử dụng để định nghĩa các biến cục bộ mà nên được lưu giữ trong một thanh ghi thay vì RAM.
+- Từ khóa “register” làm tăng hiệu năng (performance) của chương trình.
+- Cú pháp
 ```cpp
 register <data_type> <name_variable>;
 ```
 
-**Ví dụ:**
+💻
 ```cpp
 #include <stdio.h>
 #include <time.h>
@@ -1046,9 +1082,12 @@ int main() {
 }
 ```
 
-Khi chưa register ```Thoi gian chay cua chuong trinh: 0.005 giay```
+📝 Khi chưa register ```Thoi gian chay cua chuong trinh: 0.005 giay```
 
-Khi có register ```Thoi gian chay cua chuong trinh: 0.001 giay```
+📝 Khi có register ```Thoi gian chay cua chuong trinh: 0.001 giay```
+
+</p>
+</details>
 
 </p>
 </details>

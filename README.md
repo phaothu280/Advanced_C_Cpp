@@ -1351,17 +1351,29 @@ int main(int argc, char const *argv[])
 <details><summary><b>✨ Bitmask</b></summary>
 <p>
 
-## 📚 Định nghĩa
-Bitmask là một kỹ thuật sử dụng các bit để lưu trữ và thao tác với các cờ (flags) hoặc trạng thái.
+<details><summary><b>📚 Khái niệm</b></summary>
+<p>
 
-Có thể sử dụng bitmask để đặt, xóa, kiểm tra trạng thái của các bit cụ thể trong 1 word.
+- Bitmask là một kỹ thuật sử dụng các bit để lưu trữ và thao tác với các cờ (flags) hoặc trạng thái.
+- Có thể sử dụng bitmask để đặt, xóa, kiểm tra trạng thái của các bit cụ thể trong 1 word.
+- Bitmask thường được sử dụng để tối ưu hóa bộ nhớ, thực hiện các phép toán logic trên một cụm bit, và quản lý các trạng thái, quyền truy cập, hoặc các thuộc tính khác của một đối tượng.
 
-Bitmask thường được sử dụng để tối ưu hóa bộ nhớ, thực hiện các phép toán logic trên một cụm bit, và quản lý các trạng thái, quyền truy cập, hoặc các thuộc tính khác của một đối tượng.
+<br>
 
-## 📚 Các toán tử bitwise
+</p>
+</details>
+
+<details><summary><b>📚 Các toán tử bitwise</b></summary>
+<p>
+
 ![image](https://github.com/user-attachments/assets/e9b5fc2e-0d94-4708-bbe1-740f7a21d417)
 
 ![image](https://github.com/user-attachments/assets/c8549e26-9a0b-4835-a886-d11a6bed9fb1)
+
+<br>
+
+</p>
+</details>
 
 </p>
 </details>

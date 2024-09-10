@@ -421,26 +421,69 @@ int main(int argc, char const *argv[])
 - Chỉ thị #elif dùng để thêm một điều kiện mới khi điều kiện trước đó trong #if hoặc #elif là sai.
 - Chỉ thị #else dùng khi không có điều kiện nào ở trên đúng.
 
+🤔 Muốn build một source để có thể nạp cho nhiều chip, thay vì mỗi con chip viết một source thì mình có thể sử dụng ``` #if, #elif, #else ```
+
 💻
 ```cpp
 #include <stdio.h>
 
-#define ESP32     1
-#define STM32     2
-#define ATmega324 3
+typedef enum{
+    LOW,
+    HIGH
+} Status;
 
-#define MCU ESP32
+typedef enum{
+    PIN0,
+    PIN1,
+    PIN2,
+    PIN3,
+    PIN4,
+    PIN5,
+    PIN6,
+    PIN7,
+} Pin;
+
+#define ESP32      1
+#define STM32      2
+#define ATmega324  3
+
+#define MCU STM32
 
 int main(int argc, char const *argv[])
 {
-    #if (MCU == ESP32)
-        printf("ESP32\n");
-    #elif (MCU == STM32)
-        printf("STM32\n");
-    #else
-        printf("ATmega324\n");
-    #endif
+    while(1){
+        #if MCU == STM32
+            void digitalWrite(Pin pin, Status state) {
+                if (state == HIGH){
+                    GPIOA->BSRR = (1 << pin);  // Đặt bit tương ứng để thiết lập chân
+                } 
+                else {
+                    GPIOA->BSRR = (1 << (pin + 16));  // Đặt bit tương ứng để reset chân
+                }
+            }
 
+        #elif MCU == ESP32
+            void digitalWrite(Pin pin, Status state) {
+                if (state == HIGH) {
+                    GPIO.out_w1ts = (1 << pin);  // Đặt bit tương ứng để thiết lập chân HIGH
+                } 
+                else {
+                    GPIO.out_w1tc = (1 << pin);  // Đặt bit tương ứng để reset chân LOW
+                }
+            }
+
+        #else
+            void digitalWrite(Pin pin, Status state) {
+                if (state == HIGH) {
+                    PORTA |= (1 << pin);  // Đặt bit tương ứng để thiết lập chân HIGH
+                } 
+                else {
+                    PORTA &= ~(1 << pin);  // Xóa bit tương ứng để reset chân LOW
+                }
+            }
+            
+        #endif
+    }
     return 0;
 }
 ```
@@ -493,6 +536,45 @@ int main(int argc, char const *argv[])
 <br>
 
 - Variadic macro: là một dạng macro cho phép nhận một số lượng biến tham số có thể thay đổi.
+
+💻 Tính tổng
+```cpp
+#define sum(a,b) a+b
+
+#define sum(a,b,c) a+b+c
+```
+📝 Khi tính tổng 2 số thì dùng ``` sum(a,b) ```
+
+📝 Khi tính tổng 3 số thì dùng ``` sum(a,b,c) ```
+
+🤔 Vậy muốn tính tổng nhiều số thì hàm sum thay đổi thế nào❓ 
+
+➡️Sử dụng variadic macro để giải quyết vấn đề trên.
+
+```cpp
+#include <stdio.h>
+
+#define sum(...)                        \
+do{                                    \
+    int arr[] = {__VA_ARGS__, 0};       \
+    int tong = 0;                       \
+    int i = 0;                          \
+    while (arr[i] != 0) {               \
+        tong += arr[i];                 \
+        i++;                            \
+    }                                   \
+    printf("Tong = %d\n", tong);        \
+} while (0)
+
+int main(int argc, char const *argv[]) {
+    sum(1, 2);                          
+    sum(1, 2, 3);                       
+    sum(1, 3, 5, 7, 9, 10, 15);        
+    return 0;
+}
+```
+
+<br>
 
 💻 Tạo menu
 ```cpp

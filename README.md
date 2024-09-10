@@ -220,6 +220,7 @@ File **main.o**
 #include <stdlib.h>
 ```
 - Khi sử dụng dấu **""**, bộ tiền xử lý sẽ tìm file name trong thư mục chứa project. Nếu tìm không thấy thì nó sẽ tiếp tục tìm trong các file có sẵn trong thư mục cài đặt.
+
 ``` #include "uart.h" ```
 
 <br>
@@ -555,7 +556,7 @@ int main(int argc, char const *argv[])
 #include <stdio.h>
 
 #define sum(...)                        \
-do{                                    \
+do{                                     \
     int arr[] = {__VA_ARGS__, 0};       \
     int tong = 0;                       \
     int i = 0;                          \

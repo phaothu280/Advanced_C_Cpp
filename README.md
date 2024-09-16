@@ -726,6 +726,109 @@ Kết thúc việc sử dụng danh sách đối số biến đổi. Nó cần �
 </p>
 </details>
 
+<details><summary><b>📚 Ví dụ</b></summary>
+<p>
+
+💻 Tổng ``` n ``` số (Cách 1: chỉ sử dụng thư viện STDARG)
+```cpp
+#include <stdio.h>
+#include <stdarg.h>
+
+int sum(int count, ...){                                
+    va_list args; 
+    
+    va_start(args, count);
+
+    int result = 0;
+
+    for (int i=0; i<count; i++){
+        result += va_arg(args, int);
+    }
+
+    va_end(args);   
+
+    return result;
+}
+
+int main(int argc, char const *argv[])
+{
+    printf("Tong = %d\n",sum(7, 1, 2, 3, 4, 5, 10, 15));
+    return 0;
+}
+```
+
+<br>
+
+💻 Tổng ``` n ``` số (Cách 2: thư viện STDARG kết hợp variadic với ``` số 0 ``` ở cuối để nhận biết kết thúc việc tính tổng)
+```cpp
+#include <stdio.h>
+#include <stdarg.h>
+
+#define tong(...)   sum(__VA_ARGS__, 0)
+
+int sum(int count,...){
+    va_list args;
+
+    va_start(args, count);
+
+    int result = count;
+    int value;
+
+    while ((value = va_arg(args, int)) != 0)
+    {
+        result += value;
+    }
+
+    va_end(args);
+
+    return result;
+}
+
+int main()
+{
+    printf("Tong: %d\n", tong(3, 0, -1, 2, 33, 4, 5));
+    return 0;
+}
+```
+
+<br>
+
+💻 **Tổng ``` n ``` số (Cách 3: thư viện STDARG kết hợp variadic với ``` ký tự bất kỳ ``` ở cuối để nhận biết kết thúc việc tính tổng)**
+```cpp
+#include <stdio.h>
+#include <stdarg.h>
+
+#define tong(...)   sum(__VA_ARGS__, '\n')
+
+int sum(int count,...) {
+    va_list args;
+    va_list check;
+    
+    va_start(args, count);
+    va_copy(check, args);
+
+    int result = count;
+    
+    while (va_arg(check, char*) != (char*)'\n')
+    {
+        result += va_arg(args,int);
+    }
+
+    va_end(args);
+
+    return result;
+}
+
+int main(int argc, char const *argv[])
+{
+    printf("Tong: %d\n", tong(3, 0, -1, 2, 0, 4, 5));
+    return 0;
+}
+```
+
+</p>
+</details>
+
 </p>
 </details>
 

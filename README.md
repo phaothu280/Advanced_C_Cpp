@@ -656,7 +656,7 @@ Là một kiểu dữ liệu để đại diện cho danh sách các đối số
 
 ``` va_list args ```
 
-📝 Bản chất va_list có thể được định nghĩa như sau: ``` typedef char* va_list = "int label, ..."
+📝 Bản chất va_list có thể được định nghĩa như sau: ``` typedef char* va_list = "int label, ..." ```
 
 📝 Khi thay thế các số trực tiếp vào ``` ... ```, ví dụ ``` 1, 5, 9 ``` thì trở thành ``` typedef char* va_list = "int count, 1, 5, 9" ```
 

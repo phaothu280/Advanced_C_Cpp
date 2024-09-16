@@ -639,6 +639,10 @@ int main(int argc, char const *argv[])
 <details><summary><b>📚 Giới thiệu thư viện stdarg</b></summary>
 <p>
 
+- Tương tự với macro variadic.
+- Cung cấp các hàm, macros để làm việc với các hàm có số lượng tham số đầu vào không xác định.
+- Các hàm như printf, scanf là ví dụ điển hình.
+
 </p>
 </details>
 
@@ -648,11 +652,35 @@ int main(int argc, char const *argv[])
 <details><summary><b>🔍 va_list</b></summary>
 <p>
 
+Là một kiểu dữ liệu để đại diện cho danh sách các đối số biến đổi.
+
+``` va_list args ```
+
+📝 Bản chất va_list có thể được định nghĩa như sau: ``` typedef char* va_list = "int label, ..."
+
+📝 Khi thay thế các số trực tiếp vào ``` ... ```, ví dụ ``` 1, 5, 9 ``` thì trở thành ``` typedef char* va_list = "int count, 1, 5, 9" ```
+
+📝 Địa chỉ: 0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08 0x09 0x0A 0x0B 0x0C 0x0D 0x0E 0x0F
+
+📝 Giá trị:   i    n    t    c    o    u    n     t   ,    1    ,    5    ,    9
+
+📝 args: có thể hiểu là một con trỏ được cấp phát động bộ nhớ để truy cập vào từng ký tự trên
+
 </p>
 </details>
 
 <details><summary><b>🔍 va_start</b></summary>
 <p>
+
+Bắt đầu một danh sách đối số biến đổi. Nó cần được gọi trước khi truy cập các đối số biến đổi đầu tiên.
+
+``` va_start(args, label) ```
+
+📝 label: chính là tên biến mà ta truyền vào, ví dụ ``` int count ``` thì label là ``` count ```, ``` int a ``` thì label là ``` a ```
+
+📝 ``` va_start ``` thực hiện so sánh chuỗi phía trên với label (so sánh từng ký tự) để tìm kiếm đâu là nơi bắt đầu của những số cần thao tác chính. 
+
+📝 Khi con trỏ ``` args ``` trỏ đến địa chỉ 0x09 (,) thì những số phía sau (1,5,9) sẽ được lưu vào mảng khác: arr[] = {'1', '5', '9'}
 
 </p>
 </details>
@@ -660,17 +688,39 @@ int main(int argc, char const *argv[])
 <details><summary><b>🔍 va_arg</b></summary>
 <p>
 
+Truy cập một đối số trong danh sách. Hàm này nhận một đối số của kiểu được xác định bởi tham số thứ hai.
+
+``` va_arg(args, <data_type>) ```
+
+📝 ``` va_arg ``` sẽ truy cập đến từng phần tử trong mảng và thực hiện ép kiểu về kiểu dữ liệu chúng ta muốn (int, double, char*)
+
+📝 Mỗi lần gọi ``` va_arg(args, <data_type>) ``` thì sẽ thực hiện truy cập và lấy ra 1 phần tử trong mảng
+
 </p>
 </details>
 
 <details><summary><b>🔍 va_copy</b></summary>
 <p>
 
+```cpp
+va_list args;
+va_list check;
+va_copy(check,args);
+```
+
+📝 ``` va_copy ``` giúp con trỏ ``` check ``` copy địa chỉ mà con trỏ ``` args ``` đang trỏ đến 
+
 </p>
 </details>
 
 <details><summary><b>🔍 va_end</b></summary>
 <p>
+
+Kết thúc việc sử dụng danh sách đối số biến đổi. Nó cần được gọi trước khi kết thúc hàm.
+
+``` va_end(args) ```
+
+📝 Thu hồi địa chỉ con trỏ ``` args ```
 
 </p>
 </details>

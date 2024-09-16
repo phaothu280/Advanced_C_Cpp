@@ -706,17 +706,22 @@ int main(int argc, char const *argv[])
 <details><summary><b>📚 Kích thước con trỏ</b></summary>
 <p>
 
-- **Kích thước của con trỏ phụ thuộc vào kiến trúc vi xử lý.**
-- Hệ thống 32 – bit, kích thước của con trỏ là 4 byte.
-- Hệ thống 64 – bit, kích thước của con trỏ là 8 byte.
+- Kích thước của con trỏ phụ thuộc vào **kiến trúc vi xử lý** hoặc **kiến trúc máy tính và trình biên dịch**.
+- Hệ thống 32-bit, kích thước của con trỏ là 4 byte.
+- Hệ thống 64-bit, kích thước của con trỏ là 8 byte.
+- SMT32: kiến trúc 32-bit (ARM Cortex-M) nên kích thước con trỏ là 4 byte.
+- STM8: kiến trúc 8-bit nên kích thước con trỏ là 1 byte.
 
 🖥️
 ```cpp
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 int main(int argc, char const *argv[]){
     printf("%d bytes\n", sizeof(int *));
+    printf("%d bytes\n", sizeof(uint8_t *));
+    printf("%d bytes\n", sizeof(int16_t *));
     printf("%d bytes\n", sizeof(char *));
     printf("%d bytes\n", sizeof(float *));
     printf("%d bytes\n", sizeof(double *));
@@ -727,6 +732,61 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 ```
+<br>
+
+</p>
+</details>
+
+<details><summary><b>📚 Ứng dụng con trỏ</b></summary>
+<p>
+
+**Nhập số từ bàn phím**
+```cpp
+#include <stdio.h>
+
+void input(int *a, int *b){
+    printf("Nhap so 1: "); scanf("%d", a);
+    printf("Nhap so 2: "); scanf("%d", b);
+}
+
+int main(int argc, char const *argv[])
+{
+    int a,b;
+    input(&a,&b);
+    return 0;
+}
+```
+
+<br>
+
+**Hoán đổi 2 số**
+```cpp
+#include <stdio.h>
+
+void swap1(int a, int b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void swap2(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main(int argc, char const *argv[])
+{
+    int a = 10;
+    int b = 20;
+
+    // swap1(a,b);
+    swap2(&a,&b);
+    printf("value a is: %d\n", a);
+    printf("value b is: %d\n", b);
+    return 0;
+}
+```
 
 </p>
 </details>
@@ -734,10 +794,10 @@ int main(int argc, char const *argv[]){
 <details><summary><b>📚 Các kiểu con trỏ</b></summary>
 <p>
 
-<details><summary><b>🔍 Con trỏ Void</b></summary>
+<details><summary><b>🔍 Con trỏ Void (Void Pointer)</b></summary>
 <p>
 	
-- Thường dùng để **trỏ tới bất kỳ địa chỉ** nào với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
+- Thường dùng để **trỏ tới bất kỳ địa chỉ** với bất kỳ kiểu dữ liệu của giá trị tại địa chỉ đó.
 - Muốn in ra giá trị thì phải sử dụng ép kiểu để đưa con trỏ void về đến kiểu dữ liệu của giá trị đó.
 - Cú pháp: ``` void *ptr_void; ```
 
@@ -749,8 +809,9 @@ void sum(int a, int b){
     printf("%d + %d = %d\n", a, b, a+b);
 }
 
-int main(int argc, char const *argv[]){
-    void *ptr_void = NULL;
+int main(int argc, char const *argv[])
+{
+    void *ptr_void;
     ptr_void = (void*)sum;
     ((void (*)(int,int))ptr_void)(9,3);
 
@@ -762,23 +823,57 @@ int main(int argc, char const *argv[]){
     ptr_void = &var_double;
     printf("Dia chi: %p, double: %.3f\n", ptr_void, *(double*)ptr_void);
 
-    char var_char = 'B';
+    char var_char = 'A';
     ptr_void = &var_char;
     printf("Dia chi: %p, char: %c\n", ptr_void, *(char*)ptr_void);
 
+    char arr[] = "hello";
+    ptr_void = arr;
+
+    // printf("chuoi: %c\n", *(char*)(ptr_void+1));
+    
+    printf("Chuoi: ");
+    for (int i=0; i<(sizeof(arr)/sizeof(arr[0])); i++){
+        printf("%c\n", *(char*)(ptr_void+i));
+    }
+    printf("\n");
+
+    void *ptr[] = {&var_int, &var_double, &var_char, sum, arr};
+    printf("ptr[0] = %d\n", *(int*)ptr[0]);
+    printf("ptr[1] = %f\n", *(double*)ptr[1]);
+    printf("ptr[2] = %c\n", *(char*)ptr[2]);
+
+    ((void (*)(int,int))ptr[3])(9,3);
+
+    for (int i=0; i<(sizeof(arr)/sizeof(arr[0])); i++){
+        printf("%c", *(char*)(ptr[4]+i));
+    }
     return 0;
 }
+
 ```
 ```cpp
 9 + 3 = 12
-Dia chi: 00000000005FFE94, int: 10
-Dia chi: 00000000005FFE88, double: 3.140
-Dia chi: 00000000005FFE87, char: B
+Dia chi: 00000075E7BFF70C, int: 10
+Dia chi: 00000075E7BFF700, double: 3.140   
+Dia chi: 00000075E7BFF6FF, char: A
+Chuoi:
+h
+e
+l
+l
+o
+
+ptr[0] = 10
+ptr[1] = 3.140000
+ptr[2] = A
+9 + 3 = 12
+hello
 ```
 </p>
 </details>
 
-<details><summary><b>🔍 Con trỏ hàm</b></summary>
+<details><summary><b>🔍 Con trỏ hàm (Function Pointer)</b></summary>
 <p>
 	
 - Con trỏ hàm là một biến mà **giữ địa chỉ của hàm**.
@@ -792,6 +887,45 @@ int (*ptr)(int,double);
 
 void (*array[])(int,int);
 ```
+
+🖥️
+```cpp
+#include <stdio.h>
+// Hàm mẫu 1
+void greetEnglish(){
+    printf("Hello!\n");
+}
+
+// Hàm mẫu 2
+void greetFrench(){
+    printf("Bonjour!\n");
+}
+
+int main(){
+    // Khai báo con trỏ hàm
+    void (*ptrToGreet)();
+    
+    // Gán địa chỉ của hàm greetEnglish cho con trỏ hàm
+    ptrToGreet = greetEnglish;
+    
+    // Gọi hàm thông qua con trỏ hàm
+    ptrToGreet();  // In ra: Hello!
+
+    // Gán địa chỉ của hàm greetFrench cho con trỏ hàm
+    ptrToGreet = greetFrench;
+    
+    // Gọi hàm thông qua con trỏ hàm
+    (*ptrToGreet)();  // In ra: Bonjour!    
+    
+    return 0;
+}
+```
+```cpp
+Hello!
+Bonjour!
+```
+
+<br>
 
 🖥️
 ```cpp
@@ -810,30 +944,70 @@ void tich(int a, int b){
 }
 
 void thuong(int a, int b){
-    printf("%d/%d = %0.3f\n", a, b, a/(double)b);
+    printf("%d / %d = %0.3f\n", a, b, a/(double)b);
 }
 
-int main(int argc, char const *argv[]){
-    // khai báo con trỏ ptr có kiểu trả về là void
-    // tham số truyền vào là 2 tham số kiểu integer
-    void (*pheptoan[])(int,int) = {&tong, &hieu, &tich, &thuong};
-    pheptoan[0](7,10);
-    pheptoan[1](7,10);
-    pheptoan[2](7,7);
-    pheptoan[3](6,5);
+int main(int argc, char const *argv[])
+{
+    int a = 10, b = 20;
+
+    // cách 1
+    void (*ptr)(int,int);
+    ptr = tong;
+    ptr(a,b);
+
+    ptr = hieu;
+    ptr(a,b);
+
+    ptr = tich;
+    ptr(a,b);
+
+    ptr = thuong;
+    ptr(a,b);
+    printf("\n");
+
+
+    // cách 2
+    tinhtoan(tong,a,b);
+    tinhtoan(hieu,a,b);
+    tinhtoan(tich,a,b);
+    tinhtoan(thuong,a,b);
+    printf("\n");
+
+
+    // cách 3
+    void (*calculate[])(int,int) = {tong, hieu, tich, thuong};
+    calculate[0](a,b);
+    calculate[1](a,b);
+    calculate[2](a,b);
+    calculate[3](a,b);
     return 0;
+}
+
+void tinhtoan(void (*pheptoan)(int,int), int a, int b){
+    pheptoan(a,b);
 }
 ```
 ```cpp
-7 + 10 = 17
-7 - 10 = -3
-7 x 7 = 49
-6 / 5 = 1.200
+10 + 20 = 30
+10 - 20 = -10
+10 x 20 = 200
+10 / 20 = 0.500
+
+10 + 20 = 30
+10 - 20 = -10
+10 x 20 = 200
+10 / 20 = 0.500
+
+10 + 20 = 30
+10 - 20 = -10
+10 x 20 = 200
+10 / 20 = 0.500
 ```
 </p>
 </details>
 
-<details><summary><b>🔍 Con trỏ hằng</b></summary>
+<details><summary><b>🔍 Con trỏ hằng (Pointer to constant)</b></summary>
 <p
 
 - Con trỏ hằng là một cách định nghĩa một con trỏ **chỉ có thể đọc giá trị tại địa chỉ mà nó trỏ đến (Read Only)** nhưng không thể thay đổi được giá trị đó.
@@ -848,25 +1022,33 @@ const <data_type> *ptr_const;
 ```cpp
 #include <stdio.h>
 
-int value = 10;
-const int *ptr_const = &value;
+int value1 = 10;
+int value2 = 3;
+const int *ptr_const = &value1;
 
 int main(int argc, char const *argv[])
 {
     printf("%p\n", ptr_const);
     printf("%d\n", *ptr_const);
 
-    *ptr_const = 20;
+    value1 = 5;
+    printf("%p\n", ptr_const);
+    printf("%d\n", *ptr_const);
+
+    //*ptr_const = 5;       // wrong
+    ptr_const = &value2; // right
+    printf("%p\n", ptr_const);
     printf("%d\n", *ptr_const);
     return 0;
 }
+
 ```
 📝 Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only location '*ptr_const'```
 
 </p>
 </details>
 
-<details><summary><b>🔍 Hằng con trỏ</b></summary>
+<details><summary><b>🔍 Hằng con trỏ (Constant to Pointer)</b></summary>
 <p
     
 - Hằng con trỏ là một con trỏ mà **trỏ đến 1 địa chỉ cố định**, nghĩa là khi con trỏ này được khởi tạo thì nó sẽ không thể trỏ tới địa chỉ khác.
@@ -880,15 +1062,19 @@ int value1 = 10;
 int value2 = 20;
 int *const const_ptr = &value1;
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]){
     printf("%p\n", const_ptr);
     printf("%d\n", *const_ptr);
 
-    const_ptr = &value2;
+    *const_ptr = 5;
     printf("%p\n", const_ptr);
+    printf("%d\n", *const_ptr);
+    
+    // const_ptr = &value2; // wrong
+    // printf("%p\n", const_ptr);
     return 0;
 }
+
 ```
 📝 Kết quả sau khi chạy sẽ gặp lỗi: ```assignment of read-only variable 'const_ptr'```
 

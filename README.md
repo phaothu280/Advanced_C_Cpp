@@ -729,7 +729,7 @@ Kết thúc việc sử dụng danh sách đối số biến đổi. Nó cần �
 <details><summary><b>📚 Ví dụ</b></summary>
 <p>
 
-💻 Tổng ``` n ``` số (Cách 1: chỉ sử dụng thư viện STDARG)
+💻 **Tổng ``` n ``` số (Cách 1: chỉ sử dụng thư viện STDARG)**
 ```cpp
 #include <stdio.h>
 #include <stdarg.h>
@@ -759,7 +759,7 @@ int main(int argc, char const *argv[])
 
 <br>
 
-💻 Tổng ``` n ``` số (Cách 2: thư viện STDARG kết hợp variadic với ``` số 0 ``` ở cuối để nhận biết kết thúc việc tính tổng)
+💻 **Tổng ``` n ``` số (Cách 2: thư viện STDARG kết hợp variadic với ``` số 0 ``` ở cuối để nhận biết kết thúc việc tính tổng)**
 ```cpp
 #include <stdio.h>
 #include <stdarg.h>
@@ -826,6 +826,147 @@ int main(int argc, char const *argv[])
 }
 ```
 
+<br>
+
+💻
+```cpp
+#include <stdio.h>
+#include <stdarg.h>
+
+typedef struct Data{
+    int x;
+    double y;
+} Data;
+
+void display(int count, ...) {
+    va_list args;
+
+    va_start(args, count);
+
+    for (int i = 0; i < count; i++)
+    {
+        Data tmp = va_arg(args,Data);
+        printf("Data.x at %d is: %d\n", i,tmp.x);
+        printf("Data.y at %d is: %f\n", i,tmp.y);
+    }
+   
+    va_end(args);
+}
+
+int main(int argc, char const *argv[])
+{
+    display(3, (Data){2,5.0} , (Data){10,57.0}, (Data){29,36.0});
+    return 0;
+}
+```
+
+<br>
+
+💻
+```cpp
+#include <stdio.h>
+#include <stdarg.h>
+
+typedef enum {
+    TEMPERATURE_SENSOR,
+    PRESSURE_SENSOR
+} SensorType;
+
+void processSensorData(SensorType type, ...) {
+    va_list args;
+    va_start(args, type);
+
+    switch (type){
+        case TEMPERATURE_SENSOR:{
+            int numArgs  = va_arg(args, int);
+            int sensorId = va_arg(args, int);
+            double temperature = va_arg(args, double); 
+
+            printf("Temperature Sensor ID: %d, Reading: %.2f degrees\n", sensorId, temperature);
+            if (numArgs > 2){
+                // Xử lý thêm tham số nếu có
+                char *additionalInfo = va_arg(args, char*);
+                printf("Additional Info: %s\n", additionalInfo);
+            }
+            break;
+        }
+        case PRESSURE_SENSOR:{
+            int numArgs = va_arg(args, int);
+            int sensorId = va_arg(args, int);
+            int pressure = va_arg(args, int);
+
+            printf("Pressure Sensor ID: %d, Reading: %d Pa\n", sensorId, pressure);
+            if (numArgs > 2) {
+                // Xử lý thêm tham số nếu có
+                char *unit = va_arg(args, char*);
+                printf("Unit: %s\n", unit);
+            }
+            break;
+        }
+    }
+
+    va_end(args);
+}
+
+int main(int argc, char const *argv[])
+{
+    processSensorData(TEMPERATURE_SENSOR, 3, 1, 36.5, "Room Temperature");
+    processSensorData(PRESSURE_SENSOR, 4, 2, 101325, 123, "aads");
+    return 0;
+}
+```
+
+<br>
+
+💻
+```cpp
+#include <stdio.h>
+#include <stdarg.h>
+
+typedef enum {
+    TURN_ON,
+    TURN_OFF,
+    SET_LEVEL,
+    SEND_MESSAGE
+} CommandType;
+
+void sendCommand(CommandType command, ...) {
+    va_list args;
+    va_start(args, command);
+
+    switch (command) {
+        case TURN_ON:
+        case TURN_OFF: {
+            int deviceID = va_arg(args, int);
+            printf("Command: %s Device ID: %d\n", command == TURN_ON ? "Turn On" : "Turn Off", deviceID);
+            break;
+        }
+        case SET_LEVEL: {
+            int deviceID = va_arg(args, int);
+            int level = va_arg(args, int);
+            printf("Set Level of Device ID %d to %d\n", deviceID, level);
+            break;
+        }
+        case SEND_MESSAGE: {
+            char* message = va_arg(args, char*);
+            printf("Send Message: %s\n", message);
+            break;
+        }
+    }
+
+    va_end(args);
+}
+
+int main() {
+    sendCommand(TURN_ON, 1);
+    sendCommand(TURN_OFF, 5);
+    sendCommand(SET_LEVEL, 3, 75);
+    sendCommand(SEND_MESSAGE, "Hello World");
+    return 0;
+}
+```
+<br>
+
 </p>
 </details>
 
@@ -836,6 +977,66 @@ int main(int argc, char const *argv[])
 
 <details><summary><b>✨ Thư viện assert</b></summary>
 <p>
+
+- Cung cấp macro assert dùng để kiểm tra một điều kiện.
+- Nếu điều kiện đúng thì chương trình tiếp tục thực thi.
+- Nếu điều kiện sai thì chương trình dừng lại ngay lập tức và thông báo một thông điệp lỗi.
+- Dùng trong debug, dùng ``` #define NDEBUG ``` để tắt debug
+
+💻
+```cpp
+#include <stdio.h>
+#include <assert.h>
+
+#define LOG(condition, cmd) assert(condition && #cmd)
+
+double divide(int a, int b){
+    LOG(b != 0, Mau bang 0);
+    return (double)a/b;
+}
+
+int main(int argc, char const *argv[])
+{
+    int x = 6;    
+    LOG(x==5, X phai bang 5);
+    printf("x = %d\n", x);    
+    
+    printf("kq: %f\n", divide(6,0));
+    return 0;
+}
+```
+
+<br>
+
+💻
+```cpp
+#include <stdio.h>
+#include <assert.h>
+
+#define ASSERT_IN_RANGE(val, min, max) assert((val) >= (min) && (val) <= (max))
+
+void setLevel(int level) {
+    ASSERT_IN_RANGE(level, 1, 10);
+    // Thiết lập cấp độ
+}
+```
+
+<br>
+
+💻
+```cpp
+#include <assert.h>
+#include <stdint.h>
+
+#define ASSERT_SIZE(type, size) assert(sizeof(type) == (size))
+
+void checkTypeSizes() {
+    ASSERT_SIZE(int, 4);
+    // Kiểm tra các kích thước kiểu dữ liệu khác
+}
+```
+
+<br>
 
 </p>
 </details>

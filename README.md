@@ -768,17 +768,22 @@ void swap1(int a, int b){
     a = b;
     b = temp;
 }
+// Khi gọi hàm sẽ khởi tạo 2 địa chỉ, gs là 0xc1 và 0xf2 để lưu giá trị a,b
+// Thực hiện copy giá trị của biến a,b trong hàm main và đưa vào 2 địa chỉ trên
+// a,b ở đây là 2 tham số truyền vào của hàm nên sẽ lưu ở Stack và bị thu hồi vùng nhớ khi kết thúc việc gọi hàm
+// Vì vậy, gọi hàm này sẽ không hoán đổi 2 số
 
 void swap2(int *a, int *b){
     int temp = *a;
     *a = *b;
     *b = temp;
 }
+// Khi gọi hàm sẽ truy cập đến 2 địa chỉ 0x01 và 0xb4 để lấy giá trị và thực hiện hoán đổi
 
 int main(int argc, char const *argv[])
 {
-    int a = 10;
-    int b = 20;
+    int a = 10;	// địa chỉ 0x01
+    int b = 20; // địa chỉ 0xb4
 
     // swap1(a,b);
     swap2(&a,&b);
@@ -1081,7 +1086,7 @@ int main(int argc, char const *argv[]){
 </p>
 </details>
 
-<details><summary><b>🔍 Con trỏ NULL</b></summary>
+<details><summary><b>🔍 Con trỏ NULL (Null Pointer)</b></summary>
 <p
     
 - Khi khai báo con trỏ mà chưa sử dụng ngay hoặc sử dụng xong thì phải gán NULL.

@@ -1917,7 +1917,7 @@ int main(){
 
 📝 Khi khai báo các biến trong chương trình thì những biến này được lưu ở RAM. Nếu có thêm phép tính (``` ++ ``` hoặc ``` -- ```) thì nó chỉ lưu thông tin của phép tính này chứ chưa thực hiện.
 
-![image](https://github.com/user-attachments/assets/5325937f-1104-4845-9bda-7f1e7c1589b9)
+![image](https://github.com/user-attachments/assets/a57d1e72-86f1-405d-853c-660e459a37f0)
 
 📝 Giai đoạn 1: Nạp giá trị từ RAM vào Register
 

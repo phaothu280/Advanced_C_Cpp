@@ -1875,22 +1875,35 @@ undefined reference to `a'
 <details><summary><b>📚 Volatile</b></summary>
 <p>
 
-- Volatile có nghĩa là không dự đoán được. Một biến sử dụng với volatile có nghĩa là nói với compiler là biến này **có thể sẽ được thay đổi ở bởi yếu tố bên ngoài chương trình** như hardward (ngắt, nhấn button,…) hoặc một luồng khác. Việc này ngăn chặn trình biên dịch tối ưu hóa hoặc xóa bỏ các thao tác trên biến đó, giữ cho các thao tác trên biến được thực hiện như đã được định nghĩa.
-- Một biến cần được khai báo dưới dạng biến volatile khi nào? Khi mà giá trị của nó có thể thay đổi một cách không báo trước. Việc khai báo biến volatile là rất cần thiết để tránh những lỗi sai khó phát hiện do tính năng optimization của compiler.
-- Biến Volatile rất cần thiết trong lập trình nhúng, vì khi đó có các tác vụ như ngắt ảnh hưởng tới giá trị của biến. Trong lập trình C cơ bản thì rất ít gặp.
-- Cú pháp
-```cpp
-volatile <data_type> <name_variable>;
-```
+- **volatile** báo cho compiler biết rằng biến này **có thể sẽ được thay đổi ở bởi yếu tố bên ngoài chương trình** như hardward (ngắt, nhấn button,…) hoặc một luồng khác.
+- **volatile** ngăn chặn compiler tối ưu hóa hoặc xóa bỏ các thao tác trên biến đó, giữ cho các thao tác trên biến được thực hiện như đã được định nghĩa.
+- Cú pháp: ``` volatile <data_type> <name_variable>; ```
+
+🤔 Một biến cần được khai báo dưới dạng biến volatile khi nào❓
+
+➡️ Khi giá trị của nó có thể thay đổi một cách không báo trước. Việc khai báo biến volatile là rất cần thiết để tránh những lỗi sai khó phát hiện do tính năng optimization của compiler.
+
+Biến Volatile rất cần thiết trong lập trình nhúng, vì khi đó có các tác vụ như ngắt ảnh hưởng tới giá trị của biến. Trong lập trình C cơ bản thì rất ít gặp.
 
 💻
 ```cpp
-volatile int flag;
+#include "stm32f4xx.h"                  // Device header
 
-void interrupt_handler(){
-    flag = 1; // giá trị của flag có thể thay đổi bởi ngắt
+uint8_t *addr = (uint8_t*)0x20000000;
+volatile uint8_t var = 0;
+int main(){
+	
+	while (1){
+		var = *addr;
+		if (var != 0){
+			break;
+		}
+	}
 }
 ```
+📝 Khi khai báo biến ``` var ``` mà không có từ khóa ``` volatile ```, nếu giá trị của biến không thay đổi hoặc thay đổi ngay lần đầu chạy debug (thông qua thay đổi giá trị tại địa chỉ 0x20000000) thì compiler sẽ tối ưu hóa biến này khi nhận thấy biến này không có sự thay đổi giá trị ở những lần chạy kế tiếp.
+
+📝 Khi khai báo biến ``` var ``` có từ khóa ``` volatile ```, trong quá trình chạy, nếu giá trị biến thay đổi đột ngột thì chương trình vẫn cập nhật vì compiler chưa tối ưu hóa biến này.
 
 <br>
 
@@ -1900,14 +1913,23 @@ void interrupt_handler(){
 <details><summary><b>📚 Register</b></summary>
 <p>
 
+📝 Trong kiến trúc của vi xử lý thì ALU (Arithmetic Logic Unit) đóng vai trò xử lý các tính toán số học và nó chỉ làm việc với các dự liệu được lưu trữ trong thanh ghi (Register).
+
+📝 Khi khai báo các biến trong chương trình thì những biến này được lưu ở RAM. Nếu có thêm phép tính (``` ++ ``` hoặc ``` -- ```) thì nó chỉ lưu thông tin của phép tính này chứ chưa thực hiện.
+
 ![image](https://github.com/user-attachments/assets/5325937f-1104-4845-9bda-7f1e7c1589b9)
 
-- Register trong C/C++ được sử dụng để định nghĩa các biến cục bộ mà nên được lưu giữ trong một thanh ghi thay vì RAM.
-- Từ khóa “register” làm tăng hiệu năng (performance) của chương trình.
-- Cú pháp
-```cpp
-register <data_type> <name_variable>;
-```
+📝 Giai đoạn 1: Nạp giá trị từ RAM vào Register
+
+📝 Giai đoạn 2: Đưa dữ liệu từ Register sang ALU để bắt đầu xử lý.
+
+📝 Giai đoạn 3: Khi ALU xử lý xong thì trả ngược dữ liệu về Register.
+
+📝 Giai đoạn 4: Trả giá trị vừa xử lý từ Register về lại vùng nhớ RAM.
+
+- **register** được sử dụng để định nghĩa các biến cục bộ mà nên được lưu giữ trong một thanh ghi thay vì RAM.
+- **register** làm tăng hiệu năng (performance) của chương trình.
+- Cú pháp: ``` register <data_type> <name_variable>; ```
 
 💻
 ```cpp

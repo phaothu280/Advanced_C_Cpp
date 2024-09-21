@@ -575,6 +575,10 @@ int main(int argc, char const *argv[]) {
 }
 ```
 
+📝 Cách trên có thể tính tổng nhiều số nhưng với điều kiện các số đưa vào không được có số 0 chen ở giữa vì khi có số 0 thì việc thực hiện tính toán sẽ dừng lại ngay lập tức.
+
+📝 Có thể khắc phục bằng cách kết hợp cả macro variadic và thư viện STDARG (sẽ nói đến ở bài sau).
+
 <br>
 
 💻 Tạo menu
@@ -1005,6 +1009,10 @@ int main(int argc, char const *argv[])
     return 0;
 }
 ```
+
+📝 Có thể thấy rằng khi sử dụng assert để kiểm tra lỗi, nếu có lỗi thì chương trình dừng ngay lập tức và không thực thi tiếp bất kỳ tác vụ nào.
+
+📝 Để hạn chế vấn đề trên thì nên sử dụng TRY, CATCH, THROW (sẽ nói ở bài **Thư viện setjmp**).
 
 <br>
 
@@ -1680,11 +1688,40 @@ static <data_type> <name_function>;
 	
 Khi 1 biến cục bộ được khai báo với từ khóa static:
 
-- Giữ giá trị của biến qua các lần gọi hàm.
+- Biến chỉ được khởi tạo một lần, nghĩa là địa chỉ của nó sẽ tồn tại xuyên suốt chương trình.
 - Giữ phạm vi của biến chỉ trong hàm đó.
+- Giữ giá trị của biến qua các lần gọi hàm.
 
 Biến cục bộ static chỉ có thể được gọi trong nội bộ hàm khởi tạo ra nó. Mỗi lần hàm được gọi, giá trị của biến chính bằng giá trị tại lần gần nhất hàm được gọi.
 
+💻
+```cpp
+#include <stdio.h>
+
+void count(){
+    int a = 5;
+    a++;
+    printf("a = %d\n",a);
+}
+
+int main(int argc, char const *argv[])
+{
+    count();
+    count();
+    count();
+    return 0;
+}
+```
+
+Kết quả in ra:
+```cpp
+a = 6
+a = 6
+a = 6
+```
+
+📝 Kết quả 3 lần gọi hàm đều giống nhau vì biến ``` a ```
+ 
 💻
 ```cpp
 #include <stdio.h>

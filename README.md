@@ -1479,9 +1479,9 @@ int *ptr_null = NULL;
 <details><summary><b>🔍 Khái niệm</b></summary>
 <p>
 
-- **'extern'** có thể sử dụng cho một đối tượng (biến hoặc hàm), nếu là ** biến** thì phải được **khai báo toàn cục** với mục đích là thông báo rằng biến hoặc hàm này đã được định nghĩa ở một nơi khác trong chương trình hoặc trong 1 file nguồn khác.
-- **'extern'** cho phép các file nguồn khác nhau trong cùng một chương trình chia sẽ và sử dụng các biến và hàm mà không cần định nghĩa lại.
-- **'extern'** chỉ cho phép khai báo chứ không định nghĩa.
+- **extern** có thể sử dụng cho một đối tượng (biến hoặc hàm), nếu là **biến** thì phải được **khai báo toàn cục** với mục đích là thông báo rằng biến hoặc hàm này đã được định nghĩa ở một nơi khác trong chương trình hoặc trong 1 file nguồn khác.
+- **extern** cho phép các file nguồn khác nhau trong cùng một chương trình chia sẽ và sử dụng các biến và hàm mà không cần định nghĩa lại.
+- **extern** chỉ cho phép khai báo chứ không định nghĩa.
 - Cú pháp: ``` extern <data_type> <name_variable>; ```
 
 💻
@@ -1651,14 +1651,13 @@ int main(int argc, char const *argv[])
 
 📝 Có thể không cần sử dụng extern đối với các hàm vì khi liên kết các file rồi thì có thể gọi thoải mái các hàm nằm ở những file khác nhau.
 
-
-</p>
-</details>
-
-</p>
-</details>
-
 <br>
+
+</p>
+</details>
+
+</p>
+</details>
 
 <details><summary><b>📚 Static</b></summary>
 <p>
@@ -1755,8 +1754,6 @@ void display(){
 
 </p>
 </details>
-
-<br>
 
 <details><summary><b>📚 Volatile</b></summary>
 <p>

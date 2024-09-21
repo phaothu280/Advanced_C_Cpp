@@ -1720,7 +1720,45 @@ a = 6
 a = 6
 ```
 
-📝 Kết quả 3 lần gọi hàm đều giống nhau vì biến ``` a ```
+📝 Kết quả 3 lần gọi hàm đều giống nhau vì biến ``` a ``` biến cục bộ, sẽ được lưu trong Stack và địa chỉ sẽ bị thu hồi sau khi hàm thực thi xong.
+
+🤔 Vậy muốn giữ giá trị của biến sau nhiều lần gọi hàm thì làm sao❓
+
+➡️ Thêm từ khóa **static** khi khai báo biến.
+
+💻
+```cpp
+#include <stdio.h>
+
+void count(){
+    static int a = 5;
+    a++;
+    printf("a = %d\n",a);
+}
+
+int main(int argc, char const *argv[])
+{
+    count();
+    count();
+    count();
+    return 0;
+}
+```
+
+Kết quả in ra:
+```cpp
+a = 6
+a = 7
+a = 8
+```
+
+📝 Khi thêm ``` static ```, ở lần gọi hàm đầu tiên, biến ``` a ``` sẽ được cấp phát địa chỉ, giả sử 0x01 và địa chỉ tồn tại cho đến hết chương trình.
+
+📝 Khi gọi hàm từ lần 2 trở đi, nó sẽ không thực thi câu lệnh ``` static int a = 5 ``` vì địa chỉ biến a đã được cấp phát trước đó mà sẽ bắt đầu thực thi từ câu lệnh tiếp theo (``` a++ ```).
+
+🤔 Làm thế nào thay đổi giá trị của biến cục bộ ``` a ``` từ bên ngoài❓
+
+➡️ Rất đơn giản, sử dụng con trỏ.
  
 💻
 ```cpp
@@ -1728,18 +1766,21 @@ a = 6
 
 int *ptr = NULL;
 
-void Func(){
-    static int a=0;
+void count(){
+    static int a = 5;
     ptr = &a;
     a++;
     printf("a = %d\n",a);
 }
 
 int main(int argc, char const *argv[]){
-    Func();     // in ra "a = 1"
-    Func();     // in ra "a = 2"
-    *ptr = 20;  // a = 20
-    Func();     // in ra "a = 21"
+    count();     // in ra "a = 6"
+    count();     // in ra "a = 7"
+    count();     // in ra "a = 8"
+
+    *ptr = 99;  // truy cập địa chỉ 0x01 và thay đổi giá trị biến a thành 99
+    count();     // in ra "a = 100"
+    ptr = NULL;
     return 0;
 }
 ```
@@ -1754,37 +1795,74 @@ Khi **'static'** được sử dụng với các biến toàn cục, nó sẽ h�
 
 💻
 
-File Ex1.c
+File **file1.h**
+```cpp
+#ifndef _FILE1_H
+#define _FILE1_H
+
+static int a;
+
+static void display();
+
+void test();
+
+#endif
+```
+
+File **file1.c**
+```cpp
+#include <stdio.h>
+#include "file1.h"
+
+static int a = 10;
+
+static void display(){
+    printf("This is file1.c\n");
+}
+
+void test(){
+    printf("Hello world\n");
+}
+```
+
+File **main.c**
 ```cpp
 #include <stdio.h>
 
+extern int a;
 extern void display();
-extern int value1;
-extern int value2;
+extern void test();
 
-int main(int argc, char const *argv[]){
-    value1 = 10;
-    value2 = 20;
+int main(int argc, char const *argv[])
+{
+    printf("a = %d\n",a);
     display();
+    test();
     return 0;
 }
+
 ```
 
+📝 Kết quả sau khi chạy: 
 ```cpp
-#include <stdio.h>
-
-static int value1 = 5;
-int value2 = 5;
-
-void display(){
-    printf("value1=%d\n",value1);
-    printf("value2=%d\n",value2);
-}
+undefined reference to `display'
+undefined reference to `a'
 ```
 
-📝 Kết quả sau khi chạy: ``` undefined reference to `value1' ```
+📝 Dễ thấy file main.c khi chạy sẽ gặp lỗi do cố gắng sử dụng extern để gọi 1 biến toàn cục hoặc hàm đã được khai báo với static trong 1 file nguồn khác.
 
-📝 Dễ thấy file Ex1.c khi chạy sẽ gặp lỗi do cố gắng sử dụng extern để gọi 1 biến toàn cục đã được khai báo với static trong 1 file nguồn khác.
+<br>
+
+</p>
+</details>
+
+<details><summary><b>🔍 Ứng dụng</b></summary>
+<p>
+
+- Thiết kế thư viện.
+- Quản lý tài nguyên bộ nhớ tốt hơn và tránh xung đột tên biến giữa các module khác nhau.
+- Khi khai báo biến toàn cục với static trong một file C, biến chỉ có thể truy cập trong file đó, ngăn ngừa các vấn đề chia sẻ biến không mong muốn giữa các file.
+- Dùng cho biến cục bộ trong một hàm để giữ lại giá trị của biến giữa các lần gọi hàm (persistence).
 
 <br>
 

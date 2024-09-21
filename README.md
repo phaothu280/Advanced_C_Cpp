@@ -1473,6 +1473,193 @@ int *ptr_null = NULL;
 <details><summary><b>✨ Các biến đặc biệt</b></summary>
 <p>
 
+<details><summary><b>📚 Extern</b></summary>
+<p>
+
+<details><summary><b>🔍 Khái niệm</b></summary>
+<p>
+
+- **'extern'** có thể sử dụng cho một đối tượng (biến hoặc hàm), nếu là ** biến** thì phải được **khai báo toàn cục** với mục đích là thông báo rằng biến hoặc hàm này đã được định nghĩa ở một nơi khác trong chương trình hoặc trong 1 file nguồn khác.
+- **'extern'** cho phép các file nguồn khác nhau trong cùng một chương trình chia sẽ và sử dụng các biến và hàm mà không cần định nghĩa lại.
+- **'extern'** chỉ cho phép khai báo chứ không định nghĩa.
+- Cú pháp: ``` extern <data_type> <name_variable>; ```
+
+💻
+
+File **File1.c**
+```cpp
+#include <stdio.h>
+
+int a = 10;
+
+void display1(){ printf("This is file1.c\n"); }
+```
+
+File **File2.c**
+```cpp
+#include <stdio.h>
+
+int b = 10;
+
+void display2(){ printf("This is file2.c\n"); }
+```
+
+File **main.c**
+```cpp
+#include <stdio.h>
+#include "File1.c"
+#include "File2.c"
+
+int main(int argc, char const *argv[])
+{
+    a = 20;
+    printf("a = %d\n",a);
+
+    b = 50;
+    printf("b = %d\n",b);
+
+    display1();
+    display2();
+    return 0;
+}
+
+``` 
+
+📝 Muốn gọi đối tượng khác (biến hoặc hàm) đã được khai báo trong file khác thì sử dụng #include.
+
+🤔 Vậy nếu có nhiều file hơn trong project thì làm sao❓
+
+➡️ Nếu không nhớ biến hoặc hàm nằm ở file nào thì việc #include tất cả file vào thì vừa mất thời gian vừa tốn bộ nhớ để khởi tạo một số hàm hoặc biến không cần thiết.
+
+➡️ Sử dụng **extern** và thực hiện liên kết các file.
+
+💻 
+
+File **main.c**
+```cpp
+#include <stdio.h>
+
+extern int a;
+extern int b;
+
+extern void display1();
+extern void display2();
+
+int main(int argc, char const *argv[])
+{
+    a = 20;
+    printf("a = %d\n",a);
+
+    b = 50;
+    printf("b = %d\n",b);
+
+    display1();
+    display2();
+    return 0;
+}
+```
+
+📝 Thực hiện liên kết file: ``` gcc main.c File1.c File2.c -o main ```
+
+📝 Lệnh trên sẽ tự động:
+
+- Thực hiện tiền xử lý (-E).
+- Tạo mã assembly (-S).
+- Tạo object file (-o).
+- Liên kết tất cả các file main.o, File1.o, File2.o để tạo ra file thực thi main.
+
+</p>
+</details>
+
+<details><summary><b>🔍 Ứng dụng</b></summary>
+<p>
+
+- Thiết kế thư viện.
+- Chia sẻ biến và hàm giữa các file nguồn hoặc giữa các module và thư viện.
+- Sử dụng một hàm trước khi nó được định nghĩa trong mã nguồn.
+- Chia sẻ hằng số giữa các file nguồn.
+
+💻
+
+File **File1.h**
+```cpp
+#ifndef _FILE1_H
+#define _FILE1_H
+
+extern int a;
+
+void display1();
+
+#endif
+```
+
+File **File1.c**
+```cpp
+#include <stdio.h>
+#include "File1.h"
+
+int a = 10;
+
+void display1(){
+    printf("This is file1.c\n");
+}
+```
+
+File **File2.h**
+```cpp
+#ifndef _FILE2_H
+#define _FILE2_H
+
+extern int b;
+
+void display2();
+
+#endif
+File **File2.c**
+#include <stdio.h>
+#include "File2.h"
+
+int b = 10;
+
+void display2(){
+    printf("This is file2.c\n");
+}
+```
+
+File **main.c**
+```cpp
+#include <stdio.h>
+#include "File1.h"
+#include "File2.h"
+
+extern void display1();
+extern void display2();
+
+int main(int argc, char const *argv[])
+{
+    a = 20;
+    printf("a = %d\n",a);
+
+    b = 50;
+    printf("b = %d\n",b);
+
+    display1();
+    display2();
+    return 0;
+}
+```
+
+📝 Có thể không cần sử dụng extern đối với các hàm vì khi liên kết các file rồi thì có thể gọi thoải mái các hàm nằm ở những file khác nhau.
+
+
+</p>
+</details>
+
+</p>
+</details>
+
+<br>
+
 <details><summary><b>📚 Static</b></summary>
 <p>
 
@@ -1569,80 +1756,7 @@ void display(){
 </p>
 </details>
 
-<details><summary><b>📚 Extern</b></summary>
-<p>
-
-<details><summary><b>🔍 Khái niệm</b></summary>
-<p>
-
-- Từ khóa **'extern'** được sử dụng cho 1 biến hoặc hàm với mục đích là thông báo rằng biến hoặc hàm này đã được định nghĩa ở một nơi khác trong chương trình hoặc trong 1 file nguồn khác.
-- Cho phép các file nguồn khác nhau trong cùng một chương trình chia sẽ và sử dụng các biến và hàm mà không cần định nghĩa lại.
-- **Extern chỉ cho phép khai báo chứ không định nghĩa.**
-- Biến được tham chiếu phải được khai báo ở cấp độ cao nhất (toàn cục), và có thể nằm trong một file khác.
-- Cú pháp
-```cpp
-extern <data_type> <name_variable>;
-```
-
-💻
-
-File main.c
-```cpp
-#include <stdio.h>
-
-extern int var_global;
-extern void Func();
-
-int main(int argc, char const *argv[]){
-    var_global = 3;
-    Func();
-    return 0;
-}
-```
-File File1.c
-```cpp
-#include <stdio.h>
-int var_global = 1;
-void Func(){
-    printf("%d\n",var_global);
-}
-```
-📝 Thực hiện **make file**: ```gcc main.c File1.c -o main```
-
-</p>
-</details>
-
-<details><summary><b>🔍 Ứng dụng</b></summary>
-<p>
-
-**Chia sẻ biến và hàm giữa các file nguồn**
-
-- Extern cho phép bạn chia sẻ biến và hàm giữa nhiều file nguồn trong một chương trình.
-- Điều này hữu ích khi bạn muốn tách chương trình thành các phần nhỏ để quản lý dễ dàng hơn
-
-**Chia sẻ biến và hàm giữa các module hoặc thư viện**
-
-- Extern có thể được sử dụng để kết nối các module hoặc thư viện trong một dự án lớn.
-
-**Khai báo hàm trong trường hợp định nghĩa sau:**
-
-- Nếu ban muốn sử dụng một hàm trước khi nó được định nghĩa trong mã nguồn, bạn có thể sử dụng extern để khai báo hàm.
-
-**Biến toàn cục giữa các tệp nguồn**
-
-- Khi có một biến toàn cục được sử dụng trong nhiều file nguồn, extern giúp các file nguồn biết về sự tồn tại của biến đó.
-
-**Chia sẻ hằng số giữa các file nguồn**
-
-- Nếu bạn có một hằng số được sử dụng ở nhiều nơi, bạn có thể sử dụng extern để chia sẻ giá trị của hằng số đó giữa các file nguồn.
-
 <br>
-
-</p>
-</details>
-
-</p>
-</details>
 
 <details><summary><b>📚 Volatile</b></summary>
 <p>

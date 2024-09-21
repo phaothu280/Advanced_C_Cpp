@@ -1529,7 +1529,9 @@ int main(int argc, char const *argv[])
 
 🤔 Vậy nếu có nhiều file hơn trong project thì làm sao❓
 
-➡️ Nếu không nhớ biến hoặc hàm nằm ở file nào thì việc #include tất cả file vào thì vừa mất thời gian vừa tốn bộ nhớ để khởi tạo một số hàm hoặc biến không cần thiết.
+➡️ Có thể #include tất cả file vào.
+
+➡️ Tuy nhiên, nếu không nhớ biến hoặc hàm nằm ở file nào thì việc làm trên thì vừa mất thời gian vừa tốn bộ nhớ để khởi tạo một số hàm hoặc biến không cần thiết.
 
 ➡️ Sử dụng **extern** và thực hiện liên kết các file.
 

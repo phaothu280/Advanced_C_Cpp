@@ -2695,10 +2695,6 @@ Data.var3 = 65530
 </p>
 </details>
 
-
-</p>
-</details>
-
 <details><summary><b>📚 So sánh Struct và Union</b></summary>
 <p>
 
@@ -2715,6 +2711,9 @@ Data.var3 = 65530
 <p>
 
 ![image](https://github.com/user-attachments/assets/10994e8c-37ff-4a6b-b947-3d2fa16eee65)
+
+</p>
+</details>
 
 </p>
 </details>

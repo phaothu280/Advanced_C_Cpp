@@ -2724,13 +2724,12 @@ Data.var3 = 65530
 
 |           |   Struct  |   Union   |
 |-----------|-----------|-----------|
-| keyword    | Dùng keyword 'struct' để định nghĩa   | Dùng keyword 'union' để định nghĩa    |
-| size    | Tổng các kích thước của các member và padding (nếu có)    | Tổng của kích thước của member có kích thước lớn nhất và padding (nếu có)    |
-| Memory   | Mỗi member có vùng nhớ riêng biệt    | Các member dùng chung 1 vùng nhớ    |
+| keyword   | Dùng keyword 'struct' để định nghĩa   | Dùng keyword 'union' để định nghĩa    |
+| size      | Tổng các kích thước của các member và padding (nếu có)    | Tổng của kích thước của member có kích thước lớn nhất và padding (nếu có)  |
+| Memory    | Mỗi member có vùng nhớ riêng biệt    | Các member dùng chung 1 vùng nhớ    |
 | Modify    | Thay đổi giá trị 1 member không ảnh hưởng các member khác   | Thay đổi giá trị bất kỳ member nào cũng ảnh hưởng các member khác    |
-| Truy cập   | Truy cập bất kỳ member ở thời điểm nào cũng được    | Trong một lúc chỉ truy cập được một member     |
+| Truy cập  | Truy cập bất kỳ member ở thời điểm nào cũng được    | Trong một lúc chỉ truy cập được một member     |
 
-![image](https://github.com/user-attachments/assets/10994e8c-37ff-4a6b-b947-3d2fa16eee65)
 
 </p>
 </details>

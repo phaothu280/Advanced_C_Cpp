@@ -1,3 +1,18 @@
+## Example Table
+
+<table>
+  <tr>
+    <th>Header 1</th>
+    <th>Header 2</th>
+    <th>Header 3</th>
+    <th>Header 4</th>
+  </tr>
+  <tr>
+    <td colspan="4" style="background-color:red; text-align:center">Merged Row</td>
+  </tr>
+</table>
+
+
 <details><summary><b>✨ Compiler</b></summary>
 <p>
 

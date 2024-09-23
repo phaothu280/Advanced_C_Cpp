@@ -12,6 +12,26 @@
   </tr>
 </table>
 
+# Đây là tiêu đề bằng Markdown
+
+<p style="color:red;">Đoạn văn này sử dụng HTML với chữ màu đỏ.</p>
+
+- Đây là danh sách tạo bằng Markdown.
+- Dòng này sẽ hiển thị bình thường.
+
+<table>
+  <tr>
+    <th>Tiêu đề 1</th>
+    <th>Tiêu đề 2</th>
+  </tr>
+  <tr>
+    <td>Ô 1</td>
+    <td>Ô 2</td>
+  </tr>
+</table>
+
+**Markdown cũng có thể tồn tại trong cùng một file.**
+
 
 
 <details><summary><b>✨ Compiler</b></summary>

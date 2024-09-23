@@ -2737,6 +2737,117 @@ Data.var3 = 65530
 </p>
 </details>
 
+<details><summary><b>📚 Ứng dụng</b></summary>
+<p>
+
+<details><summary><b>🔍 Ứng dụng Struct</b></summary>
+<p>
+
+Các giao thức trong nhúng như UART, I2C, SPI khi sử dụng đều phải cấu hình các thông số; mỗi giao thức sẽ có các thông số cấu hình khác nhau.
+
+💻 UART
+```cpp
+typedef struct{
+  uint32_t USART_BaudRate;            /* USART communication baud rate */
+
+  uint16_t USART_WordLength;          /* the number of data bits transmitted or received in a frame */
+
+  uint16_t USART_StopBits;            /* Specifies the number of stop bits transmitted */
+
+  uint16_t USART_Parity;              /* Specifies the parity mode */
+ 
+  uint16_t USART_Mode;                /* pecifies wether the Receive or Transmit mode is enabled or disabled */
+
+  uint16_t USART_HardwareFlowControl; /* Specifies wether the hardware flow control mode is enabled or disabled */
+} USART_InitTypeDef;
+```
+	
+<br>
+
+</p>
+</details>
+
+<details><summary><b>🔍 Ứng dụng Union</b></summary>
+<p>
+
+- Một chân GPIO_pin tại một thời điểm có thể là input hoặc output.
+- Input có thể là đọc giá trị cảm biến từ bên ngoài.
+- Output có thể là xuất điện áp ra để điều khiển LED hoặc relay.
+- Để cấu hình thì dùng Union
+
+💻 
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+
+typedef union{
+    struct{
+        uint32_t mode  : 2;  // 00: input, 01: output
+        uint32_t pull  : 2;  // 00: no pull, 01: pull-up, 10: pull-down
+        uint32_t speed : 2;  // 00: 2MHz, 01: 10MHz, 10: 50MHz
+        uint32_t reserved : 26; // các bit khác
+    } config;
+
+    uint32_t reg;
+} GPIO_Config;
+
+void configure_gpio(GPIO_Config *gpio, uint32_t mode, uint32_t pull, uint32_t speed) {
+    gpio->config.mode  = mode;  // Cấu hình chế độ
+    gpio->config.pull  = pull;  // Cấu hình pull-up/pull-down
+    gpio->config.speed = speed; // Cấu hình tốc độ
+}
+
+int main(int argc, char const *argv[])
+{
+    GPIO_Config GPIOA;
+
+    // Cấu hình PA0 là output
+    configure_gpio(&GPIOA, 1, 0, 2);
+
+    // Sử dụng GPIOA.reg để viết vào thanh ghi GPIO thực tế
+    write_gpio_register(GPIOA.reg);
+    return 0;
+}
+```
+
+<br>
+
+</p>
+</details>
+
+<details><summary><b>🔍 Ứng dụng két hợp Struct và Union</b></summary>
+<p>
+
+- Truyền dữ liệu từ MCUA sang MCUB
+
+```cpp
+MCUA							   MCUB
+
+Data:
+{
+   id;	 	// 2 byte	   Data_Frame
+   data; 	// 4 byte	--------------->	   Data
+   check_sum; 	// 2 byte				Data_Frame
+}
+
+Data_Frame
+```
+
+📝 Cách làm thủ công: đưa từng byte vào mảng rồi truyền đi
+
+📝 id = 10, tách ra thành 1 và 0, chuyển thành ký tự rồi đưa vào mảng
+
+🤔 Một biến cần được khai báo dưới dạng biến volatile khi nào❓
+
+
+<br>
+
+</p>
+</details>
+
+</p>
+</details>
+
 </p>
 </details>
 

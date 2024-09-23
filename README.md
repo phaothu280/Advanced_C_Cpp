@@ -2835,10 +2835,53 @@ Data_Frame
 
 📝 Cách làm thủ công: đưa từng byte vào mảng rồi truyền đi
 
-📝 id = 10, tách ra thành 1 và 0, chuyển thành ký tự rồi đưa vào mảng
+📝 Ví dụ: id=10, data=1234, checksum=70 thì chuyển thành chuỗi "10", "1234", "70" rồi đưa vào mảng.
 
-🤔 Một biến cần được khai báo dưới dạng biến volatile khi nào❓
+```cpp
+    id            data      checksum
+0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08
+ 1    0    1    2    3    4    7    0
+              mảng frame[8]
+```
 
+🤔 Có cách nào tự động convert vào mảng khi có dữ liệu không❓
+
+➡️ Sử dụng Struct + Union
+
+💻
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+typedef union{
+    struct {
+        uint8_t id[2];
+        uint8_t data[4];
+        uint8_t check_sum[2];
+    } data;
+    uint8_t frame[8];
+} Data_Frame;
+
+
+int main(int argc, char const *argv[])
+{
+    Data_Frame transmit_data, receive_data;
+    strcpy((char*)transmit_data.data.id, "10");
+    strcpy((char*)transmit_data.data.data, "1234");
+    strcpy((char*)transmit_data.data.check_sum, "70");
+    strcpy((char*)receive_data.frame, (char*)transmit_data.frame);
+    return 0;
+}
+```
+
+📝 Sủ dụng kiểu ``` uint8_t ``` cho các member để không có padding, tránh việc tốn bộ nhớ.
+
+📝 Kích thước của mỗi member trong union đều là 8 byte nên kích thước của union cũng là 8 byte.
+
+📝 Khi có dữ liệu, ví dụ copy các chuỗi "10", "1234", "70" vào ``` id, data, check_sum ``` thì mảng ``` frame ``` cũng tự động cập nhật dư liệu theo.
+
+📝 Khi cần truyền dữ liệu đi, ta chỉ cần sử dụng mảng ``` frame ``` để truyền đi.
 
 <br>
 

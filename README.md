@@ -1,39 +1,3 @@
-## Example Table
-
-<table>
-  <tr>
-    <th>Header 1</th>
-    <th>Header 2</th>
-    <th>Header 3</th>
-    <th>Header 4</th>
-  </tr>
-  <tr>
-    <td colspan="4" style="background-color:red; text-align:center">Merged Row</td>
-  </tr>
-</table>
-
-# Đây là tiêu đề bằng Markdown
-
-<p style="color:red;">Đoạn văn này sử dụng HTML với chữ màu đỏ.</p>
-
-- Đây là danh sách tạo bằng Markdown.
-- Dòng này sẽ hiển thị bình thường.
-
-<table>
-  <tr>
-    <th>Tiêu đề 1</th>
-    <th>Tiêu đề 2</th>
-  </tr>
-  <tr>
-    <td>Ô 1</td>
-    <td>Ô 2</td>
-  </tr>
-</table>
-
-**Markdown cũng có thể tồn tại trong cùng một file.**
-
-
-
 <details><summary><b>✨ Compiler</b></summary>
 <p>
 
@@ -2295,14 +2259,12 @@ int main(int argc, char const *argv[])
 <details><summary><b>✨ Struct - Union</b></summary>
 <p>
 
-<details><summary>📚 Struct</summary>
+<details><summary><b>📚 Struct</b></summary>
 <p>
 	
-struct là một cấu trúc dữ liệu cho phép tự định nghĩa một kiểu dữ liệu mới bằng cách nhóm các biến có các kiểu dữ liệu khác nhau lại với nhau.
-
-struct cho phép tạo ra một thực thể dữ liệu lớn hơn và có tổ chức hơn từ các thành viên (members) của nó.
-
-### ▷ Cú pháp
+- struct là một cấu trúc dữ liệu cho phép tự định nghĩa một kiểu dữ liệu mới bằng cách nhóm các biến có các kiểu dữ liệu khác nhau lại với nhau.
+- struct cho phép tạo ra một thực thể dữ liệu lớn hơn và có tổ chức hơn từ các thành viên (members) của nó.
+- Cú pháp:
 
 **Cách 1**
 ```cpp
@@ -2310,7 +2272,7 @@ struct structureName{       struct student_t{       struct student_t sv1;
     dataType1 member1;          char ten[30];       struct student_t sv2;
     dataType2 member2;          int tuoi;           ...
     ...                         int MSSV;           hoặc
-};                          };                     struct student_t sv[50];
+};                          };                      struct student_t sv[50];
 ```
 
 **Cách 2**
@@ -2322,12 +2284,24 @@ typedef struct{             typedef struct{         student_t sv1;
 }structureName;             }student_t;
 ```
 
-### ▷ Truy xuất dữ liệu
-Sử dụng "." để truy xuất tới thành viên khi khai báo biến bình thường (int, char,…).
+- Truy xuất dữ liệu:
 
-Sử dụng "->" để truy xuất tới thành viên khi khai báo biến là con trỏ.
+◆ Sử dụng "." để truy xuất tới thành viên khi khai báo biến bình thường (int, char,…).
 
-### ▷ Kích thước của struct
+◆ Sử dụng "->" để truy xuất tới thành viên khi khai báo biến là con trỏ.
+
+<details><summary><b>🔍 Data Structure Alignment</b></summary>
+<p>
+
+</p>
+</details>
+
+<details><summary><b>🔍 Kích thước của struct</b></summary>
+<p>
+
+</p>
+</details>
+
 Kích thước Struct bằng tổng các kích thước của các member và padding (nếu có).
 
 **Ví dụ 1**

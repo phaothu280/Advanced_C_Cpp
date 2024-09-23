@@ -1,12 +1,3 @@
-| Cột 1     | Cột 2     | Cột 3     |
-|-----------|-----------|-----------|
-| Dòng 1    | Dòng 1    | Dòng 1    |
-| Dòng 2    | Dòng 2    | Dòng 2    |
-| Dòng 3    | Dòng 3    | Dòng 3    |
-| Dòng 4    | Dòng 4    | Dòng 4    |
-| Dòng 5    | Dòng 5    | Dòng 5    |
-| Dòng 6    | Dòng 6    | Dòng 6    |
-
 <details><summary><b>✨ Compiler</b></summary>
 <p>
 
@@ -2730,6 +2721,14 @@ Data.var3 = 65530
 
 <details><summary><b>🔍 Khác nhau</b></summary>
 <p>
+
+|           |   Struct  |   Union   |
+|-----------|-----------|-----------|
+| keyword    | Dùng keyword 'struct' để định nghĩa   | Dùng keyword 'union' để định nghĩa    |
+| size    | Tổng các kích thước của các member và padding (nếu có)    | Tổng của kích thước của member có kích thước lớn nhất và padding (nếu có)    |
+| Memory   | Mỗi member có vùng nhớ riêng biệt    | Các member dùng chung 1 vùng nhớ    |
+| Modify    | Thay đổi giá trị 1 member không ảnh hưởng các member khác   | Thay đổi giá trị bất kỳ member nào cũng ảnh hưởng các member khác    |
+| Truy cập   | Truy cập bất kỳ member ở thời điểm nào cũng được    | Trong một lúc chỉ truy cập được một member     |
 
 ![image](https://github.com/user-attachments/assets/10994e8c-37ff-4a6b-b947-3d2fa16eee65)
 

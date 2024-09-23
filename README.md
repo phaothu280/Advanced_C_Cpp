@@ -1,3 +1,12 @@
+| Cột 1     | Cột 2     | Cột 3     |
+|-----------|-----------|-----------|
+| Dòng 1    | Dòng 1    | Dòng 1    |
+| Dòng 2    | Dòng 2    | Dòng 2    |
+| Dòng 3    | Dòng 3    | Dòng 3    |
+| Dòng 4    | Dòng 4    | Dòng 4    |
+| Dòng 5    | Dòng 5    | Dòng 5    |
+| Dòng 6    | Dòng 6    | Dòng 6    |
+
 <details><summary><b>✨ Compiler</b></summary>
 <p>
 
@@ -2375,6 +2384,8 @@ Address of var3: 00000048F3DFF6DE
 
 📝 Tổng kích thước struct frame trên là 8 bytes nhưng thực tế chỉ sử dụng 7 bytes.
 
+<br>
+
 💻
 ```cpp
 #include <stdio.h>
@@ -2417,6 +2428,8 @@ Address of var3: 00000048F3DFF6DE
 📝 Lần 3 quét 4 bytes, var3 sử dụng 2 trong 4 bytes và thừa 2 byte.
 
 📝 Tổng kích thước struct frame trên là 12 bytes nhưng thực tế chỉ sử dụng 7 bytes.
+
+<br>
 
 💻
 ```cpp
@@ -2486,6 +2499,8 @@ Address of var3[9]: 0000006003DFFCA6
 **Giải thích:**
 
 ![image](https://github.com/user-attachments/assets/af1f44b2-c870-4fd1-a125-7b76f0ffcbb7)
+
+<br>
 
 💻
 ```cpp
@@ -2573,6 +2588,8 @@ int main(int argc, char const *argv[]){
 ```
 Kết quả: ```4 byte```
 
+<br>
+
 💻
 ```cpp
 #include <stdio.h>
@@ -2591,6 +2608,8 @@ int main(int argc, char const *argv[]){
 }
 ```
 **Kết quả:** ```24 byte```
+
+<br>
 
 </p>
 </details>
@@ -2640,6 +2659,8 @@ Data.var3 = 7
 📝 Khi gán 6 cho member var2, do các member sử dụng chung vùng nhớ nên tại địa chỉ 0x5FFE9C thì giá trị 6 sẽ ghi đè lên 5.
 
 📝 Tương tự với member var3, giá trị cuối cùng tại địa chỉ 0x5FFE9C là 7 nên giá trị của các member đều sẽ là 7.
+
+<br>
 
 💻
 ```cpp

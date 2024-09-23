@@ -2516,7 +2516,7 @@ int main(int argc, char const *argv[])
 </p>
 </details>
 
-<details><summary>📚 Union</summary>
+<details><summary><b>📚 Union</b></summary>
 <p>
 
 <details><summary><b>🔍 Cơ bản về Union</b></summary>

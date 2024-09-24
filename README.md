@@ -3596,10 +3596,403 @@ int front(Queue queue){
 
 <br>
 
-<details><summary><b>✨ Class</b></summary>
+<details><summary><b>✨ Class C++</b></summary>
+<p>
+
+<details><summary><b>📚 Cơ bản về Class</b></summary>
+<p>
+
+Class là một mô tả trừu tượng của nhóm các đối tượng (object) có cùng bản chất.
+
+Một class bao gồm:
+
+- Các thành phần dữ liệu (biến hay **property**).
+- Các phương thức (hàm thành phần hay **method**).
+
+Khai báo và sử dụng Class:
+```cpp
+class <class_name>{
+   <access_modifier>:
+      <data_type> property1;
+      <data_type> property2;
+      ...
+      <return_type> <method_name_1>(argument1, argument2, ....);
+      <return_type> <method_name_2>(argument1, argument2, ....);
+};
+
+<return_type> <class_name>::<method_name1>(argument1, argument2, ....){
+    ...
+}
+
+<return_type> <class_name>::<method_name1>(argument1, argument2, ....){
+    ...
+}
+```
+
+<br>
+
+💻
+```cpp
+class Person{
+    public:
+        string firstName;
+        string lastName;
+        int age;
+
+        void fullName(){
+            cout << firstName << " " << lastName;
+        }
+}
+```
+
+<br>
+
+💻
+```cpp
+class SinhVien{
+    public:
+        int ID;         // property
+        string name;    // property
+        string lop;     // property
+        void display(); // method
+};
+
+void SinhVien::display(){
+    cout << "MSSV: " << ID << endl;
+    cout << "TEN: " << name << endl;
+    cout << "LOP: " << lop << endl;
+}
+```
+<br>
+
+</p>
+</details>
+
+<details><summary><b>📚 Phạm vi truy cập</b></summary>
+<p>
+
+<details><summary><b>🔍 private</b></summary>
+<p>
+
+- Các thuộc tính mà bạn không muốn người khác có thể truy cập đến sẽ được khai báo ở **private**.
+- Những property hay method nằm ở **private** thì chỉ có giá trị tại class và các **object** không thể truy cập đến.
+- Muốn truy cập các thuộc tính **private** thì chỉ có thể truy cập gián tiếp thông qua các **method** hay **constructor** nằm ở phạm vi **public**.
+
+💻
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class SinhVien{
+    private:
+        string ten;
+        string lop;
+        int id;
+    
+    public:
+        void display();
+};
+
+void SinhVien::display(){
+    cout << "Ten: " << SinhVien::ten << endl;
+    cout << "Lop: " << SinhVien::lop << endl;
+    cout << "ID: " << SinhVien::id << endl;
+}
+
+int main(int argc, char const *argv[])
+{
+    SinhVien sv1, sv2; // object
+    sv1.display();
+    return 0;
+}
+```
+
+<br>
+
+</p>
+</details>
+
+<details><summary><b>🔍 protected</b></summary>
+<p>
+
+- Các method và property nằm ở protected chỉ có thể truy cập thông qua các lớp kế thừa.
+- Các method và property nằm ở protected không thể truy cập từ các object bên ngoài.
+- Các method và property nằm ở protected có thể truy cập trực tiếp từ các method bên trong class.
+
+💻
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Base{
+    protected:
+        int protectedVar;
+
+    public:
+        Base() : protectedVar(10){}
+};
+
+class Derived : public Base{
+    public: 
+        void showProtectedVar(){
+            cout << "Protected variable: " << protectedVar << endl;
+        }
+};
+
+int main(int argc, char const *argv[])
+{
+    Derived obj;
+    // obj.protectedVar = 10; // wrong
+    obj.showProtectedVar();   // right
+    return 0;
+}
+```
+
+</p>
+</details>
+
+<details><summary><b>🔍 public</b></summary>
+<p>
+
+- Truy cập từ bên trong class thông qua các method.
+- Truy cập từ bên ngoài class thông qua các object.
+- Các lớp kế thừa có thể truy cập trực tiếp đến các thuộc tính của lớp cha.
+
+💻
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class SinhVien{
+    public:
+        int ID;         // property
+        string name;    // property
+        string lop;     // property
+        void display(){ // method
+            cout << "MSSV: " << ID << endl;
+            cout << "TEN: " << name << endl;
+            cout << "LOP: " << lop << endl;
+        }
+};
+
+int main(int argc, char const *argv[]){
+    SinhVien sv; // sv được gọi là object
+    sv.ID = 2010117;
+    sv.name = "Anh";
+    sv.lop = "DD20TD1";
+    sv.display();  
+    return 0;
+}
+```
+
+<br>
+
+💻
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class HinhChuNhat {
+    public:
+        double chieuDai;    // property
+        double chieuRong;   // property
+
+    // Hàm tính diện tích
+    double tinhDienTich(){  // method
+        return chieuDai * chieuRong;
+    }
+
+    void display(); // method
+};
+
+void HinhChuNhat::display(){
+   std::cout << " Hello " << "\n";
+}
+
+int main(){
+    HinhChuNhat hinh1;
+    hinh1.chieuDai = 10.0;
+    hinh1.chieuRong = 5.0;
+    hinh1.display();
+    std::cout << "Dien tich: " << hinh1.tinhDienTich() << '\n';
+    return 0;
+}
+```
+
+<br>
+
+💻
+```cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+    public:
+        int publicVar;
+
+        Base() : publicVar(10) {}
+
+        void showPublicVar() {
+            cout << "Public Variable: " << publicVar << endl;  // Truy cập từ bên trong class
+        }
+};
+
+int main() {
+    Base obj;
+
+    obj.showPublicVar();  // Truy cập qua phương thức public của class
+
+    obj.publicVar = 20;   // Truy cập từ bên ngoài class
+    cout << "Public Variable: " << obj.publicVar << endl;
+    
+    return 0;
+}
+```
+**Kết quả:**
+```cpp
+Public Variable: 10
+Public Variable: 20
+```
+
+<br>
+
+</p>
+</details>
+
+</p>
+</details>
+
+<details><summary><b>📚 Constructor</b></summary>
+<p>
+
+- Constructor là một method có tên trùng với tên của class.
+- Constructor có thể được khai báo ở cả ba phạm vi public, protected, private.
+- **Constructor trong phạm vi public**: sẽ được tự động gọi khi khởi tạo object.
+
+💻
+```cpp
+class MyClass {
+public:
+    MyClass() {
+        cout << "Public constructor called!" << endl;
+    }
+};
+
+int main() {
+    MyClass obj; 
+    return 0;
+}
+```
+💻
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class HinhChuNhat{
+    public:
+        double chieuDai;
+        double chieuRong;
+
+        // HinhChuNhat(){				// cách 1
+        //     chieuDai  = 10;
+        //     chieuRong = 9;
+        // }
+
+        HinhChuNhat(): chieuDai(10), chieuRong(9){}	// cách 2
+
+        // Hàm tính diện tích
+        double tinhDienTich(){
+            return chieuDai * chieuRong;
+        }
+};
+int main(){
+    HinhChuNhat hinh1;
+    cout << "Chieu dai: " << hinh1.chieuDai << '\n';
+    cout << "Chieu rong: " << hinh1.chieuRong << '\n';
+    cout << "Dien tich: " << hinh1.tinhDienTich() << '\n';
+    return 0;
+}
+```
+
+<br>
+
+- **Constructor trong phạm vi protected**: object không thể được khởi tạo trực tiếp từ bên ngoài class, mà chỉ có thể được khởi tạo từ các class kế thừa hoặc các method bên trong class đó.
+
+💻
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Base {
+    protected:
+        Base(){
+            cout << "Protected constructor called!" << endl;
+        }
+};
+
+class Derived : public Base {
+    public:
+        Derived() : Base(){  // Có thể gọi constructor protected của class Base
+            cout << "Derived constructor called!" << endl;
+        }
+};
+
+int main() {
+    // Base obj;  // Lỗi: Không thể khởi tạo đối tượng Base từ bên ngoài
+    Derived obj;  // Hợp lệ: Có thể khởi tạo Derived, class con của Base
+    return 0;
+}
+```
+
+- **Constructor trong phạm vi private**: không ai có thể khởi tạo đối tượng của class từ bên ngoài, kể cả class con. Thường được sử dụng trong các singleton pattern hoặc các trường hợp mà muốn kiểm soát chặt chẽ việc tạo đối tượng.
+💻
+```cpp
+class MyClass {
+private:
+    MyClass() {
+        cout << "Private constructor called!" << endl;
+    }
+
+public:
+    static MyClass createInstance() {
+        return MyClass();  // Có thể khởi tạo từ bên trong class với method static
+    }
+};
+
+int main() {
+    // MyClass obj;  // Lỗi: Không thể khởi tạo đối tượng từ bên ngoài
+    MyClass obj = MyClass::createInstance();  // Hợp lệ: Sử dụng phương thức static để tạo đối tượng
+    return 0;
+}
+```
+
+
+</p>
+</details>
+
+<details><summary><b>📚 Destructor</b></summary>
 <p>
 
 
+
+</p>
+</details>
+
+<details><summary><b>📚 Static trong Class</b></summary>
+<p>
+
+
+
+</p>
+</details>
 
 </p>
 </details>

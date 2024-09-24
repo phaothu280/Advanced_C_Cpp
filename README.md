@@ -3602,6 +3602,12 @@ int front(Queue queue){
 <details><summary><b>📚 Cơ bản về Class</b></summary>
 <p>
 
+Trong C/C++, có một số kiểu dữ liệu do người dùng tự định nghĩa như Struct, Union,... và đặc điểm của những kiểu này là chỉ bao gồm các biến, mảng hoặc có thể thông qua con trỏ hàm để khai báo hàm.
+
+🤔 Muốn khai báo một kiểu dữ liệu, member là các biến hoặc thậm chí là hàm thì làm sao❓
+
+➡️ C++ cung cấp một kiểu dữ liệu mới gọi là **Class**.
+
 Class là một mô tả trừu tượng của nhóm các đối tượng (object) có cùng bản chất.
 
 Một class bao gồm:
@@ -3871,9 +3877,18 @@ Public Variable: 20
 <details><summary><b>📚 Constructor</b></summary>
 <p>
 
-- Constructor là một method có tên trùng với tên của class.
-- Constructor có thể được khai báo ở cả ba phạm vi public, protected, private.
-- **Constructor trong phạm vi public**: sẽ được tự động gọi khi khởi tạo object.
+🤔 Muốn khởi tạo giá trị ban đầu cho các property trong class thì làm sao❓
+
+➡️ Sử dụng Constructor
+
+Constructor là một method có tên trùng với tên của class.
+
+Constructor có thể được khai báo ở cả ba phạm vi public, protected, private.
+
+**Constructor trong phạm vi public**: 
+
+- Constructor sẽ được tự động gọi khi khởi tạo object.
+- Constructor có thể có tham số truyền vào hoặc không.
 
 💻
 ```cpp
@@ -3889,7 +3904,10 @@ int main() {
     return 0;
 }
 ```
-💻
+
+<br>
+	
+💻 **Constructor không có tham số truyền vào**
 ```cpp
 #include <iostream>
 
@@ -3923,6 +3941,74 @@ int main(){
 
 <br>
 
+💻 **Constructor có tham số truyền vào**
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class HinhChuNhat{
+    public:
+        double chieuDai;
+        double chieuRong;
+
+        HinhChuNhat(int dai = 3, int rong = 5);
+
+        double tinhDienTich(){
+            return chieuDai * chieuRong;
+        }
+};
+
+HinhChuNhat::HinhChuNhat(int dai, int rong){
+    chieuDai = dai;
+    chieuRong = rong;
+}
+
+int main(){
+    HinhChuNhat hinh1; // lấy giá trị mặc định (3,5)
+    cout << "Chieu dai: " << hinh1.chieuDai << '\n';
+    cout << "Chieu rong: " << hinh1.chieuRong << '\n';
+    cout << "Dien tich: " << hinh1.tinhDienTich() << '\n';
+
+    HinhChuNhat hinh2(10,20); // lấy giá trị mới
+    cout << "Chieu dai: " << hinh2.chieuDai << '\n';
+    cout << "Chieu rong: " << hinh2.chieuRong << '\n';
+    cout << "Dien tich: " << hinh2.tinhDienTich() << '\n';
+
+    int a,b;
+    cout << "Nhap chieu dai: ";  cin >> a;
+    cout << "Nhap chieu rong: "; cin >> b;
+    HinhChuNhat hinh3(a,b); // lấy giá trị mới nhập từ bàn phím
+    cout << "Chieu dai: " << hinh3.chieuDai << '\n';
+    cout << "Chieu rong: " << hinh3.chieuRong << '\n';
+    cout << "Dien tich: " << hinh3.tinhDienTich() << '\n';
+    return 0;
+}
+```
+**Kết quả**:
+```cpp
+Chieu dai: 3
+Chieu rong: 5
+Dien tich: 15
+
+Chieu dai: 10
+Chieu rong: 20
+Dien tich: 200
+
+Nhap chieu dai: 7
+Nhap chieu rong: 8
+Chieu dai: 7
+Chieu rong: 8
+Dien tich: 56
+```
+
+📝 Khi constructor có tham số truyền vào và gán giá trị cụ thể:
+
+📝 Nếu object được khởi tạo không có tham số truyền vào thì mặc định lấy 2 giá trị đã khởi tạo phía trên.
+
+📝 Nếu object được khởi tạo và truyền vào giá trị mới thì nó sẽ ghi đè lên giá trị cũ và các lệnh thực thi phía sau sẽ lấy giá trị mới.
+
+
 - **Constructor trong phạm vi protected**: object không thể được khởi tạo trực tiếp từ bên ngoài class, mà chỉ có thể được khởi tạo từ các class kế thừa hoặc các method bên trong class đó.
 
 💻
@@ -3953,6 +4039,7 @@ int main() {
 ```
 
 - **Constructor trong phạm vi private**: không ai có thể khởi tạo đối tượng của class từ bên ngoài, kể cả class con. Thường được sử dụng trong các singleton pattern hoặc các trường hợp mà muốn kiểm soát chặt chẽ việc tạo đối tượng.
+
 💻
 ```cpp
 class MyClass {
@@ -3981,7 +4068,63 @@ int main() {
 <details><summary><b>📚 Destructor</b></summary>
 <p>
 
+- Tương tự với Constructor, Destructor cũng là một method và có tên trùng với tên class nhưng có thể ký tự **~** ở phía trước tên.
+- Destructor khi khai báo trong phạm vi public sẽ được tự động gọi khi object được giải phóng.
+- Trong class, object bản chất cũng là 1 biến cục bộ nên nó sẽ được lưu trong phân vùng Stack và khi kết thúc hàm thì cũng bị thu hồi nhưng đối với **destructor**, trước khi thu hồi sẽ tự động khởi chạy.
 
+💻
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class HinhChuNhat {
+    public:
+    string name;
+    double chieuDai;
+    double chieuRong;
+
+    HinhChuNhat(string ten){ 
+        HinhChuNhat::name = ten;
+        cout << "Khoi tao object: " << name << endl;
+    }
+
+    ~HinhChuNhat() {
+        std::cout << "Destructor: " << name << '\n';
+    }
+
+
+    // Hàm tính diện tích
+    double tinhDienTich() {
+        return chieuDai * chieuRong;
+    }
+};
+
+void test(){
+    HinhChuNhat hinh1("Hinh1");
+    HinhChuNhat hinh2("Hinh2");
+}
+
+int main(int argc, char const *argv[])
+{
+    test();
+    return 0;
+}
+```
+**Kết quả:**
+```cpp
+Khoi tao object: Hinh1
+Khoi tao object: Hinh2
+Destructor: Hinh2
+Destructor: Hinh1
+```
+
+📝 ``` hinh1("Hinh1") ```, ``` hinh2("Hinh2") ``` bản chất đều 2 biến cục bộ và lưu trong Stack
+
+📝 object ``` hinh1("Hinh1") ``` được khởi tạo trước nên được đưa vào Stack trước, còn object ``` hinh2("Hinh2") ``` khởi tạo sau nên đưa vào Stack sau cùng nhưng khi lấy ra thì object ``` hinh2("Hinh2") ``` lại được lấy ra trước.
+
+<br> 
 
 </p>
 </details>
